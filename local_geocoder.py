@@ -5,7 +5,7 @@ No internet connection required.
 
 import json
 import os
-from fuzzywuzzy import fuzz, process
+from rapidfuzz import fuzz, process
 from typing import List, Dict, Optional
 
 class LocalGeocoder:
@@ -100,7 +100,7 @@ class LocalGeocoder:
             
             # Add fuzzy matches that aren't already in results
             existing_names = {city['name'] for city in combined_results}
-            for match_name, score in fuzzy_matches:
+            for match_name, score, _ in fuzzy_matches:  # rapidfuzz returns (match, score, index)
                 if score > 60 and match_name not in existing_names:  # Minimum similarity threshold
                     # Find the city data for this match
                     for city_data in self.city_names:
