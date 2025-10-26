@@ -1,0 +1,75 @@
+Name	Not Given
+Birth Date	August 22, 1996 Thursday
+Birth Time	12:23 PM IST (+05:30)
+Place of Birth	Coimbatore, Tamil Nadu, India
+LongDeg 76
+LongMin 57
+LongEW EW
+
+LatDeg 10
+LatMin 59
+LatNS NS
+
+Ayanamsa	Lahiri
+​ Change Birth Details
+Given below is the panchangam for the input date of birth.
+
+Weekday	Thursday
+Nakshatra	Anuradha 2nd Pada
+Aug 22, 05:13:03 AM to Aug 23, 04:41:15 AM
+Tithi	Ashtami (Shukla Paksha )
+Yoga	Indra
+Karana	Bava
+
+
+Planets	Positions	Degrees	Rasi	Rasi Lord	Nakshatra	Nakshatra Lord
+Sun Sun	125° 38'	5° 38′	Simha Simha	Sun	Magha	Ketu
+Moon Moon	217° 21'	7° 21′	Vrischika Vrischika	Mars	Anuradha	Saturn
+Mercury Mercury	152° 57'	2° 57′	Kanya Kanya	Mercury	Uttara Phalguni	Sun
+Venus Venus	79° 54'	19° 54′	Mithuna Mithuna	Mercury	Ardra	Rahu
+Mars Mars	84° 22'	24° 22′	Mithuna Mithuna	Mercury	Punarvasu	Jupiter
+Jupiter Jupiter	254° 14'	14° 14′	Dhanu Dhanu	Jupiter	Purva Ashadha	Venus
+Saturn Saturn	342° 37'	12° 37′	Meena Meena	Jupiter	Uttara Bhadrapada	Saturn
+Ascendant Ascendant	215° 25'	5° 25′	Vrischika Vrischika	Mars	Anuradha	Saturn
+Rahu Rahu	166° 13'	16° 13′	Kanya Kanya	Mercury	Hasta	Moon
+Ketu Ketu	346° 13'	16° 13′	Meena Meena	Jupiter	Uttara Bhadrapada	Saturn
+
+
+Tamil date	Aavani 7, Dhatri
+Nakshatra	Anuradha 2nd Pada
+Weekday	Thursday
+Tithi	Ashtami (Shukla Paksha )
+Yoga	Indra
+Karana	Bava
+Nakshatra Lord	Saturn
+God	Mitra
+Animal Sign	Deer
+Rasi	Vrischika
+Rasi Lord	Mars
+Ascendant	Vrischika
+Ascendant Lord	Mars
+Tree	Bullet Wood Tree
+Ganam	Deva
+Bird	Crow
+Yoni	Female
+Gothram	Angiras
+Bhutham	Fire
+Sunrise	06:15 AM
+Sunset	06:34 PM
+
+Your Vimshottari Dasha Details
+Vimshottari dasha is the most important and most supreme dasha as per vedic astrology. There are 9 dashas divided over a period of 120 years. Each dasha has a ruling planet and the life of a person is directly influenced by the nature of his/her ruling planet governing a particular dasha. The first Maha dasha is determined by the position of the natal moon in a given nakṣatra.
+
+Dasa Balance : 13 years, 3 months and 2 days
+Given below is the start time and end time of various mahadashas
+
+Mahadasha	Start	End
+Saturn	25-Nov, 1990	24-Nov, 2009
+Mercury	24-Nov, 2009	25-Nov, 2026
+Ketu	25-Nov, 2026	24-Nov, 2033
+Venus	24-Nov, 2033	24-Nov, 2053
+Sun	24-Nov, 2053	25-Nov, 2059
+Moon	25-Nov, 2059	24-Nov, 2069
+Mars	24-Nov, 2069	24-Nov, 2076
+Rahu	24-Nov, 2076	25-Nov, 2094
+Jupiter	25-Nov, 2094	26-Nov, 2110

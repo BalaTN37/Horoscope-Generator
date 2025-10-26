@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vedic Astrology Chart</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    label { display: block; margin-top: 0.5rem; font-weight: 600; }
+    input, select { width: 100%; padding: 0.5rem; }
+    button { padding: 0.6rem 1rem; margin-top: 1rem; }
+    pre { background: #f7f7f9; padding: 1rem; overflow: auto; }
+    canvas { width: 100%; height: 520px; border: 1px solid #ddd; }
+    .row { display:flex; gap:1rem; align-items:end }
+  </style>
+</head>
+<body>
+  <h1>Vedic Astrology Chart</h1>
+  <div class="grid">
+    <div>
+      <label>Place</label>
+      <div class="row" style="align-items:center; gap:0.5rem; position:relative">
+        <input id="place" type="text" placeholder="City, State, Country" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="onPlaceInput()" onkeydown="onPlaceKey(event)" style="flex:1" />
+        <button type="button" onclick="applyPlace()">Find</button>
+        <div id="place-list" style="position:absolute; top:100%; left:0; right:0; z-index:9999"></div>
+      </div>
+      <label>Date & Time (local)</label>
+      <input id="dt" type="datetime-local" />
+      <label>Latitude</label>
+      <input id="lat" type="number" step="0.0001" placeholder="e.g. 28.6139" />
+      <label>Longitude</label>
+      <input id="lon" type="number" step="0.0001" placeholder="e.g. 77.2090" />
+      <div class="row">
+        <div style="flex:1">
+          <label>Timezone offset (hours)</label>
+          <input id="tz" type="number" step="0.25" placeholder="e.g. 5.5" />
+        </div>
+        <div></div>
+      </div>
+      <label>Ayanamsa</label>
+      <select id="ayan">
+        <option value="lahiri" selected>Lahiri (default)</option>
+        <option value="krishnamurti">Krishnamurti</option>
+      </select>
+      <label>House system</label>
+      <select id="house">
+        <option value="equal" selected>Equal (default)</option>
+        <option value="whole">Whole Sign</option>
+        <option value="placidus">Placidus</option>
+        <option value="koch">Koch</option>
+        <option value="porphyry">Porphyry</option>
+      </select>
+      <label>Node type</label>
+      <select id="nodeType">
+        <option value="mean" selected>Mean (default)</option>
+        <option value="true">True</option>
+      </select>
+      <button onclick="submitForm()">Generate</button>
+      <div id="err" style="color:crimson; margin-top:0.5rem"></div>
+    </div>
+    <div>
+      <canvas id="chart"></canvas>
+      <pre id="out"></pre>
+      <div id="md"></div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('chart');
+    const ctx = canvas.getContext('2d');
+    // Prefill local datetime and timezone offset (in hours)
+    (function prefillDefaults(){
+      try {
+        const now = new Date();
+        const pad = n => String(n).padStart(2,'0');
+        const local = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+        document.getElementById('dt').value = local;
+        const tzHours = -now.getTimezoneOffset()/60; // e.g., IST => 5.5
+        document.getElementById('tz').value = tzHours;
+      } catch {}
+    })();
+
+    // Draw a South Indian style chart: a square subdivided into 12 fixed boxes.
+    function drawChart(data) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width, h = canvas.height;
+      const pad = 20;
+      const boxW = (w - pad*2) / 4;
+      const boxH = (h - pad*2) / 4;
+
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 2;
+      // Outer border
+      ctx.strokeRect(pad, pad, w-2*pad, h-2*pad);
+
+      // South Indian fixed grid coordinates for 12 houses (row, col) 4x4, skipping center as split boxes
+      const houseGrid = [
+        [1,1], [0,1], [0,2], [1,2], [2,2], [2,1], [2,0], [1,0], [0,0], [0,3], [3,3], [3,0]
+      ];
+
+      // draw all small boxes
+      ctx.font = '12px sans-serif';
+      ctx.fillStyle = '#111';
+      for (let i=0;i<12;i++){
+        const [r,c] = houseGrid[i];
+        const x = pad + c*boxW;
+        const y = pad + r*boxH;
+        ctx.strokeRect(x, y, boxW, boxH);
+        const deg = data.houses[String(i+1)];
+        ctx.fillText(`${i+1}`, x+4, y+14);
+        if (deg !== undefined) {
+          ctx.fillText(`${deg.toFixed(1)}°`, x+4, y+28);
+        }
+      }
+
+      // Place planet labels inside their house box with simple stacking, using planetsByHouse
+      const houseStacks = Array.from({length:12},()=>[]);
+      for (let i=1; i<=12; i++){
+        const arr = (data.planetsByHouse && data.planetsByHouse[String(i)]) || [];
+        for (const p of arr){
+          const label = `${p.abbr || p.name} ${p.sign} ${p.degInSign.toFixed ? p.degInSign.toFixed(1) : p.degInSign}°`;
+          houseStacks[i-1].push(label);
+        }
+      }
+
+      for (let i=0;i<12;i++){
+        const [r,c] = houseGrid[i];
+        const x = pad + c*boxW + 4;
+        const y = pad + r*boxH + 42;
+        let yy=y;
+        for (const label of houseStacks[i]){
+          ctx.fillText(label, x, yy);
+          yy += 14;
+        }
+      }
+
+      // Legend
+      ctx.fillText(`Asc: ${data.ascendant.toFixed(1)}°`, pad, h - pad + 14);
+    }
+
+    async function submitForm() {
+      const err = document.getElementById('err');
+      err.textContent = '';
+      const dt = document.getElementById('dt').value;
+      const place = document.getElementById('place').value;
+      const lat = document.getElementById('lat').value;
+      const lon = document.getElementById('lon').value;
+      const tz = document.getElementById('tz').value;
+      const ayan = document.getElementById('ayan').value;
+      const house = document.getElementById('house').value;
+      const nodeType = document.getElementById('nodeType').value;
+      if (!dt) { err.textContent = 'Please set date/time.'; return; }
+      try {
+        const res = await fetch('/api/chart', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ datetime: dt, place, lat, lon, tz_offset: tz, ayanamsa: ayan, house_system: house, node_type: nodeType })
+        });
+        const json = await res.json();
+        if (!json.ok) throw new Error(json.error || 'Failed');
+        drawChart(json.data);
+        document.getElementById('out').textContent = JSON.stringify(json.data, null, 2);
+        renderMahadasha(json.data);
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    }
+
+    // Simple place autosuggest with caching and fast selection
+    let placeTimer;
+    const placeCache = new Map(); // q(lower) -> [{name,lat,lon}]
+    async function onPlaceInput(){
+      const q = document.getElementById('place').value.trim();
+      const list = document.getElementById('place-list');
+      if (placeTimer) clearTimeout(placeTimer);
+      if (q.length < 3) { list.innerHTML=''; return; }
+      const key = q.toLowerCase();
+      // If cached, show immediately for responsiveness
+      if (placeCache.has(key)) {
+        renderPlaceList(list, placeCache.get(key));
+      } else {
+        list.innerHTML = `<div style="background:#fff; border:1px solid #ddd; padding:8px">Searching…</div>`;
+      }
+      placeTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(`/api/places?q=${encodeURIComponent(q)}`);
+          const json = await res.json();
+          if (!json.ok) throw new Error(json.error||'place search failed');
+          placeCache.set(key, json.data || []);
+          renderPlaceList(list, placeCache.get(key));
+        } catch(e) { list.innerHTML=''; }
+      }, 120);
+    }
+
+    function renderPlaceList(list, data){
+      const items = (data||[]).map(i => `<div class="item" data-lat="${i.lat}" data-lon="${i.lon}" style="padding:6px 8px; cursor:pointer; border-bottom:1px solid #eee">${i.name}</div>`).join('');
+      list.innerHTML = items ? `<div id="place-dd" style="position:absolute; top:100%; left:0; z-index:9999; background:#fff; border:1px solid #ddd; width:100%; max-height:220px; overflow:auto; box-shadow:0 6px 16px rgba(0,0,0,0.1)">${items}</div>` : `<div style="background:#fff; border:1px solid #ddd; padding:8px">No results. Type a more specific place.</div>`;
+      list.querySelectorAll('.item').forEach(el => {
+        // mousedown triggers earlier than click for snappier UX
+        el.addEventListener('mousedown', handlePlacePick, { passive: true });
+        el.addEventListener('click', handlePlacePick, { passive: true });
+      });
+    }
+
+    async function handlePlacePick(ev){
+      const el = ev.currentTarget;
+      const list = document.getElementById('place-list');
+      document.getElementById('place').value = el.textContent;
+      const lat = parseFloat(el.getAttribute('data-lat'));
+      const lon = parseFloat(el.getAttribute('data-lon'));
+      document.getElementById('lat').value = lat.toFixed(4);
+      document.getElementById('lon').value = lon.toFixed(4);
+      // Clear dropdown immediately for perceived speed
+      list.innerHTML='';
+      // Fire-and-forget timezone fetch; don't block UI
+      try {
+        const dt = document.getElementById('dt').value;
+        fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`)
+          .then(r=>r.json())
+          .then(j=>{ if (j.ok) document.getElementById('tz').value = j.data.tz_offset; })
+          .catch(()=>{});
+      } catch {}
+    }
+
+    function onPlaceKey(ev){
+      if (ev.key === 'Enter'){
+        ev.preventDefault();
+        const list = document.getElementById('place-list');
+        const first = list.querySelector('.item');
+        if (first) first.click(); else applyPlace();
+      }
+      if (ev.key === 'Escape'){
+        document.getElementById('place-list').innerHTML='';
+      }
+    }
+
+    async function applyPlace(){
+      const q = document.getElementById('place').value.trim();
+      if (!q) return;
+      const list = document.getElementById('place-list');
+      try {
+        const res = await fetch(`/api/places?q=${encodeURIComponent(q)}`);
+        const json = await res.json();
+        if (json.ok && json.data && json.data.length){
+          const best = json.data[0];
+          document.getElementById('place').value = best.name;
+          const lat = parseFloat(best.lat);
+          const lon = parseFloat(best.lon);
+          document.getElementById('lat').value = lat.toFixed(4);
+          document.getElementById('lon').value = lon.toFixed(4);
+          list.innerHTML='';
+          try {
+            const dt = document.getElementById('dt').value;
+            const tzRes = await fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`);
+            const tzJson = await tzRes.json();
+            if (tzJson.ok) document.getElementById('tz').value = tzJson.data.tz_offset;
+          } catch {}
+        } else {
+          list.innerHTML='';
+        }
+      } catch { list.innerHTML=''; }
+    }
+      async function applyPlace(){
+        const q = document.getElementById('place').value.trim();
+        const list = document.getElementById('place-list');
+        if (!q || q.length < 3){
+          list.innerHTML = `<div style="background:#fff; border:1px solid #ddd; padding:8px">Type at least 3 characters</div>`;
+          return;
+        }
+        // If suggestions are already visible, pick the first instantly
+        const first = list.querySelector('.item');
+        if (first) { first.dispatchEvent(new Event('mousedown')); return; }
+        // Use cache if available for instant response
+        const key = q.toLowerCase();
+        if (placeCache.has(key) && placeCache.get(key).length){
+          const best = placeCache.get(key)[0];
+          document.getElementById('place').value = best.name;
+          const lat = parseFloat(best.lat);
+          const lon = parseFloat(best.lon);
+          document.getElementById('lat').value = lat.toFixed(4);
+          document.getElementById('lon').value = lon.toFixed(4);
+          list.innerHTML='';
+          try {
+            const dt = document.getElementById('dt').value;
+            const tzRes = await fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`);
+            const tzJson = await tzRes.json();
+            if (tzJson.ok) document.getElementById('tz').value = tzJson.data.tz_offset;
+          } catch {}
+          return;
+        }
+        try {
+          const res = await fetch(`/api/places?q=${encodeURIComponent(q)}`);
+          const json = await res.json();
+          if (json.ok && json.data && json.data.length){
+            const best = json.data[0];
+            document.getElementById('place').value = best.name;
+            const lat = parseFloat(best.lat);
+            const lon = parseFloat(best.lon);
+            document.getElementById('lat').value = lat.toFixed(4);
+            document.getElementById('lon').value = lon.toFixed(4);
+            list.innerHTML='';
+            try {
+              const dt = document.getElementById('dt').value;
+              const tzRes = await fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`);
+              const tzJson = await tzRes.json();
+              if (tzJson.ok) document.getElementById('tz').value = tzJson.data.tz_offset;
+            } catch {}
+          } else {
+            list.innerHTML = `<div style="background:#fff; border:1px solid #ddd; padding:8px">No results. Try a different name.</div>`;
+          }
+        } catch {
+          list.innerHTML = `<div style="background:#fff; border:1px solid #ddd; padding:8px">Lookup failed. Check connection.</div>`;
+        }
+      }
+
+    function renderMahadasha(data){
+      const mdDiv = document.getElementById('md');
+      const v = data.vimshottari;
+      if (!v) { mdDiv.innerHTML=''; return; }
+      const lord = v.nakshatraLord;
+      const balY = v.balanceAtBirthYears || 0;
+      const y = Math.floor(balY);
+      const remDays = (balY - y) * 365.2425;
+      const m = Math.floor(remDays / 30.436875);
+      const d = Math.round(remDays - m*30.436875);
+      const fmtDMY = (iso) => {
+        const dt = new Date(iso);
+        if (isNaN(dt.getTime())) return iso;
+        const dd = String(dt.getDate()).padStart(2,'0');
+        const mm = String(dt.getMonth()+1).padStart(2,'0');
+        const yyyy = dt.getFullYear();
+        return `${dd}/${mm}/${yyyy}`;
+      };
+      const rows = (v.mahadashas||[]).map((md, idx) => {
+        const adRows = (md.antardashas||[]).map(ad => {
+          const pdRows = (ad.pratyantardashas||[]).map(pd =>
+            `<tr>
+              <td style="padding-left:2rem">↳ ${pd.lord}</td>
+              <td>${fmtDMY(pd.start)}</td>
+              <td>${fmtDMY(pd.end)}</td>
+            </tr>`
+          ).join('');
+          return `
+            <tr style="background:#fafafa">
+              <td style="padding-left:1rem">→ ${ad.lord}</td>
+              <td>${fmtDMY(ad.start)}</td>
+              <td>${fmtDMY(ad.end)}</td>
+              <td></td>
+            </tr>
+            ${pdRows}
+          `;
+        }).join('');
+        return `
+          <tr>
+            <td><b>${md.lord}</b></td>
+            <td>${fmtDMY(md.start)}</td>
+            <td>${fmtDMY(md.end)}</td>
+            <td>${md.years}y</td>
+          </tr>
+          ${adRows}
+        `;
+      }).join('');
+      mdDiv.innerHTML = `
+        <h3>Vimshottari Mahadasha</h3>
+        <div style="margin:0.5rem 0">Nakshatra Lord at birth: <b>${lord||''}</b> • Balance at birth: <b>${y}y ${m}m ${d}d</b></div>
+        <table style="width:100%; border-collapse:collapse">
+          <thead>
+            <tr>
+              <th style="text-align:left">Lord</th>
+              <th style="text-align:left">Start</th>
+              <th style="text-align:left">End</th>
+              <th style="text-align:left">Length</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+  </script>
+</body>
+</html>
