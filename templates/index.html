@@ -6,13 +6,133 @@
   <title>Vedic Astrology Chart</title>
   <style>
     body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; }
     label { display: block; margin-top: 0.5rem; font-weight: 600; }
     input, select { width: 100%; padding: 0.5rem; }
     button { padding: 0.6rem 1rem; margin-top: 1rem; }
-    pre { background: #f7f7f9; padding: 1rem; overflow: auto; }
-    canvas { width: 100%; height: 520px; border: 1px solid #ddd; }
+    pre { background: #f7f7f9; padding: 1rem; overflow: auto; max-height: 300px; }
+    canvas { width: 100%; height: 520px; border: 1px solid #ddd; margin-bottom: 1rem; }
     .row { display:flex; gap:1rem; align-items:end }
+    
+    /* Collapsible Sections */
+    .section-container {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 1rem 0;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .section-header {
+      padding: 1rem;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px 8px 0 0;
+      transition: background 0.2s ease;
+    }
+    
+    .section-header:hover {
+      background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    }
+    
+    .section-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .section-summary {
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+    
+    .section-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .download-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .download-btn:hover {
+      background: #218838;
+    }
+    
+    .expand-icon {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+      color: #6c757d;
+    }
+    
+    .section-expanded .expand-icon {
+      transform: rotate(180deg);
+    }
+    
+    .section-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .section-expanded .section-content {
+      max-height: 2000px;
+      padding: 1rem;
+    }
+    
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5rem 0;
+    }
+    
+    .data-table th,
+    .data-table td {
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .data-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+    
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin: 0.5rem 0;
+    }
+    
+    .data-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 4px solid #007bff;
+    }
+    
+    .highlight {
+      background: #fff3cd;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border-left: 3px solid #ffc107;
+    }
   </style>
 </head>
 <body>
@@ -59,10 +179,166 @@
       <button onclick="submitForm()">Generate</button>
       <div id="err" style="color:crimson; margin-top:0.5rem"></div>
     </div>
-    <div>
+    <div id="results-container">
       <canvas id="chart"></canvas>
-      <pre id="out"></pre>
-      <div id="md"></div>
+      
+      <!-- Collapsible Sections -->
+      <div id="sections-container" style="display: none;">
+        
+        <!-- Birth Chart Overview Section -->
+        <div class="section-container" id="section-chart">
+          <div class="section-header" onclick="toggleSection('chart')">
+            <div>
+              <div class="section-title">
+                <span>🎯</span>Birth Chart Overview
+              </div>
+              <div class="section-summary" id="chart-summary">Chart details and basic information</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('birth_info')" title="Download birth info as JSON">📥 JSON</button>
+              <span class="expand-icon" id="chart-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="chart-content">
+            <div id="chart-details"></div>
+          </div>
+        </div>
+        
+        <!-- Planetary Positions Section -->
+        <div class="section-container" id="section-planets">
+          <div class="section-header" onclick="toggleSection('planets')">
+            <div>
+              <div class="section-title">
+                <span>🪐</span>Planetary Positions
+              </div>
+              <div class="section-summary" id="planets-summary">Detailed planetary analysis</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('planets')" title="Download planetary data as JSON">📥 JSON</button>
+              <span class="expand-icon" id="planets-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="planets-content">
+            <div id="planets-details"></div>
+          </div>
+        </div>
+        
+        <!-- House Analysis Section -->
+        <div class="section-container" id="section-houses">
+          <div class="section-header" onclick="toggleSection('houses')">
+            <div>
+              <div class="section-title">
+                <span>🏠</span>House Analysis
+              </div>
+              <div class="section-summary" id="houses-summary">House cusps and significances</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('houses')" title="Download house data as JSON">📥 JSON</button>
+              <span class="expand-icon" id="houses-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="houses-content">
+            <div id="houses-details"></div>
+          </div>
+        </div>
+        
+        <!-- Nakshatra Analysis Section -->
+        <div class="section-container" id="section-nakshatras">
+          <div class="section-header" onclick="toggleSection('nakshatras')">
+            <div>
+              <div class="section-title">
+                <span>🌟</span>Nakshatra Analysis
+              </div>
+              <div class="section-summary" id="nakshatras-summary">Detailed nakshatra positions</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('nakshatras')" title="Download nakshatra data as JSON">📥 JSON</button>
+              <span class="expand-icon" id="nakshatras-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="nakshatras-content">
+            <div id="nakshatras-details"></div>
+          </div>
+        </div>
+        
+        <!-- Current Transits Section -->
+        <div class="section-container" id="section-transits">
+          <div class="section-header" onclick="toggleSection('transits')">
+            <div>
+              <div class="section-title">
+                <span>🔄</span>Current Transits
+              </div>
+              <div class="section-summary" id="transits-summary">Current planetary positions vs birth chart</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('transits')" title="Download transit data as JSON">📥 JSON</button>
+              <span class="expand-icon" id="transits-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="transits-content">
+            <div id="transits-details"></div>
+          </div>
+        </div>
+        
+        <!-- Vimshottari Dasha Section -->
+        <div class="section-container" id="section-mahadasha">
+          <div class="section-header" onclick="toggleSection('mahadasha')">
+            <div>
+              <div class="section-title">
+                <span>⏰</span>Vimshottari Dasha
+              </div>
+              <div class="section-summary" id="mahadasha-summary">120-year dasha timeline</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('mahadasha')" title="Download dasha data as JSON">📥 JSON</button>
+              <span class="expand-icon" id="mahadasha-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="mahadasha-content">
+            <div id="mahadasha-details"></div>
+          </div>
+        </div>
+        
+        <!-- Yearly Dasha Calendar Section -->
+        <div class="section-container" id="section-yearly">
+          <div class="section-header" onclick="toggleSection('yearly')">
+            <div>
+              <div class="section-title">
+                <span>📅</span>Yearly Dasha Calendar
+              </div>
+              <div class="section-summary" id="yearly-summary">Year-by-year dasha breakdown</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('yearly_dasha')" title="Download yearly calendar as JSON">📥 JSON</button>
+              <span class="expand-icon" id="yearly-icon">▼</span>
+            </div>
+          </div>
+          <div class="section-content" id="yearly-content">
+            <div id="yearly-details"></div>
+          </div>
+        </div>
+        
+        <!-- Complete Data Download -->
+        <div class="section-container" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);">
+          <div class="section-header" style="background: transparent; cursor: default;">
+            <div>
+              <div class="section-title">
+                <span>💾</span>Complete Chart Data
+              </div>
+              <div class="section-summary">Download all data in one AI-readable JSON file</div>
+            </div>
+            <div class="section-controls">
+              <button class="download-btn" onclick="downloadSection('complete')" style="background: #1976d2;" title="Download complete chart as JSON">📥 Complete JSON</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Legacy output (hidden by default) -->
+      <details style="margin-top: 1rem;">
+        <summary style="cursor: pointer; padding: 0.5rem; background: #f8f9fa; border-radius: 4px;">🔍 Raw Data (for debugging)</summary>
+        <pre id="out" style="margin-top: 0.5rem;"></pre>
+      </details>
     </div>
   </div>
 
@@ -150,7 +426,35 @@
       const ayan = document.getElementById('ayan').value;
       const house = document.getElementById('house').value;
       const nodeType = document.getElementById('nodeType').value;
+      
+      // Enhanced validation
       if (!dt) { err.textContent = 'Please set date/time.'; return; }
+      
+      // Check if we have either a place OR lat/lon coordinates
+      if (!place && (!lat || !lon)) {
+        err.textContent = 'Please enter a place name OR provide latitude and longitude coordinates.'; 
+        return; 
+      }
+      
+      // If lat/lon provided, validate they are numbers
+      if (lat && isNaN(parseFloat(lat))) {
+        err.textContent = 'Latitude must be a valid number.'; 
+        return; 
+      }
+      
+      if (lon && isNaN(parseFloat(lon))) {
+        err.textContent = 'Longitude must be a valid number.'; 
+        return; 
+      }
+      
+      // Debug logging
+      console.log('DEBUG: Submitting with values:');
+      console.log('dt:', dt);
+      console.log('place:', place);
+      console.log('lat:', lat);
+      console.log('lon:', lon);
+      console.log('tz:', tz);
+      
       try {
         const res = await fetch('/api/chart', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -160,8 +464,10 @@
         if (!json.ok) throw new Error(json.error || 'Failed');
         drawChart(json.data);
         document.getElementById('out').textContent = JSON.stringify(json.data, null, 2);
-        renderMahadasha(json.data);
+        renderAllSections(json.data);
       } catch (e) {
+        console.error('DEBUG: Error in submitForm:', e);
+        console.error('DEBUG: Full error:', e.message);
         err.textContent = e.message;
       }
     }
@@ -313,16 +619,190 @@
         }
       }
 
-    function renderMahadasha(data){
-      const mdDiv = document.getElementById('md');
-      const v = data.vimshottari;
-      if (!v) { mdDiv.innerHTML=''; return; }
-      const lord = v.nakshatraLord;
-      const balY = v.balanceAtBirthYears || 0;
+    // Collapsible sections functionality
+    function toggleSection(sectionId) {
+      const section = document.getElementById(`section-${sectionId}`);
+      const content = document.getElementById(`${sectionId}-content`);
+      const icon = document.getElementById(`${sectionId}-icon`);
+      
+      section.classList.toggle('section-expanded');
+      
+      if (section.classList.contains('section-expanded')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        content.style.maxHeight = '0';
+      }
+    }
+
+    function downloadSection(sectionName) {
+      const url = `/api/download/${sectionName}`;
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `astrology_${sectionName}_${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function renderAllSections(data) {
+      // Show the sections container
+      document.getElementById('sections-container').style.display = 'block';
+      
+      // Render each section
+      renderChartSection(data);
+      renderPlanetsSection(data);
+      renderHousesSection(data);
+      renderNakshatrasSection(data);
+      renderTransitsSection(data);
+      renderMahadashSection(data);
+      renderYearlySection(data);
+      
+      // Update summaries
+      updateSectionSummaries(data);
+    }
+
+    function renderChartSection(data) {
+      const content = document.getElementById('chart-details');
+      const birthInfo = data.birth_info || {};
+      
+      content.innerHTML = `
+        <div class="data-grid">
+          <div class="data-card">
+            <h4>Birth Details</h4>
+            <p><strong>Date & Time:</strong> ${new Date(birthInfo.datetime).toLocaleString()}</p>
+            <p><strong>Location:</strong> ${birthInfo.latitude}°N, ${birthInfo.longitude}°E</p>
+            <p><strong>Timezone:</strong> UTC${birthInfo.timezone_offset >= 0 ? '+' : ''}${birthInfo.timezone_offset} hours</p>
+          </div>
+          <div class="data-card">
+            <h4>Chart Settings</h4>
+            <p><strong>Ayanamsa:</strong> ${birthInfo.ayanamsa || 'Lahiri'}</p>
+            <p><strong>House System:</strong> ${birthInfo.house_system || 'Equal'}</p>
+            <p><strong>Node Type:</strong> ${birthInfo.node_type || 'Mean'}</p>
+            <p><strong>Ascendant:</strong> ${data.ascendant?.toFixed(2)}°</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPlanetsSection(data) {
+      const content = document.getElementById('planets-details');
+      const planets = data.planetary_analysis || {};
+      
+      let planetsHtml = '<table class="data-table"><thead><tr><th>Planet</th><th>Sign</th><th>Degree</th><th>House</th><th>Nakshatra</th><th>Pada</th></tr></thead><tbody>';
+      
+      Object.entries(planets).forEach(([planet, info]) => {
+        const nakshatra = info.nakshatra || {};
+        planetsHtml += `
+          <tr>
+            <td><strong>${planet}</strong></td>
+            <td>${info.sign || ''}</td>
+            <td>${info.degree_in_sign?.toFixed(2)}°</td>
+            <td>${info.house}</td>
+            <td>${nakshatra.name || ''}</td>
+            <td>${nakshatra.pada || ''}</td>
+          </tr>
+        `;
+      });
+      
+      planetsHtml += '</tbody></table>';
+      content.innerHTML = planetsHtml;
+    }
+
+    function renderHousesSection(data) {
+      const content = document.getElementById('houses-details');
+      const houses = data.house_analysis || {};
+      
+      let housesHtml = '<table class="data-table"><thead><tr><th>House</th><th>Sign</th><th>Cusp</th><th>Planets</th><th>Significance</th></tr></thead><tbody>';
+      
+      for (let i = 1; i <= 12; i++) {
+        const house = houses[i.toString()] || {};
+        const planetsText = house.planets?.join(', ') || 'Empty';
+        housesHtml += `
+          <tr>
+            <td><strong>${i}</strong></td>
+            <td>${house.sign || ''}</td>
+            <td>${house.cusp_degree?.toFixed(2)}°</td>
+            <td>${planetsText}</td>
+            <td style="font-size: 0.9rem;">${house.significances || ''}</td>
+          </tr>
+        `;
+      }
+      
+      housesHtml += '</tbody></table>';
+      content.innerHTML = housesHtml;
+    }
+
+    function renderNakshatrasSection(data) {
+      const content = document.getElementById('nakshatras-details');
+      const nakshatras = data.nakshatra_details || {};
+      
+      let nakshatrasHtml = '<table class="data-table"><thead><tr><th>Planet</th><th>Nakshatra</th><th>Lord</th><th>Pada</th><th>Degree in Nakshatra</th></tr></thead><tbody>';
+      
+      Object.entries(nakshatras).forEach(([planet, info]) => {
+        nakshatrasHtml += `
+          <tr>
+            <td><strong>${planet}</strong></td>
+            <td>${info.nakshatra_name || ''}</td>
+            <td>${info.nakshatra_lord || ''}</td>
+            <td>${info.pada || ''}</td>
+            <td>${info.degree_in_nakshatra?.toFixed(3)}°</td>
+          </tr>
+        `;
+      });
+      
+      nakshatrasHtml += '</tbody></table>';
+      content.innerHTML = nakshatrasHtml;
+    }
+
+    function renderTransitsSection(data) {
+      const content = document.getElementById('transits-details');
+      const transits = data.current_transits || {};
+      const transitData = transits.transits || {};
+      
+      let transitsHtml = `
+        <div class="highlight" style="margin-bottom: 1rem;">
+          <strong>Transit Calculation Time:</strong> ${new Date(transits.calculation_time).toLocaleString()}
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Planet</th><th>Birth Position</th><th>Current Position</th><th>Current Sign</th><th>Current House</th><th>Movement</th></tr>
+          </thead>
+          <tbody>
+      `;
+      
+      Object.entries(transitData).forEach(([planet, transit]) => {
+        transitsHtml += `
+          <tr>
+            <td><strong>${planet}</strong></td>
+            <td>${transit.birth_longitude?.toFixed(2)}°</td>
+            <td>${transit.current_longitude?.toFixed(2)}°</td>
+            <td>${transit.current_sign || ''}</td>
+            <td>${transit.current_house || ''}</td>
+            <td>${transit.degree_difference?.toFixed(1)}°</td>
+          </tr>
+        `;
+      });
+      
+      transitsHtml += '</tbody></table>';
+      content.innerHTML = transitsHtml;
+    }
+
+    function renderMahadashSection(data) {
+      const content = document.getElementById('mahadasha-details');
+      const vim = data.vimshottari || {};
+      
+      if (!vim.mahadashas) {
+        content.innerHTML = '<p>No Vimshottari dasha data available.</p>';
+        return;
+      }
+      
+      const lord = vim.nakshatraLord;
+      const balY = vim.balanceAtBirthYears || 0;
       const y = Math.floor(balY);
       const remDays = (balY - y) * 365.2425;
       const m = Math.floor(remDays / 30.436875);
       const d = Math.round(remDays - m*30.436875);
+      
       const fmtDMY = (iso) => {
         const dt = new Date(iso);
         if (isNaN(dt.getTime())) return iso;
@@ -331,50 +811,103 @@
         const yyyy = dt.getFullYear();
         return `${dd}/${mm}/${yyyy}`;
       };
-      const rows = (v.mahadashas||[]).map((md, idx) => {
-        const adRows = (md.antardashas||[]).map(ad => {
-          const pdRows = (ad.pratyantardashas||[]).map(pd =>
-            `<tr>
-              <td style="padding-left:2rem">↳ ${pd.lord}</td>
-              <td>${fmtDMY(pd.start)}</td>
-              <td>${fmtDMY(pd.end)}</td>
-            </tr>`
-          ).join('');
-          return `
-            <tr style="background:#fafafa">
-              <td style="padding-left:1rem">→ ${ad.lord}</td>
-              <td>${fmtDMY(ad.start)}</td>
-              <td>${fmtDMY(ad.end)}</td>
-              <td></td>
-            </tr>
-            ${pdRows}
-          `;
-        }).join('');
-        return `
-          <tr>
-            <td><b>${md.lord}</b></td>
+      
+      let dashHtml = `
+        <div class="highlight" style="margin-bottom: 1rem;">
+          <strong>Nakshatra Lord at birth:</strong> ${lord || ''} • 
+          <strong>Balance at birth:</strong> ${y}y ${m}m ${d}d
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Dasha Level</th><th>Lord</th><th>Start</th><th>End</th><th>Duration</th></tr>
+          </thead>
+          <tbody>
+      `;
+      
+      vim.mahadashas.forEach((md, idx) => {
+        dashHtml += `
+          <tr style="background: #f8f9fa; font-weight: bold;">
+            <td>Mahadasha</td>
+            <td>${md.lord}</td>
             <td>${fmtDMY(md.start)}</td>
             <td>${fmtDMY(md.end)}</td>
             <td>${md.years}y</td>
           </tr>
-          ${adRows}
         `;
-      }).join('');
-      mdDiv.innerHTML = `
-        <h3>Vimshottari Mahadasha</h3>
-        <div style="margin:0.5rem 0">Nakshatra Lord at birth: <b>${lord||''}</b> • Balance at birth: <b>${y}y ${m}m ${d}d</b></div>
-        <table style="width:100%; border-collapse:collapse">
-          <thead>
-            <tr>
-              <th style="text-align:left">Lord</th>
-              <th style="text-align:left">Start</th>
-              <th style="text-align:left">End</th>
-              <th style="text-align:left">Length</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-      `;
+        
+        if (idx < 3) { // Show first 3 MDs with details
+          md.antardashas?.forEach(ad => {
+            dashHtml += `
+              <tr style="background: #fafafa;">
+                <td style="padding-left: 1rem;">→ Antardasha</td>
+                <td>${ad.lord}</td>
+                <td>${fmtDMY(ad.start)}</td>
+                <td>${fmtDMY(ad.end)}</td>
+                <td></td>
+              </tr>
+            `;
+          });
+        }
+      });
+      
+      dashHtml += '</tbody></table>';
+      content.innerHTML = dashHtml;
+    }
+
+    function renderYearlySection(data) {
+      const content = document.getElementById('yearly-details');
+      const yearly = data.yearly_dasha || {};
+      
+      if (!Object.keys(yearly).length) {
+        content.innerHTML = '<p>No yearly dasha data available.</p>';
+        return;
+      }
+      
+      let yearlyHtml = '';
+      
+      Object.entries(yearly).forEach(([year, yearData]) => {
+        const quarters = yearData.quarterly_summary || {};
+        
+        yearlyHtml += `
+          <div class="data-card" style="margin-bottom: 1rem;">
+            <h4>📅 ${year}</h4>
+            <div style="margin: 0.5rem 0;">
+              <strong>Total Periods:</strong> ${yearData.total_periods || 0}
+            </div>
+            <div class="data-grid" style="grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+              <div><strong>Q1 (Jan-Mar):</strong><br>${quarters.Q1 || 'No periods'}</div>
+              <div><strong>Q2 (Apr-Jun):</strong><br>${quarters.Q2 || 'No periods'}</div>
+              <div><strong>Q3 (Jul-Sep):</strong><br>${quarters.Q3 || 'No periods'}</div>
+              <div><strong>Q4 (Oct-Dec):</strong><br>${quarters.Q4 || 'No periods'}</div>
+            </div>
+          </div>
+        `;
+      });
+      
+      content.innerHTML = yearlyHtml;
+    }
+
+    function updateSectionSummaries(data) {
+      // Update section summaries
+      const planetCount = Object.keys(data.planetary_analysis || {}).length;
+      document.getElementById('planets-summary').textContent = `${planetCount} planets analyzed with detailed positions`;
+      
+      const occupiedHouses = Object.values(data.house_analysis || {}).filter(h => h.is_occupied).length;
+      document.getElementById('houses-summary').textContent = `${occupiedHouses} houses occupied, 12 total analyzed`;
+      
+      const nakshatraCount = Object.keys(data.nakshatra_details || {}).length;
+      document.getElementById('nakshatras-summary').textContent = `${nakshatraCount} planetary nakshatras calculated`;
+      
+      const transitTime = data.current_transits?.calculation_time;
+      if (transitTime) {
+        document.getElementById('transits-summary').textContent = `Current positions as of ${new Date(transitTime).toLocaleDateString()}`;
+      }
+      
+      const totalMDs = data.vimshottari?.mahadashas?.length || 0;
+      document.getElementById('mahadasha-summary').textContent = `${totalMDs} mahadashas in 120-year cycle`;
+      
+      const yearsCovered = Object.keys(data.yearly_dasha || {}).length;
+      document.getElementById('yearly-summary').textContent = `${yearsCovered} years of dasha periods calculated`;
     }
   </script>
 </body>

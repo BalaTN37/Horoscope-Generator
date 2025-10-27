@@ -299,6 +299,32 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
         }
 
     vim = _vim_mds(birth_dt_local, planets_sidereal['Moon'])
+    
+    # Generate comprehensive data for enhanced UI
+    birth_info = {
+        'datetime': birth_dt_local.isoformat(),
+        'latitude': lat,
+        'longitude': lon,
+        'timezone_offset': tz_offset_hours,
+        'ayanamsa': ayanamsa,
+        'house_system': house_system,
+        'node_type': node_type
+    }
+    
+    # Enhanced planetary analysis
+    planetary_analysis = _get_planetary_analysis(planets_sidereal, planets_out, cusps_map)
+    
+    # House analysis with significances
+    house_analysis = _get_house_analysis(cusps_map, planets_by_house)
+    
+    # Nakshatra details for all planets
+    nakshatra_details = _get_nakshatra_details(planets_sidereal)
+    
+    # Current transits
+    current_transits = _get_current_transits(planets_sidereal, cusps_map)
+    
+    # Yearly dasha calendar
+    yearly_dasha = _get_yearly_dasha_calendar(birth_dt_local, vim)
 
     return {
         'meta': {
@@ -306,10 +332,312 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
             'ayanamsa': ayanamsa,
             'house_system': house_system,
         },
+        'birth_info': birth_info,
         'ascendant': round(asc_sid, 6),
         'houses': {str(k): round(v, 6) for k, v in cusps_map.items()},
         'planets': planets_out,
         'planetsByHouse': planets_by_house,
         'transits': trans_out,
         'vimshottari': vim,
+        'planetary_analysis': planetary_analysis,
+        'house_analysis': house_analysis,
+        'nakshatra_details': nakshatra_details,
+        'current_transits': current_transits,
+        'yearly_dasha': yearly_dasha,
     }
+
+
+def _get_planetary_analysis(planets_sidereal: Dict, planets_out: Dict, cusps_map: Dict) -> Dict[str, Any]:
+    """Enhanced planetary analysis with detailed positions, aspects, and strengths."""
+    print(f"DEBUG: _get_planetary_analysis called")
+    print(f"DEBUG: planets_out type: {type(planets_out)}")
+    print(f"DEBUG: planets_out keys: {list(planets_out.keys()) if planets_out else 'None'}")
+    
+    if planets_out:
+        for planet, data in list(planets_out.items())[:2]:  # Show first 2 planets
+            print(f"DEBUG: planet '{planet}' data type: {type(data)}")
+            print(f"DEBUG: planet '{planet}' data keys: {list(data.keys()) if isinstance(data, dict) else 'Not a dict'}")
+            print(f"DEBUG: planet '{planet}' data: {data}")
+    
+    analysis = {}
+    
+    # Helper function to find house for a longitude
+    def house_index_for(lonv: float) -> int:
+        cusp_list = [cusps_map[i] for i in range(1, 13)]
+        def in_arc(a, start, end):
+            start = _degnorm(start); end = _degnorm(end); a = _degnorm(a)
+            if start <= end:
+                return start <= a < end
+            else:
+                return a >= start or a < end
+        
+        for i in range(12):
+            start = cusp_list[i]
+            end = cusp_list[(i+1) % 12]
+            if in_arc(lonv, start, end):
+                return i+1
+        return 12
+    
+    for planet, data in planets_out.items():
+        print(f"DEBUG: Processing planet '{planet}'")
+        print(f"DEBUG: data for {planet}: {data}")
+        print(f"DEBUG: data type: {type(data)}")
+        
+        if planet in ['Rahu', 'Ketu']:
+            continue
+            
+        lon_sid = planets_sidereal.get(planet, 0)
+        sign_idx = _sign_index(lon_sid)
+        deg_in_sign = _deg_in_sign(lon_sid)
+        
+        # Find which house this planet is in
+        house_num = house_index_for(lon_sid)
+        
+        # Nakshatra calculation
+        nak_index = int(lon_sid / NAK_LEN_DEG)
+        nak_lord = NAK_LORDS[nak_index % 27] if nak_index < 27 else NAK_LORDS[0]
+        pada = int((lon_sid % NAK_LEN_DEG) / (NAK_LEN_DEG / 4)) + 1
+        
+        print(f"DEBUG: About to access longitude for planet {planet}")
+        print(f"DEBUG: Available keys in data: {list(data.keys()) if isinstance(data, dict) else 'Not a dict'}")
+        
+        analysis[planet] = {
+            'longitude_tropical': data.get('longitude', 0),  # Fixed: use 'longitude' not 'lon'
+            'longitude_sidereal': round(lon_sid, 6),
+            'sign': ZODIAC_SIGNS[sign_idx],
+            'sign_index': sign_idx + 1,
+            'degree_in_sign': round(deg_in_sign, 6),
+            'house': house_num,
+            'nakshatra': {
+                'index': nak_index + 1,
+                'name': f"Nakshatra_{nak_index + 1}",
+                'lord': nak_lord,
+                'pada': pada
+            },
+            'is_retrograde': False,  # planets_out doesn't have speed data
+            'speed': 0  # planets_out doesn't have speed data
+        }
+    
+    return analysis
+
+
+def _get_house_analysis(cusps_map: Dict, planets_by_house: Dict) -> Dict[str, Any]:
+    """Detailed house analysis with cusps, signs, and planetary occupancy."""
+    house_significances = {
+        1: "Self, Personality, Physical Appearance, First Impressions",
+        2: "Wealth, Speech, Family, Food, Values",
+        3: "Siblings, Communication, Short Journeys, Courage",
+        4: "Home, Mother, Property, Emotions, Education",
+        5: "Children, Creativity, Romance, Intelligence, Speculation",
+        6: "Health, Enemies, Service, Daily Routine, Pets",
+        7: "Partnership, Marriage, Business, Open Enemies",
+        8: "Transformation, Occult, Longevity, Hidden Matters",
+        9: "Fortune, Religion, Higher Learning, Father, Philosophy",
+        10: "Career, Status, Reputation, Authority, Government",
+        11: "Gains, Friends, Hopes, Elder Siblings, Income",
+        12: "Loss, Expenses, Foreign Lands, Spirituality, Isolation"
+    }
+    
+    analysis = {}
+    for house_num in range(1, 13):
+        cusp_degree = cusps_map.get(house_num, 0)
+        sign_idx = _sign_index(cusp_degree)
+        planets_in_house = planets_by_house.get(str(house_num), [])
+        
+        analysis[str(house_num)] = {
+            'cusp_degree': round(cusp_degree, 6),
+            'sign': ZODIAC_SIGNS[sign_idx],
+            'sign_index': sign_idx + 1,
+            'planets': [p['name'] for p in planets_in_house],
+            'planet_count': len(planets_in_house),
+            'significances': house_significances[house_num],
+            'is_occupied': len(planets_in_house) > 0
+        }
+    
+    return analysis
+
+
+def _get_nakshatra_details(planets_sidereal: Dict) -> Dict[str, Any]:
+    """Detailed nakshatra analysis for all planets."""
+    nakshatra_names = [
+        "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu",
+        "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta",
+        "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "Purva Ashadha",
+        "Uttara Ashadha", "Shravana", "Dhanishta", "Shatabhisha", "Purva Bhadrapada",
+        "Uttara Bhadrapada", "Revati"
+    ]
+    
+    details = {}
+    for planet, lon_sid in planets_sidereal.items():
+        if planet in ['Rahu', 'Ketu']:
+            continue
+            
+        nak_index = int(lon_sid / NAK_LEN_DEG)
+        nak_lord = NAK_LORDS[nak_index % 27] if nak_index < 27 else NAK_LORDS[0]
+        pada = int((lon_sid % NAK_LEN_DEG) / (NAK_LEN_DEG / 4)) + 1
+        degree_in_nak = lon_sid % NAK_LEN_DEG
+        
+        details[planet] = {
+            'nakshatra_index': nak_index + 1,
+            'nakshatra_name': nakshatra_names[nak_index % 27] if nak_index < 27 else nakshatra_names[0],
+            'nakshatra_lord': nak_lord,
+            'pada': pada,
+            'degree_in_nakshatra': round(degree_in_nak, 6),
+            'longitude_sidereal': round(lon_sid, 6)
+        }
+    
+    return details
+
+
+def _get_current_transits(planets_sidereal: Dict, cusps_map: Dict) -> Dict[str, Any]:
+    """Calculate current planetary transits relative to birth chart."""
+    from datetime import datetime
+    
+    try:
+        # Get current planetary positions
+        current_dt = datetime.now()
+        jd_now = _julday(current_dt.replace(tzinfo=timezone.utc))
+        
+        # Set sidereal mode
+        swe.set_sid_mode(swe.SIDM_LAHIRI)
+        
+        current_transits = {}
+        current_planets = {}
+        
+        # Calculate current positions
+        for name, planet_id in PLANET_ORDER:
+            try:
+                pos, _ = swe.calc_ut(jd_now, planet_id, swe.FLG_SIDEREAL | swe.FLG_MOSEPH)
+                current_planets[name] = pos[0]
+            except:
+                current_planets[name] = 0
+        
+        # Compare with birth positions
+        for planet in current_planets:
+            birth_lon = planets_sidereal.get(planet, 0)
+            current_lon = current_planets[planet]
+            
+            # Find current house
+            current_house = 1
+            for house_num in range(1, 13):
+                next_house = house_num + 1 if house_num < 12 else 1
+                cusp = cusps_map.get(house_num, 0)
+                next_cusp = cusps_map.get(next_house, 0)
+                
+                if next_cusp < cusp:  # Handle 12th to 1st house transition
+                    if current_lon >= cusp or current_lon < next_cusp:
+                        current_house = house_num
+                        break
+                else:
+                    if cusp <= current_lon < next_cusp:
+                        current_house = house_num
+                        break
+            
+            current_transits[planet] = {
+                'birth_longitude': round(birth_lon, 6),
+                'current_longitude': round(current_lon, 6),
+                'current_sign': ZODIAC_SIGNS[_sign_index(current_lon)],
+                'current_house': current_house,
+                'degree_difference': round((current_lon - birth_lon) % 360, 6)
+            }
+        
+        return {
+            'calculation_time': current_dt.isoformat(),
+            'transits': current_transits
+        }
+    except Exception as e:
+        return {
+            'calculation_time': datetime.now().isoformat(),
+            'error': f"Transit calculation failed: {str(e)}",
+            'transits': {}
+        }
+
+
+def _get_yearly_dasha_calendar(birth_dt_local: datetime, vim_data: Dict) -> Dict[str, Any]:
+    """Generate yearly dasha calendar for next 10 years."""
+    if not vim_data or 'mahadashas' not in vim_data:
+        return {}
+    
+    yearly_calendar = {}
+    current_year = birth_dt_local.year
+    end_year = current_year + 10
+    
+    # Process each year
+    for year in range(current_year, end_year + 1):
+        year_start = datetime(year, 1, 1)
+        year_end = datetime(year, 12, 31, 23, 59, 59)
+        
+        year_periods = []
+        
+        # Find dashas active during this year
+        for md in vim_data['mahadashas']:
+            md_start = datetime.fromisoformat(md['start'].replace('Z', '+00:00')) if 'Z' in md['start'] else datetime.fromisoformat(md['start'])
+            md_end = datetime.fromisoformat(md['end'].replace('Z', '+00:00')) if 'Z' in md['end'] else datetime.fromisoformat(md['end'])
+            
+            # Check if MD overlaps with this year
+            if md_start <= year_end and md_end >= year_start:
+                for ad in md['antardashas']:
+                    ad_start = datetime.fromisoformat(ad['start'].replace('Z', '+00:00')) if 'Z' in ad['start'] else datetime.fromisoformat(ad['start'])
+                    ad_end = datetime.fromisoformat(ad['end'].replace('Z', '+00:00')) if 'Z' in ad['end'] else datetime.fromisoformat(ad['end'])
+                    
+                    # Check if AD overlaps with this year
+                    if ad_start <= year_end and ad_end >= year_start:
+                        period_start = max(ad_start, year_start)
+                        period_end = min(ad_end, year_end)
+                        
+                        year_periods.append({
+                            'mahadasha': md['lord'],
+                            'antardasha': ad['lord'],
+                            'period': f"{md['lord']}-{ad['lord']}",
+                            'start_date': period_start.strftime('%Y-%m-%d'),
+                            'end_date': period_end.strftime('%Y-%m-%d'),
+                            'start_month': period_start.month,
+                            'end_month': period_end.month,
+                            'duration_days': (period_end - period_start).days + 1
+                        })
+        
+        # Sort periods by start date
+        year_periods.sort(key=lambda x: x['start_date'])
+        
+        yearly_calendar[str(year)] = {
+            'year': year,
+            'total_periods': len(year_periods),
+            'periods': year_periods,
+            'quarterly_summary': _get_quarterly_summary(year_periods)
+        }
+    
+    return yearly_calendar
+
+
+def _get_quarterly_summary(year_periods: List[Dict]) -> Dict[str, str]:
+    """Summarize dasha periods by quarters."""
+    quarters = {
+        'Q1': [],  # Jan-Mar
+        'Q2': [],  # Apr-Jun  
+        'Q3': [],  # Jul-Sep
+        'Q4': []   # Oct-Dec
+    }
+    
+    for period in year_periods:
+        start_month = period['start_month']
+        end_month = period['end_month']
+        
+        # Determine which quarters this period spans
+        if start_month <= 3:
+            quarters['Q1'].append(period['period'])
+        if start_month <= 6 and end_month >= 4:
+            quarters['Q2'].append(period['period'])
+        if start_month <= 9 and end_month >= 7:
+            quarters['Q3'].append(period['period'])
+        if end_month >= 10:
+            quarters['Q4'].append(period['period'])
+    
+    # Create summary strings
+    summary = {}
+    for quarter, periods in quarters.items():
+        if periods:
+            summary[quarter] = ', '.join(list(set(periods)))  # Remove duplicates
+        else:
+            summary[quarter] = 'No active periods'
+    
+    return summary
