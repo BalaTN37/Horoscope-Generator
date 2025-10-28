@@ -133,6 +133,129 @@
       border-radius: 4px;
       border-left: 3px solid #ffc107;
     }
+    
+    /* South Indian Chart Styles */
+    .south-indian-chart {
+      width: 400px;
+      height: 400px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      border: 3px solid #2c3e50;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .south-indian-chart td {
+      width: 25%;
+      height: 25%;
+      border: 1px solid #6c757d;
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      font-weight: bold;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    
+    .south-indian-chart .center-cell {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #6c757d;
+      font-size: 14px;
+    }
+    
+    .south-indian-chart .sign-cell {
+      background: #ffffff;
+      transition: background-color 0.2s ease;
+    }
+    
+    .south-indian-chart .sign-cell:hover {
+      background: #f8f9fa;
+    }
+    
+    /* Planet placement styles */
+    .sign-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+    
+    .sign-number {
+      font-weight: bold;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 2px;
+    }
+    
+    .planets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      max-height: calc(100% - 20px);
+      overflow: hidden;
+    }
+    
+    .planet-item {
+      font-size: 12px;
+      font-weight: 500;
+      color: #2c3e50;
+      text-align: center;
+      line-height: 1.1;
+      white-space: nowrap;
+      padding: 1px 2px;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+    
+    /* Planet type color coding */
+    .planet-item.benefic {
+      background: rgba(40, 167, 69, 0.1);
+      color: #155724;
+    }
+    
+    .planet-item.malefic {
+      background: rgba(220, 53, 69, 0.1);
+      color: #721c24;
+    }
+    
+    .planet-item.luminary {
+      background: rgba(255, 193, 7, 0.1);
+      color: #856404;
+    }
+    
+    /* Dynamic font sizing for multiple planets */
+    .planets-container.size-1 .planet-item { font-size: 12px; }
+    .planets-container.size-2 .planet-item { font-size: 11px; }
+    .planets-container.size-3 .planet-item { font-size: 10px; }
+    .planets-container.size-4plus .planet-item { font-size: 9px; }
+    
+    /* Hover effects for planets */
+    .planet-item:hover {
+      transform: scale(1.05);
+      z-index: 10;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    /* Responsive chart */
+    @media (max-width: 768px) {
+      .south-indian-chart {
+        width: 320px;
+        height: 320px;
+      }
+      
+      .south-indian-chart td {
+        font-size: 16px;
+      }
+      
+      .south-indian-chart .center-cell {
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -180,7 +303,8 @@
       <div id="err" style="color:crimson; margin-top:0.5rem"></div>
     </div>
     <div id="results-container">
-      <canvas id="chart"></canvas>
+      <!-- Canvas chart replaced by table-based chart in collapsible sections -->
+      <!-- <canvas id="chart"></canvas> -->
       
       <!-- Collapsible Sections -->
       <div id="sections-container" style="display: none;">
@@ -200,6 +324,97 @@
             </div>
           </div>
           <div class="section-content" id="chart-content">
+            <!-- South Indian Chart Table -->
+            <table class="south-indian-chart">
+              <!-- Row 1: 12, 1, 2, 3 -->
+              <tr>
+                <td class="sign-cell" data-sign="12" id="sign-12">
+                  <div class="sign-content">
+                    <div class="sign-number">12</div>
+                    <div class="planets-container" id="planets-12"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="1" id="sign-1">
+                  <div class="sign-content">
+                    <div class="sign-number">1</div>
+                    <div class="planets-container" id="planets-1"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="2" id="sign-2">
+                  <div class="sign-content">
+                    <div class="sign-number">2</div>
+                    <div class="planets-container" id="planets-2"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="3" id="sign-3">
+                  <div class="sign-content">
+                    <div class="sign-number">3</div>
+                    <div class="planets-container" id="planets-3"></div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 2: 11, center, center, 4 -->
+              <tr>
+                <td class="sign-cell" data-sign="11" id="sign-11">
+                  <div class="sign-content">
+                    <div class="sign-number">11</div>
+                    <div class="planets-container" id="planets-11"></div>
+                  </div>
+                </td>
+                <td class="center-cell">RASI<br><small>Chart</small></td>
+                <td class="center-cell">ASC<br><small id="asc-display">--°</small></td>
+                <td class="sign-cell" data-sign="4" id="sign-4">
+                  <div class="sign-content">
+                    <div class="sign-number">4</div>
+                    <div class="planets-container" id="planets-4"></div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 3: 10, center, center, 5 -->
+              <tr>
+                <td class="sign-cell" data-sign="10" id="sign-10">
+                  <div class="sign-content">
+                    <div class="sign-number">10</div>
+                    <div class="planets-container" id="planets-10"></div>
+                  </div>
+                </td>
+                <td class="center-cell">SOUTH<br><small>Indian</small></td>
+                <td class="center-cell">STYLE</td>
+                <td class="sign-cell" data-sign="5" id="sign-5">
+                  <div class="sign-content">
+                    <div class="sign-number">5</div>
+                    <div class="planets-container" id="planets-5"></div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 4: 9, 8, 7, 6 -->
+              <tr>
+                <td class="sign-cell" data-sign="9" id="sign-9">
+                  <div class="sign-content">
+                    <div class="sign-number">9</div>
+                    <div class="planets-container" id="planets-9"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="8" id="sign-8">
+                  <div class="sign-content">
+                    <div class="sign-number">8</div>
+                    <div class="planets-container" id="planets-8"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="7" id="sign-7">
+                  <div class="sign-content">
+                    <div class="sign-number">7</div>
+                    <div class="planets-container" id="planets-7"></div>
+                  </div>
+                </td>
+                <td class="sign-cell" data-sign="6" id="sign-6">
+                  <div class="sign-content">
+                    <div class="sign-number">6</div>
+                    <div class="planets-container" id="planets-6"></div>
+                  </div>
+                </td>
+              </tr>
+            </table>
             <div id="chart-details"></div>
           </div>
         </div>
@@ -343,8 +558,9 @@
   </div>
 
   <script>
-    const canvas = document.getElementById('chart');
-    const ctx = canvas.getContext('2d');
+    // Canvas chart replaced by table-based chart
+    // const canvas = document.getElementById('chart');
+    // const ctx = canvas.getContext('2d');
     // Prefill local datetime and timezone offset (in hours)
     (function prefillDefaults(){
       try {
@@ -357,62 +573,122 @@
       } catch {}
     })();
 
-    // Draw a South Indian style chart: a square subdivided into 12 fixed boxes.
+    // Helper function to get planet short text forms
+    function getPlanetSymbol(planetName) {
+      const shortForms = {
+        'Sun': 'Su',
+        'Moon': 'Mo', 
+        'Mars': 'Ma',
+        'Mercury': 'Me',
+        'Jupiter': 'Ju',
+        'Venus': 'Ve',
+        'Saturn': 'Sa',
+        'Rahu': 'Ra',
+        'Ketu': 'Ke'
+      };
+      return shortForms[planetName] || planetName.substring(0, 2);
+    }
+    
+    // Helper function to get planet display name (uses short text forms by default)
+    function getPlanetDisplayName(planetName, useSymbols = false) {
+      // Always use short text forms now
+      return getPlanetSymbol(planetName);
+    }
+    
+    // Helper function to get planet type for styling
+    function getPlanetType(planetName) {
+      const luminaries = ['Sun', 'Moon'];
+      const benefics = ['Venus', 'Jupiter', 'Mercury'];
+      const malefics = ['Mars', 'Saturn', 'Rahu', 'Ketu'];
+      
+      if (luminaries.includes(planetName)) return 'luminary';
+      if (benefics.includes(planetName)) return 'benefic';
+      if (malefics.includes(planetName)) return 'malefic';
+      return '';
+    }
+    
+    // Helper function to map signs to chart positions (zodiac signs 1-12)
+    function getSignFromZodiacName(zodiacName) {
+      const zodiacToNumber = {
+        'Aries': 1, 'Taurus': 2, 'Gemini': 3, 'Cancer': 4,
+        'Leo': 5, 'Virgo': 6, 'Libra': 7, 'Scorpio': 8,
+        'Sagittarius': 9, 'Capricorn': 10, 'Aquarius': 11, 'Pisces': 12
+      };
+      return zodiacToNumber[zodiacName] || null;
+    }
+    
+    // Update South Indian chart table with planet data
     function drawChart(data) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const w = canvas.width, h = canvas.height;
-      const pad = 20;
-      const boxW = (w - pad*2) / 4;
-      const boxH = (h - pad*2) / 4;
-
-      ctx.strokeStyle = '#333';
-      ctx.lineWidth = 2;
-      // Outer border
-      ctx.strokeRect(pad, pad, w-2*pad, h-2*pad);
-
-      // South Indian fixed grid coordinates for 12 houses (row, col) 4x4, skipping center as split boxes
-      const houseGrid = [
-        [1,1], [0,1], [0,2], [1,2], [2,2], [2,1], [2,0], [1,0], [0,0], [0,3], [3,3], [3,0]
-      ];
-
-      // draw all small boxes
-      ctx.font = '12px sans-serif';
-      ctx.fillStyle = '#111';
-      for (let i=0;i<12;i++){
-        const [r,c] = houseGrid[i];
-        const x = pad + c*boxW;
-        const y = pad + r*boxH;
-        ctx.strokeRect(x, y, boxW, boxH);
-        const deg = data.houses[String(i+1)];
-        ctx.fillText(`${i+1}`, x+4, y+14);
-        if (deg !== undefined) {
-          ctx.fillText(`${deg.toFixed(1)}°`, x+4, y+28);
+      console.log('Drawing chart with data:', data);
+      
+      // Update ascendant display
+      const ascDisplay = document.getElementById('asc-display');
+      if (ascDisplay && data.ascendant) {
+        ascDisplay.textContent = data.ascendant.toFixed(1) + '°';
+      }
+      
+      // Clear all existing planets from chart
+      for (let i = 1; i <= 12; i++) {
+        const container = document.getElementById(`planets-${i}`);
+        if (container) {
+          container.innerHTML = '';
+          container.className = 'planets-container';
         }
       }
-
-      // Place planet labels inside their house box with simple stacking, using planetsByHouse
-      const houseStacks = Array.from({length:12},()=>[]);
-      for (let i=1; i<=12; i++){
-        const arr = (data.planetsByHouse && data.planetsByHouse[String(i)]) || [];
-        for (const p of arr){
-          const label = `${p.abbr || p.name} ${p.sign} ${p.degInSign.toFixed ? p.degInSign.toFixed(1) : p.degInSign}°`;
-          houseStacks[i-1].push(label);
-        }
+      
+      // Place planets by zodiac sign
+      if (data.planets) {
+        console.log('Placing planets by zodiac signs:', data.planets);
+        
+        // Group planets by their zodiac signs
+        const planetsBySign = {};
+        
+        Object.entries(data.planets).forEach(([planetName, planetData]) => {
+          const signNumber = getSignFromZodiacName(planetData.sign);
+          if (signNumber) {
+            if (!planetsBySign[signNumber]) {
+              planetsBySign[signNumber] = [];
+            }
+            planetsBySign[signNumber].push({
+              name: planetName,
+              data: planetData
+            });
+          }
+        });
+        
+        // Place planets in their respective sign containers
+        Object.entries(planetsBySign).forEach(([signNumber, planets]) => {
+          const container = document.getElementById(`planets-${signNumber}`);
+          if (container) {
+            // Add size class for dynamic font scaling
+            const sizeClass = planets.length === 1 ? 'size-1' :
+                            planets.length === 2 ? 'size-2' :
+                            planets.length === 3 ? 'size-3' : 'size-4plus';
+            container.className = `planets-container ${sizeClass}`;
+            
+            planets.forEach(planet => {
+              const planetElement = document.createElement('div');
+              planetElement.className = `planet-item ${getPlanetType(planet.name)}`;
+              
+              // Use symbols for better visual appeal
+              planetElement.textContent = getPlanetDisplayName(planet.name, true);
+              
+              // Add tooltip with full planet info
+              planetElement.title = `${planet.name} in ${planet.data.sign} (${planet.data.degInSign.toFixed(1)}°)`;
+              
+              container.appendChild(planetElement);
+            });
+          }
+        });
+        
+        console.log('Planets placed by sign:', planetsBySign);
       }
-
-      for (let i=0;i<12;i++){
-        const [r,c] = houseGrid[i];
-        const x = pad + c*boxW + 4;
-        const y = pad + r*boxH + 42;
-        let yy=y;
-        for (const label of houseStacks[i]){
-          ctx.fillText(label, x, yy);
-          yy += 14;
-        }
+      
+      // Fallback: if no planets data but planetsByHouse exists, try to use that
+      else if (data.planetsByHouse) {
+        console.log('Using planetsByHouse data:', data.planetsByHouse);
+        // This would be for house-based placement if needed as fallback
       }
-
-      // Legend
-      ctx.fillText(`Asc: ${data.ascendant.toFixed(1)}°`, pad, h - pad + 14);
     }
 
     async function submitForm() {
