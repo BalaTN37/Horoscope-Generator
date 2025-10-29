@@ -10,6 +10,99 @@
     label { display: block; margin-top: 0.5rem; font-weight: 600; }
     input, select { width: 100%; padding: 0.5rem; }
     button { padding: 0.6rem 1rem; margin-top: 1rem; }
+    
+    /* DateTime Grid Styles */
+    .datetime-grid {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fafafa;
+    }
+    
+    .date-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    
+    .small-label {
+      font-size: 0.7rem;
+      color: #666;
+      margin: 0;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .date-input, .year-input, .time-input {
+      padding: 0.4rem 0.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      background: white;
+      font-weight: 500;
+    }
+    
+    .date-input {
+      width: 35px;
+    }
+    
+    .year-input {
+      width: 55px;
+    }
+    
+    .time-input {
+      width: 35px;
+    }
+    
+    .ampm-select {
+      width: 50px;
+      padding: 0.4rem 0.2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      background: white;
+      font-weight: 500;
+    }
+    
+    .date-input:focus, .year-input:focus, .time-input:focus, .ampm-select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.2);
+      background: #fff;
+    }
+    
+    .date-input.error, .year-input.error, .time-input.error {
+      border-color: #dc3545;
+      background-color: #fff5f5;
+    }
+    
+    .date-separator, .time-separator {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #888;
+      margin: 0 0.2rem;
+      margin-top: 1rem;
+      user-select: none;
+    }
+    
+    .time-separator {
+      font-size: 0.8rem;
+      color: #999;
+      font-style: italic;
+      margin: 0 0.4rem;
+      margin-top: 1rem;
+    }
     pre { background: #f7f7f9; padding: 1rem; overflow: auto; max-height: 300px; }
     canvas { width: 100%; height: 520px; border: 1px solid #ddd; margin-bottom: 1rem; }
     .row { display:flex; gap:1rem; align-items:end }
@@ -172,6 +265,35 @@
       background: #f8f9fa;
     }
     
+    /* Ascendant highlighting */
+    .south-indian-chart .ascendant-cell {
+      position: relative;
+    }
+    
+    .south-indian-chart .ascendant-cell::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      border: 3px solid #ff6b35;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .south-indian-chart .ascendant-cell .sign-number {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+    
     /* Planet placement styles */
     .sign-content {
       display: flex;
@@ -269,7 +391,41 @@
         <div id="place-list" style="position:absolute; top:100%; left:0; right:0; z-index:9999"></div>
       </div>
       <label>Date & Time (local)</label>
-      <input id="dt" type="datetime-local" />
+      <div class="datetime-grid">
+        <div class="date-group">
+          <label class="small-label">Day</label>
+          <input id="day" type="number" min="1" max="31" placeholder="DD" class="date-input" oninput="handleDateFieldInput('day')" onkeydown="handleDateFieldKey(event, 'day')" />
+        </div>
+        <div class="date-separator">/</div>
+        <div class="date-group">
+          <label class="small-label">Month</label>
+          <input id="month" type="number" min="1" max="12" placeholder="MM" class="date-input" oninput="handleDateFieldInput('month')" onkeydown="handleDateFieldKey(event, 'month')" />
+        </div>
+        <div class="date-separator">/</div>
+        <div class="date-group">
+          <label class="small-label">Year</label>
+          <input id="year" type="number" min="1900" max="2100" placeholder="YYYY" class="year-input" oninput="handleDateFieldInput('year')" onkeydown="handleDateFieldKey(event, 'year')" />
+        </div>
+        <div class="time-separator">at</div>
+        <div class="date-group">
+          <label class="small-label">Hour</label>
+          <input id="hour" type="number" min="1" max="12" placeholder="HH" class="time-input" oninput="handleDateFieldInput('hour')" onkeydown="handleDateFieldKey(event, 'hour')" />
+        </div>
+        <div class="date-separator">:</div>
+        <div class="date-group">
+          <label class="small-label">Min</label>
+          <input id="minute" type="number" min="0" max="59" placeholder="MM" class="time-input" oninput="handleDateFieldInput('minute')" onkeydown="handleDateFieldKey(event, 'minute')" />
+        </div>
+        <div class="date-group">
+          <label class="small-label">Period</label>
+          <select id="ampm" class="ampm-select" onchange="handleDateFieldInput('ampm')" onkeydown="handleDateFieldKey(event, 'ampm')">
+            <option value="">--</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+      </div>
+      <input id="dt" type="datetime-local" style="display:none;" />
       <label>Latitude</label>
       <input id="lat" type="number" step="0.0001" placeholder="e.g. 28.6139" />
       <label>Longitude</label>
@@ -362,7 +518,12 @@
                   </div>
                 </td>
                 <td class="center-cell">RASI<br><small>Chart</small></td>
-                <td class="center-cell">ASC<br><small id="asc-display">--°</small></td>
+                <td class="center-cell">
+                  <div style="font-size: 12px; font-weight: bold; color: #2c3e50;">ASC</div>
+                  <div id="asc-sign-display" style="font-size: 11px; font-weight: 600; color: #ff6b35; margin: 2px 0;">--</div>
+                  <div id="asc-display" style="font-size: 10px; color: #6c757d;">--°</div>
+                  <div id="asc-planets-display" style="font-size: 9px; color: #28a745; margin-top: 2px; line-height: 1.1;"></div>
+                </td>
                 <td class="sign-cell" data-sign="4" id="sign-4">
                   <div class="sign-content">
                     <div class="sign-number">4</div>
@@ -564,11 +725,8 @@
     // Prefill local datetime and timezone offset (in hours)
     (function prefillDefaults(){
       try {
-        const now = new Date();
-        const pad = n => String(n).padStart(2,'0');
-        const local = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
-        document.getElementById('dt').value = local;
-        const tzHours = -now.getTimezoneOffset()/60; // e.g., IST => 5.5
+        prefillDateTimeFields();
+        const tzHours = -new Date().getTimezoneOffset()/60; // e.g., IST => 5.5
         document.getElementById('tz').value = tzHours;
       } catch {}
     })();
@@ -617,22 +775,284 @@
       return zodiacToNumber[zodiacName] || null;
     }
     
+    // Field navigation order
+    const fieldOrder = ['day', 'month', 'year', 'hour', 'minute', 'ampm'];
+    
+    // Handle individual date/time field input with auto-navigation
+    function handleDateFieldInput(fieldId) {
+      const field = document.getElementById(fieldId);
+      let value = field.value;
+      
+      // Auto-advance logic based on field type and value length
+      let shouldAdvance = false;
+      
+      switch (fieldId) {
+        case 'day':
+          if (value.length === 2 || (value.length === 1 && parseInt(value) > 3)) {
+            shouldAdvance = true;
+          }
+          break;
+        case 'month':
+          if (value.length === 2 || (value.length === 1 && parseInt(value) > 1)) {
+            shouldAdvance = true;
+          }
+          break;
+        case 'year':
+          if (value.length === 4) {
+            shouldAdvance = true;
+          }
+          break;
+        case 'hour':
+          if (value.length === 2 || (value.length === 1 && parseInt(value) > 1)) {
+            shouldAdvance = true;
+          }
+          break;
+        case 'minute':
+          if (value.length === 2 || (value.length === 1 && parseInt(value) > 5)) {
+            shouldAdvance = true;
+          }
+          break;
+      }
+      
+      // Move to next field if conditions are met
+      if (shouldAdvance) {
+        moveToNextField(fieldId);
+      }
+      
+      // Validate and update hidden field
+      validateAndUpdateDateTime();
+    }
+    
+    // Handle keyboard navigation
+    function handleDateFieldKey(event, fieldId) {
+      const field = document.getElementById(fieldId);
+      
+      if (event.key === 'Tab') {
+        return; // Let default tab behavior work
+      }
+      
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        moveToNextField(fieldId);
+        return;
+      }
+      
+      if (event.key === 'Backspace' && field.value === '' && field.selectionStart === 0) {
+        event.preventDefault();
+        moveToPreviousField(fieldId);
+        return;
+      }
+      
+      if (event.key === 'ArrowRight' && field.selectionStart === field.value.length) {
+        event.preventDefault();
+        moveToNextField(fieldId);
+        return;
+      }
+      
+      if (event.key === 'ArrowLeft' && field.selectionStart === 0) {
+        event.preventDefault();
+        moveToPreviousField(fieldId);
+        return;
+      }
+    }
+    
+    // Move to next field in sequence
+    function moveToNextField(currentFieldId) {
+      const currentIndex = fieldOrder.indexOf(currentFieldId);
+      if (currentIndex >= 0 && currentIndex < fieldOrder.length - 1) {
+        const nextFieldId = fieldOrder[currentIndex + 1];
+        const nextField = document.getElementById(nextFieldId);
+        if (nextField) {
+          nextField.focus();
+          if (nextField.select) nextField.select();
+        }
+      }
+    }
+    
+    // Move to previous field in sequence
+    function moveToPreviousField(currentFieldId) {
+      const currentIndex = fieldOrder.indexOf(currentFieldId);
+      if (currentIndex > 0) {
+        const prevFieldId = fieldOrder[currentIndex - 1];
+        const prevField = document.getElementById(prevFieldId);
+        if (prevField) {
+          prevField.focus();
+          if (prevField.select) prevField.select();
+        }
+      }
+    }
+    
+    // Validate all fields and update hidden datetime field
+    function validateAndUpdateDateTime() {
+      const day = document.getElementById('day').value;
+      const month = document.getElementById('month').value;
+      const year = document.getElementById('year').value;
+      const hour = document.getElementById('hour').value;
+      const minute = document.getElementById('minute').value;
+      const ampm = document.getElementById('ampm').value;
+      
+      // Clear previous error states
+      fieldOrder.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        field.classList.remove('error');
+      });
+      
+      // Check if all fields have values
+      if (!day || !month || !year || !hour || !minute || !ampm) {
+        return; // Don't validate incomplete data
+      }
+      
+      // Validate ranges
+      let isValid = true;
+      const dayNum = parseInt(day);
+      const monthNum = parseInt(month);
+      const yearNum = parseInt(year);
+      const hourNum = parseInt(hour);
+      const minuteNum = parseInt(minute);
+      
+      if (dayNum < 1 || dayNum > 31) {
+        document.getElementById('day').classList.add('error');
+        isValid = false;
+      }
+      
+      if (monthNum < 1 || monthNum > 12) {
+        document.getElementById('month').classList.add('error');
+        isValid = false;
+      }
+      
+      if (yearNum < 1900 || yearNum > 2100) {
+        document.getElementById('year').classList.add('error');
+        isValid = false;
+      }
+      
+      if (hourNum < 1 || hourNum > 12) {
+        document.getElementById('hour').classList.add('error');
+        isValid = false;
+      }
+      
+      if (minuteNum < 0 || minuteNum > 59) {
+        document.getElementById('minute').classList.add('error');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
+      // Convert to 24-hour format
+      let hour24 = hourNum;
+      if (ampm === 'PM' && hourNum !== 12) {
+        hour24 += 12;
+      } else if (ampm === 'AM' && hourNum === 12) {
+        hour24 = 0;
+      }
+      
+      // Create date and validate it exists
+      const testDate = new Date(yearNum, monthNum - 1, dayNum, hour24, minuteNum);
+      if (testDate.getFullYear() !== yearNum || 
+          testDate.getMonth() !== monthNum - 1 || 
+          testDate.getDate() !== dayNum) {
+        document.getElementById('day').classList.add('error');
+        document.getElementById('month').classList.add('error');
+        return;
+      }
+      
+      // Update hidden field with ISO format
+      const dayStr = String(dayNum).padStart(2, '0');
+      const monthStr = String(monthNum).padStart(2, '0');
+      const hour24Str = String(hour24).padStart(2, '0');
+      const minuteStr = String(minuteNum).padStart(2, '0');
+      
+      const isoFormat = `${yearNum}-${monthStr}-${dayStr}T${hour24Str}:${minuteStr}`;
+      document.getElementById('dt').value = isoFormat;
+    }
+    
+    // Prefill the separate date/time fields with current date/time
+    function prefillDateTimeFields() {
+      const now = new Date();
+      
+      document.getElementById('day').value = now.getDate();
+      document.getElementById('month').value = now.getMonth() + 1;
+      document.getElementById('year').value = now.getFullYear();
+      
+      let hour12 = now.getHours();
+      const ampm = hour12 >= 12 ? 'PM' : 'AM';
+      
+      if (hour12 > 12) {
+        hour12 -= 12;
+      } else if (hour12 === 0) {
+        hour12 = 12;
+      }
+      
+      document.getElementById('hour').value = hour12;
+      document.getElementById('minute').value = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('ampm').value = ampm;
+      
+      // Update hidden field
+      validateAndUpdateDateTime();
+    }
+    
     // Update South Indian chart table with planet data
     function drawChart(data) {
       console.log('Drawing chart with data:', data);
       
-      // Update ascendant display
+      // Update ascendant display with degree and sign
       const ascDisplay = document.getElementById('asc-display');
+      const ascSignDisplay = document.getElementById('asc-sign-display');
+      const ascPlanetsDisplay = document.getElementById('asc-planets-display');
+      
       if (ascDisplay && data.ascendant) {
         ascDisplay.textContent = data.ascendant.toFixed(1) + '°';
+        
+        // Calculate and display the ascendant sign
+        const ascendantSign = Math.floor(data.ascendant / 30) + 1;
+        const degreeInSign = data.ascendant % 30;
+        const signNames = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir', 'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis'];
+        const signName = signNames[ascendantSign - 1];
+        
+        if (ascSignDisplay) {
+          ascSignDisplay.textContent = `${signName} ${degreeInSign.toFixed(1)}°`;
+        }
+        
+        // Find and display planets in the ascendant sign
+        if (ascPlanetsDisplay && data.planets) {
+          const planetsInAscSign = [];
+          
+          Object.entries(data.planets).forEach(([planetName, planetData]) => {
+            const planetSignNumber = getSignFromZodiacName(planetData.sign);
+            if (planetSignNumber === ascendantSign) {
+              planetsInAscSign.push(getPlanetSymbol(planetName));
+            }
+          });
+          
+          if (planetsInAscSign.length > 0) {
+            ascPlanetsDisplay.textContent = `With: ${planetsInAscSign.join(', ')}`;
+            ascPlanetsDisplay.title = `Planets in ascendant sign: ${planetsInAscSign.join(', ')}`;
+          } else {
+            ascPlanetsDisplay.textContent = 'No planets';
+            ascPlanetsDisplay.title = 'No other planets in ascendant sign';
+          }
+        }
       }
       
-      // Clear all existing planets from chart
+      // Clear all existing planets from chart and remove ascendant highlighting
       for (let i = 1; i <= 12; i++) {
         const container = document.getElementById(`planets-${i}`);
+        const signCell = document.getElementById(`sign-${i}`);
         if (container) {
           container.innerHTML = '';
           container.className = 'planets-container';
+        }
+        if (signCell) {
+          signCell.classList.remove('ascendant-cell');
+        }
+      }
+      
+      // Highlight ascendant sign
+      if (data.ascendant) {
+        const ascendantSign = Math.floor(data.ascendant / 30) + 1; // Convert degree to sign number (1-12)
+        const ascendantCell = document.getElementById(`sign-${ascendantSign}`);
+        if (ascendantCell) {
+          ascendantCell.classList.add('ascendant-cell');
+          console.log(`Ascendant highlighted in sign ${ascendantSign} at ${data.ascendant.toFixed(1)}°`);
         }
       }
       

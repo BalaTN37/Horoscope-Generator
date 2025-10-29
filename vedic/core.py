@@ -108,8 +108,8 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
     planets_sidereal: Dict[str, float] = {}
     for name, ipl in PLANET_ORDER:
         xx, ret = swe.calc_ut(jd_ut, ipl, iflag)
-        lon = xx[0]
-        planets_sidereal[name] = _degnorm(lon)
+        planet_lon = xx[0]  # Fixed: use different variable name to avoid collision
+        planets_sidereal[name] = _degnorm(planet_lon)
     # Nodes
     node_code = swe.MEAN_NODE if (node_type.lower() in ('mean','m')) else swe.TRUE_NODE
     xxn, ret = swe.calc_ut(jd_ut, node_code, iflag)
@@ -117,22 +117,26 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
     planets_sidereal['Rahu'] = _degnorm(node_lon)
     planets_sidereal['Ketu'] = _degnorm(node_lon + 180.0)
 
-    # Houses and Ascendant
+    # Houses and Ascendant - calculate correctly using tropical then convert to sidereal
     hsys = _house_system_code(house_system)
-    houses_res = swe.houses_ex(jd_ut, lat, lon, hsys, iflag)
-    # houses_ex returns (cusps[0..11], ascmc[0..7]) as two tuples
+    
+    # Calculate houses in tropical mode (without sidereal flag)
+    tropical_iflag = swe.FLG_SWIEPH if os.path.exists('sedelx18.se1') else swe.FLG_MOSEPH
+    houses_res = swe.houses_ex(jd_ut, lat, lon, hsys, tropical_iflag)
     cusps, ascmc = houses_res
-    asc_tropical = ascmc[0]  # ASC
-    # asc returned is already aligned to current zodiac flags; ensure sidereal normalization
-    asc_sid = _degnorm(asc_tropical)
+    asc_tropical = ascmc[0]  # Ascendant in tropical coordinates
+    
+    # Get ayanamsa and convert to sidereal
+    ayanamsa_value = swe.get_ayanamsa_ut(jd_ut)
+    asc_sid = _degnorm(asc_tropical - ayanamsa_value)
 
     # If user asked for whole-sign, rebuild cusps from asc sidereal at 0 deg of asc sign
     if house_system.lower() in ('whole','w','whole-sign','wholesign','whole sign'):
         asc_sign_start = 30.0 * _sign_index(asc_sid)
         cusps_map = {i: _degnorm(asc_sign_start + (i-1)*30.0) for i in range(1,13)}
     else:
-        # cusps tuple is 12 elements, index 0..11
-        cusps_map = {i+1: _degnorm(cusps[i]) for i in range(12)}
+        # cusps tuple is 12 elements, index 0..11 - convert from tropical to sidereal
+        cusps_map = {i+1: _degnorm(cusps[i] - ayanamsa_value) for i in range(12)}
 
     # Transit now (sidereal)
     now_utc = datetime.utcnow().replace(tzinfo=timezone.utc)
@@ -141,8 +145,8 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
     trans_sid: Dict[str, float] = {}
     for name, ipl in PLANET_ORDER:
         xx_now, _ = swe.calc_ut(jd_now, ipl, iflag)
-        lon = xx_now[0]
-        trans_sid[name] = _degnorm(lon)
+        planet_lon = xx_now[0]  # Fixed: use different variable name
+        trans_sid[name] = _degnorm(planet_lon)
     xxn_now, _ = swe.calc_ut(jd_now, node_code, iflag)
     node_lon_now = xxn_now[0]
     trans_sid['Rahu'] = _degnorm(node_lon_now)
@@ -349,16 +353,6 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
 
 def _get_planetary_analysis(planets_sidereal: Dict, planets_out: Dict, cusps_map: Dict) -> Dict[str, Any]:
     """Enhanced planetary analysis with detailed positions, aspects, and strengths."""
-    print(f"DEBUG: _get_planetary_analysis called")
-    print(f"DEBUG: planets_out type: {type(planets_out)}")
-    print(f"DEBUG: planets_out keys: {list(planets_out.keys()) if planets_out else 'None'}")
-    
-    if planets_out:
-        for planet, data in list(planets_out.items())[:2]:  # Show first 2 planets
-            print(f"DEBUG: planet '{planet}' data type: {type(data)}")
-            print(f"DEBUG: planet '{planet}' data keys: {list(data.keys()) if isinstance(data, dict) else 'Not a dict'}")
-            print(f"DEBUG: planet '{planet}' data: {data}")
-    
     analysis = {}
     
     # Helper function to find house for a longitude
@@ -379,10 +373,6 @@ def _get_planetary_analysis(planets_sidereal: Dict, planets_out: Dict, cusps_map
         return 12
     
     for planet, data in planets_out.items():
-        print(f"DEBUG: Processing planet '{planet}'")
-        print(f"DEBUG: data for {planet}: {data}")
-        print(f"DEBUG: data type: {type(data)}")
-        
         if planet in ['Rahu', 'Ketu']:
             continue
             
@@ -397,9 +387,6 @@ def _get_planetary_analysis(planets_sidereal: Dict, planets_out: Dict, cusps_map
         nak_index = int(lon_sid / NAK_LEN_DEG)
         nak_lord = NAK_LORDS[nak_index % 27] if nak_index < 27 else NAK_LORDS[0]
         pada = int((lon_sid % NAK_LEN_DEG) / (NAK_LEN_DEG / 4)) + 1
-        
-        print(f"DEBUG: About to access longitude for planet {planet}")
-        print(f"DEBUG: Available keys in data: {list(data.keys()) if isinstance(data, dict) else 'Not a dict'}")
         
         analysis[planet] = {
             'longitude_tropical': data.get('longitude', 0),  # Fixed: use 'longitude' not 'lon'
