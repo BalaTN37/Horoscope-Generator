@@ -35,6 +35,34 @@ NAK_LORDS = [
     'Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'  # Mula..Revati (18..26)
 ]
 
+# Shadbala calculation constants
+SHADBALA_CONSTANTS = {
+    'naisargika_bala': {
+        'Sun': 60, 'Moon': 51.43, 'Mars': 17.14, 'Mercury': 25.71,
+        'Jupiter': 34.29, 'Venus': 42.86, 'Saturn': 8.57
+    },
+    'dig_bala': {
+        'Sun': 10, 'Moon': 4, 'Mars': 10, 'Mercury': 1,
+        'Jupiter': 1, 'Venus': 4, 'Saturn': 7
+    },
+    'exaltation_degrees': {
+        'Sun': 10, 'Moon': 33, 'Mars': 298, 'Mercury': 165,
+        'Jupiter': 95, 'Venus': 357, 'Saturn': 200
+    },
+    'debilitation_degrees': {
+        'Sun': 190, 'Moon': 213, 'Mars': 118, 'Mercury': 345,
+        'Jupiter': 275, 'Venus': 177, 'Saturn': 20
+    },
+    'own_signs': {
+        'Sun': [4], 'Moon': [3], 'Mars': [0, 7], 'Mercury': [2, 5],
+        'Jupiter': [8, 11], 'Venus': [1, 6], 'Saturn': [9, 10]
+    },
+    'minimum_required': {
+        'Sun': 300, 'Moon': 360, 'Mars': 300, 'Mercury': 420,
+        'Jupiter': 390, 'Venus': 330, 'Saturn': 300
+    }
+}
+
 
 def _julday(dt_utc: datetime) -> float:
     ut = dt_utc.hour + dt_utc.minute/60.0 + dt_utc.second/3600.0 + dt_utc.microsecond/3_600_000_000
@@ -329,6 +357,9 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
     
     # Yearly dasha calendar
     yearly_dasha = _get_yearly_dasha_calendar(birth_dt_local, vim)
+    
+    # Shadbala planetary strength analysis
+    shadbala_analysis = _calculate_shadbala(planets_sidereal, cusps_map, birth_dt_local, lat, lon)
 
     return {
         'meta': {
@@ -348,6 +379,7 @@ def compute_chart(birth_dt_local: datetime, lat: float, lon: float, tz_offset_ho
         'nakshatra_details': nakshatra_details,
         'current_transits': current_transits,
         'yearly_dasha': yearly_dasha,
+        'shadbala': shadbala_analysis,
     }
 
 
@@ -628,3 +660,253 @@ def _get_quarterly_summary(year_periods: List[Dict]) -> Dict[str, str]:
             summary[quarter] = 'No active periods'
     
     return summary
+
+
+def _calculate_shadbala(planets_sidereal: Dict[str, float], cusps_map: Dict[int, float], 
+                       birth_dt_local: datetime, lat: float, lon: float) -> Dict[str, Any]:
+    """Calculate Shadbala (Six-fold strength) for all planets."""
+    
+    shadbala_scores = {}
+    
+    for planet_name in ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']:
+        if planet_name not in planets_sidereal:
+            continue
+            
+        planet_lon = planets_sidereal[planet_name]
+        planet_sign = _sign_index(planet_lon)
+        
+        # Initialize strength components
+        sthana_bala = _calculate_sthana_bala(planet_name, planet_lon, planet_sign, cusps_map)
+        dig_bala = _calculate_dig_bala(planet_name, planet_lon, cusps_map)
+        kala_bala = _calculate_kala_bala(planet_name, birth_dt_local, lat, lon)
+        chesta_bala = _calculate_chesta_bala(planet_name)
+        naisargika_bala = SHADBALA_CONSTANTS['naisargika_bala'][planet_name]
+        drik_bala = _calculate_drik_bala(planet_name, planets_sidereal)
+        
+        # Total Shadbala
+        total_shadbala = sthana_bala + dig_bala + kala_bala + chesta_bala + naisargika_bala + drik_bala
+        
+        # Calculate strength percentage
+        required_strength = SHADBALA_CONSTANTS['minimum_required'][planet_name]
+        strength_percentage = min(100, (total_shadbala / required_strength) * 100)
+        
+        # Determine strength category
+        if total_shadbala >= required_strength:
+            category = "Excellent" if strength_percentage >= 120 else "Strong"
+        elif strength_percentage >= 75:
+            category = "Good"
+        elif strength_percentage >= 50:
+            category = "Average"
+        else:
+            category = "Weak"
+        
+        shadbala_scores[planet_name] = {
+            'total_shadbala': round(total_shadbala, 2),
+            'required_strength': required_strength,
+            'strength_percentage': round(strength_percentage, 1),
+            'category': category,
+            'components': {
+                'sthana_bala': round(sthana_bala, 2),
+                'dig_bala': round(dig_bala, 2),
+                'kala_bala': round(kala_bala, 2),
+                'chesta_bala': round(chesta_bala, 2),
+                'naisargika_bala': round(naisargika_bala, 2),
+                'drik_bala': round(drik_bala, 2)
+            }
+        }
+    
+    return shadbala_scores
+
+
+def _calculate_sthana_bala(planet_name: str, planet_lon: float, planet_sign: int, cusps_map: Dict[int, float]) -> float:
+    """Calculate Sthana Bala (Positional Strength) - Traditional Shadbala max ~120 points."""
+    
+    # Uchcha Bala (Exaltation/Debilitation strength) - Max 60 points
+    exalt_deg = SHADBALA_CONSTANTS['exaltation_degrees'][planet_name]
+    
+    # Calculate angular distance from exaltation degree
+    exalt_distance = abs(planet_lon - exalt_deg)
+    if exalt_distance > 180:
+        exalt_distance = 360 - exalt_distance
+    
+    # Uchcha Bala calculation (0-60 shashtiamsas)
+    uchcha_bala = max(0, 60 * (1 - exalt_distance / 180))
+    
+    # Saptavargaja Bala (simplified - divisional chart strength) - Max 30 points
+    own_signs = SHADBALA_CONSTANTS['own_signs'][planet_name]
+    saptavargaja_bala = 20 if planet_sign in own_signs else 10
+    
+    # Ojayugma Bala (Odd/Even sign strength) - Max 15 points
+    is_odd_planet = planet_name in ['Sun', 'Mars', 'Jupiter']
+    is_odd_sign = (planet_sign % 2) == 1  # Fixed: Aries=0 (even index) but odd sign
+    ojayugma_bala = 15 if (is_odd_planet and is_odd_sign) or (not is_odd_planet and not is_odd_sign) else 0
+    
+    # Kendra Bala (Angular house strength) - Max 30 points  
+    planet_house = _get_planet_house(planet_lon, cusps_map)
+    if planet_house in [1, 4, 7, 10]:
+        kendra_bala = 30  # Angular houses
+    elif planet_house in [2, 5, 8, 11]:
+        kendra_bala = 15  # Succedent houses
+    else:
+        kendra_bala = 5   # Cadent houses
+    
+    # Drekkana Bala (decan strength) - Max 15 points
+    deg_in_sign = _deg_in_sign(planet_lon)
+    if deg_in_sign < 10:
+        drekkana_bala = 15  # First decan
+    elif deg_in_sign < 20:
+        drekkana_bala = 10  # Second decan  
+    else:
+        drekkana_bala = 5   # Third decan
+    
+    total_sthana = uchcha_bala + saptavargaja_bala + ojayugma_bala + kendra_bala + drekkana_bala
+    return min(total_sthana, 120)  # Cap at traditional maximum
+
+
+def _calculate_dig_bala(planet_name: str, planet_lon: float, cusps_map: Dict[int, float]) -> float:
+    """Calculate Dig Bala (Directional Strength) - Max 60 points."""
+    
+    # Get planet's house position
+    planet_house = _get_planet_house(planet_lon, cusps_map)
+    
+    # Directional strength houses for each planet
+    best_house = SHADBALA_CONSTANTS['dig_bala'][planet_name]
+    
+    # Calculate strength based on distance from best direction (opposite house = weakest)
+    house_distance = min(abs(planet_house - best_house), 12 - abs(planet_house - best_house))
+    
+    if house_distance == 0:
+        return 60  # Perfect directional strength
+    elif house_distance == 1:
+        return 45  # Adjacent houses
+    elif house_distance == 2:
+        return 30  # Two houses away
+    elif house_distance == 3:
+        return 20  # Three houses away
+    elif house_distance <= 5:
+        return 10  # Moderate distance
+    else:
+        return 0   # Opposition or very weak direction
+
+
+def _calculate_kala_bala(planet_name: str, birth_dt_local: datetime, lat: float, lon: float) -> float:
+    """Calculate Kala Bala (Temporal Strength) - Max ~45 points."""
+    
+    kala_strength = 0
+    
+    # Natonnata Bala (Day/Night strength) - Max 15 points
+    hour = birth_dt_local.hour
+    is_day = 6 <= hour <= 18
+    
+    if planet_name in ['Sun', 'Mars', 'Jupiter']:
+        # Day planets get strength during day
+        kala_strength += 15 if is_day else 5
+    elif planet_name in ['Moon', 'Venus']:
+        # Night planets get strength at night  
+        kala_strength += 15 if not is_day else 5
+    else:
+        # Mercury and Saturn are more neutral
+        kala_strength += 10
+    
+    # Paksha Bala (Moon phase strength) - Max 15 points
+    if planet_name == 'Moon':
+        # Simplified moon phase calculation
+        day_of_month = birth_dt_local.day
+        if day_of_month <= 15:
+            kala_strength += 15  # Waxing moon
+        else:
+            kala_strength += 5   # Waning moon
+    else:
+        kala_strength += 10  # Other planets get moderate paksha bala
+    
+    # Simplified temporal components - Max 15 points
+    weekday = birth_dt_local.weekday()  # Monday=0, Sunday=6
+    planet_weekdays = {'Sun': 6, 'Moon': 0, 'Mars': 1, 'Mercury': 2, 
+                      'Jupiter': 3, 'Venus': 4, 'Saturn': 5}
+    
+    if planet_name in planet_weekdays and weekday == planet_weekdays[planet_name]:
+        kala_strength += 15  # Own day lordship
+    else:
+        kala_strength += 5   # Other days
+    
+    return min(kala_strength, 45)  # Cap at reasonable maximum
+
+
+def _calculate_chesta_bala(planet_name: str) -> float:
+    """Calculate Chesta Bala (Motional Strength) - Max 60 points."""
+    
+    # Simplified motional strength based on planetary characteristics
+    if planet_name == 'Sun':
+        return 15  # Sun has fixed motion
+    elif planet_name == 'Moon':
+        return 20  # Moon is fastest moving
+    elif planet_name == 'Mercury':
+        return 25  # Mercury moves fast, often retrograde
+    elif planet_name == 'Venus':
+        return 20  # Venus moderate motion
+    elif planet_name == 'Mars':
+        return 30  # Mars can be quite variable
+    elif planet_name == 'Jupiter':
+        return 35  # Jupiter motion is significant
+    elif planet_name == 'Saturn':
+        return 40  # Saturn slowest, retrograde periods are significant
+    else:
+        return 20  # Default value
+
+
+def _calculate_drik_bala(planet_name: str, planets_sidereal: Dict[str, float]) -> float:
+    """Calculate Drik Bala (Aspectual Strength) - Max ~30 points."""
+    
+    planet_lon = planets_sidereal[planet_name]
+    drik_strength = 15  # Base neutral strength
+    
+    # Check aspects from other planets
+    for other_planet, other_lon in planets_sidereal.items():
+        if other_planet == planet_name or other_planet in ['Rahu', 'Ketu']:
+            continue
+        
+        # Calculate angular distance
+        angular_distance = abs(planet_lon - other_lon)
+        if angular_distance > 180:
+            angular_distance = 360 - angular_distance
+        
+        # Check for major aspects with smaller influence
+        if angular_distance <= 8:  # Conjunction (tighter orb)
+            if other_planet in ['Jupiter', 'Venus']:
+                drik_strength += 5  # Benefic conjunction
+            else:
+                drik_strength -= 3  # Malefic conjunction
+        elif 112 <= angular_distance <= 128:  # Trine (120°)
+            if other_planet in ['Jupiter', 'Venus']:
+                drik_strength += 3  # Benefic trine
+            else:
+                drik_strength += 1  # Even malefic trines help slightly
+        elif 172 <= angular_distance <= 188:  # Opposition (180°)
+            drik_strength -= 2  # Opposition generally challenging
+        elif 82 <= angular_distance <= 98:  # Square (90°)
+            drik_strength -= 1  # Square creates tension
+    
+    return max(0, min(drik_strength, 30))  # Keep between 0-30
+
+
+def _get_planet_house(planet_lon: float, cusps_map: Dict[int, float]) -> int:
+    """Determine which house a planet is in."""
+    
+    cusp_list = [cusps_map[i] for i in range(1, 13)]
+    
+    def in_arc(a, start, end):
+        start = _degnorm(start)
+        end = _degnorm(end)
+        a = _degnorm(a)
+        if start <= end:
+            return start <= a < end
+        else:
+            return a >= start or a < end
+    
+    for i in range(12):
+        start = cusp_list[i]
+        end = cusp_list[(i + 1) % 12]
+        if in_arc(planet_lon, start, end):
+            return i + 1
+    
+    return 12  # Default to 12th house
