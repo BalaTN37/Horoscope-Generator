@@ -22,6 +22,36 @@ Yoga	Indra
 Karana	Bava
 
 
+
+Balas	Moon	Sun	Mercury	Venus	Mars	Jupiter	Saturn
+Uchcha Bala	1.45	21.45	55.99	32.36	11.21	6.92	12.46
+Saptavargaja Bala	108.75	136.88	131.25	133.13	78.75	114.38	65.63
+Ojhayugmarasiamsa Bala	30	15	0	15	15	30	15
+Kendradi Bala	60	60	30	30	30	30	30
+Drekkana Bala	0	15	0	0	0	0	15
+Sthaana Bala	200.2	248.33	217.24	210.49	134.96	181.29	138.08
+Dig Bala	30.65	59.93	39.18	15.17	46.32	47.06	42.4
+Nathonnatha Bala	0.17	59.83	60	59.83	0.17	59.83	0.17
+Paksha Bala	61.14	29.43	29.43	30.57	29.43	30.57	29.43
+Tribhaga Bala	0	60	0	0	0	60	0
+Varsha Bala	0	0	0	15	0	0	0
+Masa Bala	0	0	0	0	30	0	0
+Dina Bala	0	0	0	0	0	45	0
+Hora Bala	0	0	0	0	0	0	60
+Ayana Bala	56.04	89.74	31.62	59.01	58.25	0.58	26.76
+Yudhdha Bala	0	0	0	0	0	0	0
+Kaala Bala	117.35	239	121.05	164.41	117.85	195.99	116.36
+Cheshta Bala	0	0	41.01	35.65	20.64	44.75	48.46
+Naisargika Bala	51.43	60	25.7	42.85	17.14	34.28	8.57
+Drik Bala	-25.16	11.35	4.16	12	12	-26.89	-7.7
+Total shadbala Bala	374.47	618.61	448.34	480.58	348.91	476.48	346.18
+Shadbala in rupas	6.24	10.31	7.47	8.01	5.82	7.94	5.77
+minimum requirement	6	5	7	5.5	5	6.5	5
+Ratio	1.04	2.06	1.07	1.46	1.16	1.22	1.15
+Relative rank	7	1	6	2	4	3	5
+Ishta Phala	0	0	47.92	33.97	15.21	17.59	24.57
+Kashta Phala	59.27	48.09	8.73	25.94	43.82	28.45	23.42
+
 Planets	Positions	Degrees	Rasi	Rasi Lord	Nakshatra	Nakshatra Lord
 Sun Sun	125° 38'	5° 38′	Simha Simha	Sun	Magha	Ketu
 Moon Moon	217° 21'	7° 21′	Vrischika Vrischika	Mars	Anuradha	Saturn
@@ -33,6 +63,212 @@ Saturn Saturn	342° 37'	12° 37′	Meena Meena	Jupiter	Uttara Bhadrapada	Saturn
 Ascendant Ascendant	215° 25'	5° 25′	Vrischika Vrischika	Mars	Anuradha	Saturn
 Rahu Rahu	166° 13'	16° 13′	Kanya Kanya	Mercury	Hasta	Moon
 Ketu Ketu	346° 13'	16° 13′	Meena Meena	Jupiter	Uttara Bhadrapada	Saturn
+
+
+
+Naisargika Maitri Table:
+The subsequent table illustrates the Naisargika Maitri, representing the inherent or natural relationships among the planets:
+
+Planets	Sun	Moon	Mercury	Venus	Mars	Jupiter	Saturn
+Sun	--	Friend	Neutral	Enemy	Friend	Friend	Enemy
+Moon	Friend	--	Friend	Neutral	Neutral	Neutral	Neutral
+Mercury	Friend	Enemy	--	Friend	Neutral	Neutral	Neutral
+Venus	Enemy	Enemy	Friend	--	Neutral	Neutral	Friend
+Mars	Friend	Friend	Enemy	Neutral	--	Friend	Neutral
+Jupiter	Friend	Friend	Enemy	Enemy	Friend	--	Neutral
+Saturn	Enemy	Enemy	Friend	Friend	Enemy	Neutral	--
+
+Tatkaala Maitri Table:
+The table below shows the temporary relationships among the planets, known as Tatkaala Maitri or Temporary Relationship:
+
+Planets	Sun	Moon	Mercury	Venus	Mars	Jupiter	Saturn
+Sun	--	Friend	Friend	Friend	Friend	Enemy	Enemy
+Moon	Friend	--	Friend	Enemy	Enemy	Friend	Enemy
+Mercury	Friend	Friend	--	Friend	Friend	Friend	Enemy
+Venus	Friend	Enemy	Friend	--	Enemy	Enemy	Friend
+Mars	Friend	Enemy	Friend	Enemy	--	Enemy	Friend
+Jupiter	Enemy	Friend	Friend	Enemy	Enemy	--	Friend
+Saturn	Enemy	Enemy	Enemy	Friend	Friend	Friend	--
+Panchada Maitri Table:
+The ensuing table displays the compound relationship among the planets, referred to as the Panchada Maitri or Five-Fold relationship. This calculation involves the combination of both Naisargika and Tatkaala Maitri:
+
+Planets	Sun	Moon	Mercury	Venus	Mars	Jupiter	Saturn
+Sun	--	Extreme Friend	Friend	Neutral	Extreme Friend	Neutral	Extreme Enemy
+Moon	Extreme Friend	--	Extreme Friend	Enemy	Enemy	Friend	Enemy
+Mercury	Extreme Friend	Neutral	--	Extreme Friend	Friend	Friend	Enemy
+Venus	Neutral	Extreme Enemy	Extreme Friend	--	Enemy	Enemy	Extreme Friend
+Mars	Extreme Friend	Neutral	Neutral	Enemy	--	Neutral	Friend
+Jupiter	Neutral	Extreme Friend	Neutral	Extreme Enemy	Neutral	--	Friend
+Saturn	Extreme Enemy	Extreme Enemy	Neutral	Extreme Friend	Neutral	Friend	--
+
+
+D9_planet_positions = [
+    {
+        "planet": "Sun",
+        "position_full": "50° 49'",
+        "degree": "20° 49'",
+        "sign": "Taurus",
+        "sign_lord": "Venus",
+        "nakshatra": "Rohini"
+    },
+    {
+        "planet": "Moon",
+        "position_full": "156° 18'",
+        "degree": "06° 18'",
+        "sign": "Virgo",
+        "sign_lord": "Mercury",
+        "nakshatra": "Uttara Phalguni"
+    },
+    {
+        "planet": "Mercury",
+        "position_full": "296° 37'",
+        "degree": "26° 37'",
+        "sign": "Capricorn",
+        "sign_lord": "Saturn",
+        "nakshatra": "Dhanishta"
+    },
+    {
+        "planet": "Venus",
+        "position_full": "359° 10'",
+        "degree": "29° 10'",
+        "sign": "Pisces",
+        "sign_lord": "Jupiter",
+        "nakshatra": "Revati"
+    },
+    {
+        "planet": "Mars",
+        "position_full": "39° 19'",
+        "degree": "09° 19'",
+        "sign": "Taurus",
+        "sign_lord": "Venus",
+        "nakshatra": "Krittika"
+    },
+    {
+        "planet": "Jupiter",
+        "position_full": "128° 13'",
+        "degree": "08° 13'",
+        "sign": "Leo",
+        "sign_lord": "Sun",
+        "nakshatra": "Magha"
+    },
+    {
+        "planet": "Saturn",
+        "position_full": "203° 38'",
+        "degree": "23° 38'",
+        "sign": "Libra",
+        "sign_lord": "Venus",
+        "nakshatra": "Vishakha"
+    },
+    {
+        "planet": "Ascendant",
+        "position_full": "140° 12'",
+        "degree": "20° 12'",
+        "sign": "Leo",
+        "sign_lord": "Sun",
+        "nakshatra": "Poorva Phalguni"
+    },
+    {
+        "planet": "Rahu",
+        "position_full": "55° 58'",
+        "degree": "25° 58'",
+        "sign": "Taurus",
+        "sign_lord": "Venus",
+        "nakshatra": "Mrigashirsha"
+    },
+    {
+        "planet": "Ketu",
+        "position_full": "235° 58'",
+        "degree": "25° 58'",
+        "sign": "Scorpio",
+        "sign_lord": "Mars",
+        "nakshatra": "Jyeshtha"
+    }
+]
+
+
+D30_planet_positions = [
+    {
+        "planet": "Sun",
+        "position_full": "319° 25'",
+        "degree": "19° 25'",
+        "sign": "Aquarius",
+        "sign_lord": "Saturn",
+        "nakshatra": "Shatabhisha"
+    },
+    {
+        "planet": "Moon",
+        "position_full": "161° 02'",
+        "degree": "11° 02'",
+        "sign": "Virgo",
+        "sign_lord": "Mercury",
+        "nakshatra": "Hasta"
+    },
+    {
+        "planet": "Mercury",
+        "position_full": "58° 43'",
+        "degree": "28° 43'",
+        "sign": "Taurus",
+        "sign_lord": "Venus",
+        "nakshatra": "Mrigashirsha"
+    },
+    {
+        "planet": "Venus",
+        "position_full": "87° 16'",
+        "degree": "27° 16'",
+        "sign": "Gemini",
+        "sign_lord": "Mercury",
+        "nakshatra": "Punarvasu"
+    },
+    {
+        "planet": "Mars",
+        "position_full": "71° 06'",
+        "degree": "11° 06'",
+        "sign": "Gemini",
+        "sign_lord": "Mercury",
+        "nakshatra": "Ardra"
+    },
+    {
+        "planet": "Jupiter",
+        "position_full": "247° 25'",
+        "degree": "07° 25'",
+        "sign": "Sagittarius",
+        "sign_lord": "Jupiter",
+        "nakshatra": "Moola"
+    },
+    {
+        "planet": "Saturn",
+        "position_full": "348° 47'",
+        "degree": "18° 47'",
+        "sign": "Pisces",
+        "sign_lord": "Jupiter",
+        "nakshatra": "Revati"
+    },
+    {
+        "planet": "Ascendant",
+        "position_full": "167° 22'",
+        "degree": "17° 22'",
+        "sign": "Virgo",
+        "sign_lord": "Mercury",
+        "nakshatra": "Hasta"
+    },
+    {
+        "planet": "Rahu",
+        "position_full": "336° 35'",
+        "degree": "06° 35'",
+        "sign": "Pisces",
+        "sign_lord": "Jupiter",
+        "nakshatra": "Uttara Bhadrapada"
+    },
+    {
+        "planet": "Ketu",
+        "position_full": "336° 35'",
+        "degree": "06° 35'",
+        "sign": "Pisces",
+        "sign_lord": "Jupiter",
+        "nakshatra": "Uttara Bhadrapada"
+    }
+]
+
 
 
 Tamil date	Aavani 7, Dhatri

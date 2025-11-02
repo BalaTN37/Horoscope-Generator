@@ -1,0 +1,34 @@
+.. (a) UchchaBala :
+This strength is maximum when the planet is at its deep
+exaltation point and is assigned sixty shashtiamsas. When
+. it is at its debilitation point, its strength is minimum say, a
+value of zero shashtiamsa. There is gradual increase from
+debilitation point to exaltation point and decrease from
+exaltation point to debilitation point. The distance between
+exaltation point and debilitation point is 180" on either side
+of the zodiac.
+This implies that the Uchchabala of a planet is due
+to its distance from the debilitation' point and it gains sixty
+shastiamsas in 180". If x" is its distance from debilitation
+.1 0
+point its uchchaba1a = X0 x 60 + 180 = x/3 Shashtiall}sas
+By this we deduce the formula Uchchabala is equal
+to difference between the longitudes of the Planet and its
+debilitation point divided by three.
+Jr
+'Jchchabala =Planets longitude- its debilitation point
+3
+if it becomes more than 180° deduct it from 360°
+
+
+planet_strength_list = [
+    {"planet": "Sun", "exaltation_sign": "Aries", "exaltation_degree": 10, "debilitation_sign": "Libra", "debilitation_degree": 10},
+    {"planet": "Moon", "exaltation_sign": "Taurus", "exaltation_degree": 3, "debilitation_sign": "Scorpio", "debilitation_degree": 3},
+    {"planet": "Mars", "exaltation_sign": "Capricorn", "exaltation_degree": 28, "debilitation_sign": "Cancer", "debilitation_degree": 28},
+    {"planet": "Mercury", "exaltation_sign": "Virgo", "exaltation_degree": 15, "debilitation_sign": "Pisces", "debilitation_degree": 15},
+    {"planet": "Jupiter", "exaltation_sign": "Cancer", "exaltation_degree": 5, "debilitation_sign": "Capricorn", "debilitation_degree": 5},
+    {"planet": "Venus", "exaltation_sign": "Pisces", "exaltation_degree": 27, "debilitation_sign": "Virgo", "debilitation_degree": 27},
+    {"planet": "Saturn", "exaltation_sign": "Libra", "exaltation_degree": 20, "debilitation_sign": "Aries", "debilitation_degree": 20},
+    {"planet": "Rahu", "exaltation_sign": "Taurus", "exaltation_degree": None, "debilitation_sign": "Scorpio", "debilitation_degree": None},
+    {"planet": "Ketu", "exaltation_sign": "Scorpio", "exaltation_degree": None, "debilitation_sign": "Taurus", "debilitation_degree": None},
+]

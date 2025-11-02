@@ -1,0 +1,51 @@
+{
+  "Sun": {
+    "Fast Friend": ["Mars", "Jupiter"],
+    "Friend": ["Mercury"],
+    "Neutral": ["Moon", "Venus", "Saturn"],
+    "Enemy": [],
+    "Bitter Enemy": []
+  },
+  "Moon": {
+    "Fast Friend": [],
+    "Friend": [],
+    "Neutral": ["Sun", "Mercury"],
+    "Enemy": ["Mars", "Venus", "Jupiter", "Saturn"],
+    "Bitter Enemy": []
+  },
+  "Mars": {
+    "Fast Friend": ["Sun", "Jupiter"],
+    "Friend": ["Venus", "Saturn"],
+    "Neutral": ["Moon", "Mercury"],
+    "Enemy": [],
+    "Bitter Enemy": []
+  },
+  "Mercury": {
+    "Fast Friend": ["Sun", "Venus"],
+    "Friend": ["Mars"],
+    "Neutral": [],
+    "Enemy": ["Jupiter", "Saturn"],
+    "Bitter Enemy": ["Moon"]
+  },
+  "Jupiter": {
+    "Fast Friend": ["Sun", "Mars"],
+    "Friend": [],
+    "Neutral": ["Moon", "Venus"],
+    "Enemy": ["Saturn"],
+    "Bitter Enemy": ["Mercury"]
+  },
+  "Venus": {
+    "Fast Friend": ["Mercury", "Saturn"],
+    "Friend": ["Mars", "Jupiter"],
+    "Neutral": ["Sun"],
+    "Enemy": [],
+    "Bitter Enemy": ["Moon"]
+  },
+  "Saturn": {
+    "Fast Friend": ["Venus"],
+    "Friend": [],
+    "Neutral": ["Mercury", "Sun", "Mars"],
+    "Enemy": ["Jupiter"],
+    "Bitter Enemy": ["Moon"]
+  }
+}

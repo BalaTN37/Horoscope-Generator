@@ -1,0 +1,159 @@
+(b) Saptavargiya BaJa
+Planets have two types of friendship
+(i) Natural i.e. Naisargik
+ii) Temporary i.e. Tatkalik
+
+
+Permanent Friendship :
+The chart for Naisargik friendship is given below. 
+
+PermanentFriendShip = [
+    {"planet": "Sun", "friend": ["Moon", "Mars", "Jupiter"], "neutral": ["Mercury"], "enemy": ["Venus", "Saturn"]},
+    {"planet": "Moon", "friend": ["Sun", "Mercury"], "neutral": ["Mars", "Jupiter", "Venus", "Saturn"], "enemy": []},
+    {"planet": "Mars", "friend": ["Sun", "Moon", "Jupiter"], "neutral": ["Venus", "Saturn"], "enemy": ["Mercury"]},
+    {"planet": "Mercury", "friend": ["Venus", "Sun"], "neutral": ["Mars", "Jupiter", "Saturn"], "enemy": ["Moon"]},
+    {"planet": "Jupiter", "friend": ["Sun", "Moon", "Mars"], "neutral": ["Saturn"], "enemy": ["Mercury", "Venus"]},
+    {"planet": "Venus", "friend": ["Mercury", "Saturn"], "neutral": ["Mars", "Jupiter"], "enemy": ["Sun", "Moon"]},
+    {"planet": "Saturn", "friend": ["Mercury", "Venus"], "neutral": ["Jupiter"], "enemy": ["Sun", "Mars", "Moon"]}
+]
+
+
+Temporary Friendship :
+The planets in II, III, IV, X, XI and XII houses from
+a planet are temporary friends and the planets which are
+in I, V. VI, VII, VIII and IX houses from it are temporary
+enemies. Combining the two for a horoscope we get the
+relationship as below
+
+Temporary_relationship_mapping = [
+    {"naisargik": "Friend", "temporary": "Friend", "resultant": "Fast Friend", "code": "FF"},
+    {"naisargik": "Friend", "temporary": "Neutral", "resultant": "Friend", "code": "F"},
+    {"naisargik": "Friend", "temporary": "Enemy", "resultant": "Neutral", "code": "N"},
+    {"naisargik": "Enemy", "temporary": "Neutral", "resultant": "Enemy", "code": "E"},
+    {"naisargik": "Enemy", "temporary": "Enemy", "resultant": "Bitter Enemy", "code": "BE"}
+]
+
+The Panchadha Maitri chakra will have to be prepared for the standard horoscope.
+It is to- be prepared from Rash I chart only and is applicable for other charts also.
+
+planet_relationships_detailed = [
+    {"planet": "Sun", "fast_friend": ["Mars", "Jupiter"], "friend": ["Mercury"], "neutral": ["Moon", "Venus", "Saturn"], "enemy": [], "bitter_enemy": []},
+    {"planet": "Moon", "fast_friend": [], "friend": [], "neutral": ["Sun", "Mercury"], "enemy": ["Mars", "Venus", "Jupiter", "Saturn"], "bitter_enemy": []},
+    {"planet": "Mars", "fast_friend": ["Sun", "Jupiter"], "friend": ["Venus", "Saturn"], "neutral": ["Moon", "Mercury"], "enemy": [], "bitter_enemy": []},
+    {"planet": "Mercury", "fast_friend": ["Sun", "Venus"], "friend": ["Mars"], "neutral": [], "enemy": ["Jupiter", "Saturn"], "bitter_enemy": ["Moon"]},
+    {"planet": "Jupiter", "fast_friend": ["Sun", "Mars"], "friend": [], "neutral": ["Moon", "Venus"], "enemy": ["Saturn"], "bitter_enemy": ["Mercury"]},
+    {"planet": "Venus", "fast_friend": ["Mercury", "Saturn"], "friend": ["Mars", "Jupiter"], "neutral": ["Sun"], "enemy": [], "bitter_enemy": ["Moon"]},
+    {"planet": "Saturn", "fast_friend": ["Venus"], "friend": [], "neutral": ["Mercury", "Sun", "Mars"], "enemy": ["Jupiter"], "bitter_enemy": ["Moon"]}
+]
+
+Saptavargiya ·BaJa :- The strength of a planet 'due,
+to its position in the seven vargas is known as
+SBJ?tavargiyabala. If a Planet is in
+(i) Mooltrikona sign = 45 Shashtiamsa
+(In rashi chart only)
+
+(il) Own sign (Sva Rashi) = 30 Shashtiamsa
+
+(iii) Fast friends sign = 22.5 Shashtiamsa
+(Adhi Mitra Rashi)
+
+(iv) Friend's Sign = 15 Shashtiamsa
+
+(Mitra Rashi)
+(v) Neutrals' sign = 7.5 Shashtiamsa
+(Sarna Rashi)
+
+(vi) Enemy's Sign = 3.75 Shashtiamsa
+(Shatru Rashi)
+
+(vii) Bitter Enemy's sign = 1.875 Shashtiamsa .
+(Adhi Shatru Rashi)
+
+The Saptavarga charts have been given earlier.
+Sun is in Mooltrikona in Rashi chart = 45 Shashtiamsa,
+Sun in Moon's bora which is Neutral as per Panchadhamatri
+chakra = 7.5
+Sun· in Mars's Rashi in Dreshkon Chart a FF = 22.5
+Sun in Moon's Rashi a Neutral (in Saptamsa) -= 75 etc.
+This (as given on the next page) is the way to fill the chart
+and get Saptavarga BaJa.
+
+
+sapta_vargiya_bala = [
+    {
+        "chart": "Rashi Chart",
+        "Sun": 45, "Moon": 3.75, "Mars": 7.5, "Mercury": 45, "Jupiter": 1.875, "Venus": 45, "Saturn": 7.5
+    },
+    {
+        "chart": "Hora",
+        "Sun": 7.5, "Moon": 7.5, "Mars": 7.5, "Mercury": 22.5, "Jupiter": 22.5, "Venus": 7.5, "Saturn": 7.5
+    },
+    {
+        "chart": "Dreshkon",
+        "Sun": 22.5, "Moon": 3.75, "Mars": 30, "Mercury": 22.5, "Jupiter": 7.5, "Venus": 30, "Saturn": 30
+    },
+    {
+        "chart": "Saptamsa",
+        "Sun": 7.5, "Moon": 3.75, "Mars": 30, "Mercury": 1.875, "Jupiter": 7.5, "Venus": 15, "Saturn": 7.5
+    },
+    {
+        "chart": "Navamsa",
+        "Sun": 22.5, "Moon": 3.75, "Mars": 15, "Mercury": 1.875, "Jupiter": 7.5, "Venus": 15, "Saturn": 22.5
+    },
+    {
+        "chart": "Dwadasamsa",
+        "Sun": 15, "Moon": 3.75, "Mars": 22.5, "Mercury": 22.5, "Jupiter": 7.5, "Venus": 15, "Saturn": 3.75
+    },
+    {
+        "chart": "Treisamsa",
+        "Sun": 7.5, "Moon": 3.75, "Mars": 22.5, "Mercury": 3.75, "Jupiter": 3.75, "Venus": 22.5, "Saturn": 3.75
+    },
+    {
+        "chart": "Total SaptaVargiyaBala",
+        "Sun": 127.5, "Moon": 30, "Mars": 135, "Mercury": 120, "Jupiter": 58.13, "Venus": 150, "Saturn": 82.5
+    }
+]
+
+
+
+Mool Trikona positions or Mool Trikona Rashi for each planet:
+
+Sun: The Sun’s Mool Trikona is in Leo from 0 to 20 degrees. Leo is the Sun’s own sign, where its qualities of leadership, authority, and vitality are most prominent.
+Moon: The Moon’s Mool Trikona is in Taurus from 4 to 30 degrees. In Taurus, the Moon’s qualities of emotional stability and nurturing are well expressed.
+Venus: Venus’s Mool Trikona is in Libra from 0 to 15 degrees. As the ruler of Libra, Venus shows its attributes of beauty and harmony most effectively here.
+Mars: Mars’s Mool Trikona is in Aries from 0 to 12 degrees. In Aries, Mars exhibits its dynamic and action-oriented nature most strongly.
+Mercury: Mercury’s Mool Trikona is in Virgo from 16 to 20 degrees. Mercury’s strengths in communication and analytical skills are prominent in Virgo.
+Jupiter: Jupiter’s Mool Trikona is in Sagittarius from 0 to 10 degrees. In Sagittarius, Jupiter’s qualities of wisdom and expansion are expressed most clearly.
+Saturn: Saturn’s Mool Trikona is in Aquarius from 0 to 20 degrees. Saturn shows its attributes of discipline and responsibility most effectively in Aquarius.
+Rahu and Ketu: As shadow planets, Rahu and Ketu do not have specific Mool Trikona positions. However, Rahu is considered strong in Taurus and Gemini, while Ketu is strong in Scorpio and Sagittarius.
+
+
+Planetary Rulerships 
+
+The Sun rules Leo. 
+The Moon rules Cancer
+Moon rules Cancer. 
+Mercury rules Gemini and Virgo. 
+Venus rules Taurus and Libra. 
+Mars rules Aries and Scorpio. 
+Jupiter rules Sagittarius and Pisces. 
+Saturn rules Capricorn and Aquarius. 
+ 
+
+Sign Ownership in Divisional Charts
+
+Concept	Divisional Chart Impact
+Sign ownerships	Do not change (Sun always rules Leo, etc.)
+Planet’s position within divisions	May land in another sign’s subdivision, giving a different dispositer (temporary ruler for that chart)
+Interpretation	Ownership same, but placement relative to ruler varies — which changes the reading
+🪄 Example
+
+Let’s take Mars at 10° Aries in D1 (Rāśi).
+
+In D1 (Rāśi) → Aries = Mars’ own sign → strong.
+
+In D9 (Navamsa) → 10° Aries maps to Gemini Navamsa (since each Navamsa covers 3°20′).
+→ Gemini = ruled by Mercury.
+→ So, in D9, Mars is in Mercury’s sign, but Mercury’s rulership didn’t change — only Mars moved into that sign portion.
+
+
