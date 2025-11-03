@@ -1,0 +1,82 @@
+Yugmayugma Bala = Ojayugmarasyamsa Bala
+
+The strength acquired by a planet due to occupying
+an odd or even signs in the Rashi chart and Navamsha chart
+is called Yugmayugma Bala.
+Moon and Venus are powerful in even signs in Rashi
+chart and Navamsha chart and they get fifteen Shashitamsa
+for each i.e. if they are in even Rashi in Rashi chart they
+get fifteen Shashtiamsa, if in even Rashfin Navamsha chart
+they get another fifteen shashtiamsa. If they are in even Rashi
+in both Rashi and Navamsha they will get 15 + 15 = 30
+shahstiamsa if in even Rashi in one and in odd in other they
+will get 0 +15 = 15 or 15 + 0 = 15 shashtiamsa. If in odd
+
+
+Rashi in both the charts the strength is equal to 0.
+Sun, Mars, Mercury, Jupiter and Saturn get fifteen
+shashtiamsas each for occupying odd Rashis in Rashi chart
+and Navamsha chart.
+The Yugrnayugma Bala of planets in the standard horoscope
+is as given below·:
+
+yugma_yugma_bala = [
+    {
+        "planet": "Sun",
+        "rashi": "Odd Rashi",
+        "rashi_points": 15,
+        "navamsha": "Even Rashi",
+        "navamsha_points": 0,
+        "total": 15
+    },
+    {
+        "planet": "Moon",
+        "rashi": "Odd Rashi",
+        "rashi_points": 0,
+        "navamsha": "Odd Rashi",
+        "navamsha_points": 0,
+        "total": 0
+    },
+    {
+        "planet": "Mars",
+        "rashi": "Even Rashi",
+        "rashi_points": 0,
+        "navamsha": "Odd Rashi",
+        "navamsha_points": 15,
+        "total": 15
+    },
+    {
+        "planet": "Mercury",
+        "rashi": "Even Rashi",
+        "rashi_points": 0,
+        "navamsha": "Even Rashi",
+        "navamsha_points": 0,
+        "total": 0
+    },
+    {
+        "planet": "Jupiter",
+        "rashi": "Even Rashi",
+        "rashi_points": 0,
+        "navamsha": "Even Rashi",
+        "navamsha_points": 0,
+        "total": 0
+    },
+    {
+        "planet": "Venus",
+        "rashi": "Odd Rashi",
+        "rashi_points": 0,
+        "navamsha": "Even Rashi",
+        "navamsha_points": 15,
+        "total": 15
+    },
+    {
+        "planet": "Saturn",
+        "rashi": "Even Rashi",
+        "rashi_points": 0,
+        "navamsha": "Even Rashi",
+        "navamsha_points": 0,
+        "total": 0
+    }
+]
+``
+

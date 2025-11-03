@@ -1,0 +1,65 @@
+Kendra Bala
+
+Planets in a kendra (value ofkendra bala is to be
+considered in Rashi chart only) get 60 shashtiamsas, in
+Panaparas get 30 shashtiamsas, in Apoklima get 15
+shashtiamsas as Kendra Bala.
+There is a diversity of opinion for choosing a Kendra,
+some consider the I, IV, VII & X houses as Kendra while
+some others take the signs in these Bhavas as Kendras
+We follow Parashara's view and consider the signs ir
+deciding kendras as i.e. as the planets are in Rashl Char
+and not in chalit chart.
+
+So Kendras are I, IV, VII & X (Rashis).
+Panaparas are next to 1Cendras i.e. Rashj ofll;V,VIII and XI.
+Apoklimas are next to Panaparas or just behind the
+Kendras i.e. III, VI, IX and XII
+
+The Kendra Balas of Planets in the standard horoscope are:-
+
+kendra_bala_apoklima = [
+    {
+        "planet": "Sun",
+        "kendra_panapara": "Apoklim",
+        "kendra_bala": 15,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Moon",
+        "kendra_panapara": "Apoklim",
+        "kendra_bala": 15,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Mars",
+        "kendra_panapara": "Panapara",
+        "kendra_bala": 30,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Mercury",
+        "kendra_panapara": "Kendra",
+        "kendra_bala": 60,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Jupiter",
+        "kendra_panapara": "Kendra",
+        "kendra_bala": 60,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Venus",
+        "kendra_panapara": "Panapara",
+        "kendra_bala": 30,
+        "unit": "Shashtiamsas"
+    },
+    {
+        "planet": "Saturn",
+        "kendra_panapara": "Kendra",
+        "kendra_bala": 60,
+        "unit": "Shashtiamsas"
+    }
+]
+``

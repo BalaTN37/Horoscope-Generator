@@ -1,0 +1,28 @@
+Dreshkon BaJa
+The planets are ofthree kinds :
+(i) Masculine planets
+(ii) Hermaphrodite planets
+(iii) Female Planets.
+
+Masculine planets are Sun,Mars and Jupiter
+Hermaphrodite planets are - Mercury and Saturn
+Female Planets are Moon and Venus
+The male planets get strength of 15 shashtiamsas if
+they are in frrst Dreshkon of the in which they are
+posited. The hermophrodites are assigned 1 5 shashtiamsas
+if they are in second Dreshkon while the female planets
+get 15 shashtiamsa when they are in third Dreshkon of the
+rashi in which they are posited.
+
+Dreshkon Bala of the planets in the standard horoscope
+
+dreshkon_bala = [
+    {"planet": "Sun", "sex": "Male", "dreshkon": "Third", "dreshkon_bala": 0},
+    {"planet": "Moon", "sex": "Female", "dreshkon": "First", "dreshkon_bala": 0},
+    {"planet": "Mars", "sex": "Male", "dreshkon": "Second", "dreshkon_bala": 0},
+    {"planet": "Mercury", "sex": "Hermophrodite", "dreshkon": "Third", "dreshkon_bala": 0},
+    {"planet": "Jupiter", "sex": "Male", "dreshkon": "Third", "dreshkon_bala": 0},
+    {"planet": "Venus", "sex": "Female", "dreshkon": "First", "dreshkon_bala": 0},
+    {"planet": "Saturn", "sex": "Hermophrodite", "dreshkon": "Second", "dreshkon_bala": 15}
+]
+

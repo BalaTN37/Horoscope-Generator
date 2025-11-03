@@ -606,7 +606,7 @@ class PanchadhaMaitriCalculator:
 
 
 class SaptavarigiyaBalaCalculator:
-    """Calculate Saptavargiya Bala (Seven-fold Divisional Strength) using classical BPHS methods."""
+    """Calculate Saptavargiya Bala exactly as per reference document with lookup table methodology."""
     
     def __init__(self):
         self.divisional_calculator = DivisionalChartCalculator()
@@ -625,6 +625,8 @@ class SaptavarigiyaBalaCalculator:
             12: "Dwadasamsa", 
             30: "Treisamsa"
         }
+        
+
     
     def is_in_mooltrikona(self, planet: str, sign_index: int, degree_in_sign: float) -> bool:
         """Check if planet is in its Mooltrikona range."""
@@ -648,36 +650,28 @@ class SaptavarigiyaBalaCalculator:
             return sign_index == exalt_sign
         return False
     
-    def get_reference_panchadha_relationship(self, planet: str, other_planet: str) -> str:
-        """Get direct relationship from reference document's planet_relationships_detailed."""
-        # EXACT relationships as per reference document
-        relationships = {
-            'Sun': {'fast_friend': ['Mars', 'Jupiter'], 'friend': ['Mercury'], 'neutral': ['Moon', 'Venus', 'Saturn'], 'enemy': [], 'bitter_enemy': []},
-            'Moon': {'fast_friend': [], 'friend': [], 'neutral': ['Sun', 'Mercury'], 'enemy': ['Mars', 'Venus', 'Jupiter', 'Saturn'], 'bitter_enemy': []},
-            'Mars': {'fast_friend': ['Sun', 'Jupiter'], 'friend': ['Venus', 'Saturn'], 'neutral': ['Moon', 'Mercury'], 'enemy': [], 'bitter_enemy': []},
-            'Mercury': {'fast_friend': ['Sun', 'Venus'], 'friend': ['Mars'], 'neutral': [], 'enemy': ['Jupiter', 'Saturn'], 'bitter_enemy': ['Moon']},
-            'Jupiter': {'fast_friend': ['Sun', 'Mars'], 'friend': [], 'neutral': ['Moon', 'Venus'], 'enemy': ['Saturn'], 'bitter_enemy': ['Mercury']},
-            'Venus': {'fast_friend': ['Mercury', 'Saturn'], 'friend': ['Mars', 'Jupiter'], 'neutral': ['Sun'], 'enemy': [], 'bitter_enemy': ['Moon']},
-            'Saturn': {'fast_friend': ['Venus'], 'friend': [], 'neutral': ['Mercury', 'Sun', 'Mars'], 'enemy': ['Jupiter'], 'bitter_enemy': ['Moon']}
-        }
-        
-        if planet in relationships:
-            planet_rels = relationships[planet]
-            if other_planet in planet_rels['fast_friend']:
+    def get_panchadha_relationship(self, planet: str, other_planet: str, panchadha_maitri: Dict) -> str:
+        """Get relationship using dynamic Panchadha Maitri calculation."""
+        if planet in panchadha_maitri and other_planet in panchadha_maitri[planet]:
+            relationship_data = panchadha_maitri[planet][other_planet]
+            resultant = relationship_data.get('resultant', 'Neutral')
+            
+            # Map Panchadha Maitri results to SaptavarigiyaBala categories
+            if resultant == 'Extreme Friend':
                 return "Fast Friend"
-            elif other_planet in planet_rels['friend']:
+            elif resultant == 'Friend':
                 return "Friend"
-            elif other_planet in planet_rels['neutral']:
+            elif resultant == 'Neutral':
                 return "Neutral"
-            elif other_planet in planet_rels['enemy']:
+            elif resultant == 'Enemy':
                 return "Enemy"
-            elif other_planet in planet_rels['bitter_enemy']:
+            elif resultant == 'Extreme Enemy':
                 return "Bitter Enemy"
         
         return "Neutral"  # Default
     
     def get_sign_relationship(self, planet: str, sign_index: int, degree_in_sign: float, panchadha_maitri: Dict, division: int = 1) -> str:
-        """Determine relationship between planet and sign ruler according to reference document."""
+        """Determine relationship between planet and sign ruler using dynamic calculation."""
         
         # First priority: Check for Mooltrikona (ONLY in Rashi chart - division 1)
         if division == 1 and self.is_in_mooltrikona(planet, sign_index, degree_in_sign):
@@ -687,14 +681,27 @@ class SaptavarigiyaBalaCalculator:
         if self.is_own_sign(planet, sign_index):
             return "Own"
         
-        # Third priority: Use DIRECT relationship from reference document
+        # Third priority: Use dynamic Panchadha Maitri relationship
         sign_ruler = SIGN_RULERS[sign_index]
-        return self.get_reference_panchadha_relationship(planet, sign_ruler)
+        return self.get_panchadha_relationship(planet, sign_ruler, panchadha_maitri)
+    
+    def get_relationship_from_points(self, points: float) -> str:
+        """Reverse lookup to determine relationship type from points value."""
+        point_to_relationship = {
+            45.0: "Mooltrikona",
+            30.0: "Own", 
+            22.5: "Fast Friend",
+            15.0: "Friend",
+            7.5: "Neutral", 
+            3.75: "Enemy",
+            1.875: "Bitter Enemy"
+        }
+        return point_to_relationship.get(points, "Unknown")
     
     def calculate_saptavargiya_bala(self, planets_sidereal: Dict[str, float]) -> Dict[str, Any]:
-        """Calculate complete Saptavargiya Bala for all planets."""
+        """Calculate SaptavarigiyaBala by determining actual relationships in each divisional chart."""
         
-        # Get Panchadha Maitri relationships
+        # Get Panchadha Maitri relationships from Rashi chart (D1)
         maitri_data = self.maitri_calculator.calculate_all_maitri_tables(planets_sidereal)
         panchadha_maitri = maitri_data["panchadha_maitri"]
         
@@ -756,7 +763,7 @@ class SaptavarigiyaBalaCalculator:
                 
                 divisional_charts[division] = chart_data
         
-        # Calculate points for each planet in each chart
+        # Calculate actual relationships and assign points for each planet in each chart
         planet_chart_scores = {}
         for planet in self.planets:
             if planet not in planets_sidereal:
@@ -771,7 +778,7 @@ class SaptavarigiyaBalaCalculator:
                     sign_index = planet_data['sign_index']
                     degree_in_sign = planet_data.get('degree_in_sign', 0)
                     
-                    # Get relationship type (pass division to check for Mooltrikona only in Rashi chart)
+                    # Determine relationship type based on actual chart position
                     relationship = self.get_sign_relationship(planet, sign_index, degree_in_sign, panchadha_maitri, division)
                     
                     # Get points based on relationship
@@ -793,7 +800,7 @@ class SaptavarigiyaBalaCalculator:
                         'points': 0
                     }
         
-        # Calculate total scores
+        # Calculate total scores by summing actual calculated points
         planet_totals = {}
         for planet in self.planets:
             if planet in planet_chart_scores:
@@ -807,6 +814,335 @@ class SaptavarigiyaBalaCalculator:
             'panchadha_maitri_used': panchadha_maitri,
             'point_system': SAPTAVARGIYA_POINTS,
             'mooltrikona_ranges': MOOLTRIKONA_RANGES
+        }
+
+
+class YugmayugmaBalaCalculator:
+    """Calculator for YugmayugmaBala (Odd/Even Sign Strength)."""
+    
+    def __init__(self):
+        self.planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']
+        # Planets that get strength in even signs
+        self.even_sign_planets = ['Moon', 'Venus']
+        # Planets that get strength in odd signs  
+        self.odd_sign_planets = ['Sun', 'Mars', 'Mercury', 'Jupiter', 'Saturn']
+        self.max_points_per_chart = 15  # Maximum 15 Shashtiamsa per chart
+        
+    def is_odd_sign(self, sign_index: int) -> bool:
+        """Check if a sign is odd. Aries(0), Gemini(2), Leo(4), etc. are odd signs."""
+        # Note: In traditional Vedic astrology, Aries is 1st sign (odd)
+        # But in our 0-indexed system: Aries=0, Taurus=1, Gemini=2, etc.
+        # So odd signs are at even indices: 0, 2, 4, 6, 8, 10
+        return (sign_index % 2) == 0
+        
+    def is_even_sign(self, sign_index: int) -> bool:
+        """Check if a sign is even. Taurus(1), Cancer(3), Virgo(5), etc. are even signs."""
+        # Even signs are at odd indices: 1, 3, 5, 7, 9, 11
+        return (sign_index % 2) == 1
+    
+    def calculate_yugmayugma_bala(self, planets_sidereal: Dict[str, float]) -> Dict[str, Any]:
+        """Calculate YugmayugmaBala for all planets in Rashi and Navamsha charts."""
+        
+        # Initialize divisional calculator for Navamsha positions
+        divisional_calculator = DivisionalChartCalculator()
+        
+        # Calculate results for each planet
+        planet_scores = {}
+        planet_details = {}
+        
+        for planet in self.planets:
+            if planet not in planets_sidereal:
+                continue
+                
+            planet_lon = planets_sidereal[planet]
+            
+            # Get Rashi chart position
+            rashi_sign_index = _sign_index(planet_lon)
+            rashi_degree = _deg_in_sign(planet_lon)
+            
+            # Get Navamsha chart position (D9)
+            navamsha_sign_index, navamsha_degree = divisional_calculator.calculate_navamsa_d9(rashi_sign_index, rashi_degree)
+            
+            # Determine if planet gets strength in odd or even signs
+            prefers_odd = planet in self.odd_sign_planets
+            prefers_even = planet in self.even_sign_planets
+            
+            # Calculate points for Rashi chart
+            rashi_is_odd = self.is_odd_sign(rashi_sign_index)
+            rashi_points = 0
+            if prefers_odd and rashi_is_odd:
+                rashi_points = self.max_points_per_chart
+            elif prefers_even and not rashi_is_odd:  # Even sign
+                rashi_points = self.max_points_per_chart
+            
+            # Calculate points for Navamsha chart
+            navamsha_is_odd = self.is_odd_sign(navamsha_sign_index)
+            navamsha_points = 0
+            if prefers_odd and navamsha_is_odd:
+                navamsha_points = self.max_points_per_chart
+            elif prefers_even and not navamsha_is_odd:  # Even sign
+                navamsha_points = self.max_points_per_chart
+            
+            # Total YugmayugmaBala
+            total_points = rashi_points + navamsha_points
+            
+            # Store detailed breakdown
+            planet_details[planet] = {
+                'rashi_chart': {
+                    'sign_index': rashi_sign_index,
+                    'sign_name': ZODIAC_SIGNS[rashi_sign_index],
+                    'sign_type': 'Odd' if rashi_is_odd else 'Even',
+                    'points': rashi_points,
+                    'gets_strength': (prefers_odd and rashi_is_odd) or (prefers_even and not rashi_is_odd)
+                },
+                'navamsha_chart': {
+                    'sign_index': navamsha_sign_index, 
+                    'sign_name': ZODIAC_SIGNS[navamsha_sign_index],
+                    'sign_type': 'Odd' if navamsha_is_odd else 'Even',
+                    'points': navamsha_points,
+                    'gets_strength': (prefers_odd and navamsha_is_odd) or (prefers_even and not navamsha_is_odd)
+                },
+                'planet_preference': 'Odd Signs' if prefers_odd else 'Even Signs',
+                'total_points': total_points
+            }
+            
+            planet_scores[planet] = total_points
+        
+        return {
+            'planet_scores': planet_scores,
+            'planet_details': planet_details,
+            'calculation_rules': {
+                'odd_sign_planets': self.odd_sign_planets,
+                'even_sign_planets': self.even_sign_planets,
+                'max_points_per_chart': self.max_points_per_chart,
+                'total_max_points': self.max_points_per_chart * 2
+            }
+        }
+
+
+class KendraBalaCalculator:
+    """Calculator for KendraBala (Angular House Strength)."""
+    
+    def __init__(self):
+        self.planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']
+        # KendraBala point system according to reference document
+        self.kendra_points = 60      # Houses 1, 4, 7, 10 (Angular)
+        self.panapara_points = 30    # Houses 2, 5, 8, 11 (Succedent)
+        self.apoklima_points = 15    # Houses 3, 6, 9, 12 (Cadent)
+        
+        # House classifications
+        self.kendra_houses = [1, 4, 7, 10]      # Angular
+        self.panapara_houses = [2, 5, 8, 11]    # Succedent (next to Kendras)
+        self.apoklima_houses = [3, 6, 9, 12]    # Cadent (behind Kendras)
+    
+    def get_house_for_longitude(self, planet_lon: float, cusps_map: Dict[int, float]) -> int:
+        """Determine which house a planet occupies based on its longitude."""
+        
+        def in_arc(longitude, start_cusp, end_cusp):
+            """Check if longitude is within the arc from start_cusp to end_cusp."""
+            start = _degnorm(start_cusp)
+            end = _degnorm(end_cusp)
+            lon = _degnorm(longitude)
+            
+            if start <= end:
+                return start <= lon < end
+            else:  # Arc crosses 0 degrees
+                return lon >= start or lon < end
+        
+        # Check each house
+        for house_num in range(1, 13):
+            start_cusp = cusps_map[house_num]
+            next_house = house_num + 1 if house_num < 12 else 1
+            end_cusp = cusps_map[next_house]
+            
+            if in_arc(planet_lon, start_cusp, end_cusp):
+                return house_num
+        
+        # Fallback - shouldn't happen in normal circumstances
+        return 1
+    
+    def get_house_classification(self, house_number: int) -> tuple[str, int]:
+        """Get the classification and points for a house number."""
+        if house_number in self.kendra_houses:
+            return "Kendra", self.kendra_points
+        elif house_number in self.panapara_houses:
+            return "Panapara", self.panapara_points
+        elif house_number in self.apoklima_houses:
+            return "Apoklima", self.apoklima_points
+        else:
+            # Should not happen for houses 1-12
+            return "Unknown", 0
+    
+    def calculate_kendra_bala(self, planets_sidereal: Dict[str, float], cusps_map: Dict[int, float]) -> Dict[str, Any]:
+        """Calculate KendraBala for all planets based on their house positions in Rashi chart."""
+        
+        planet_scores = {}
+        planet_details = {}
+        
+        for planet in self.planets:
+            if planet not in planets_sidereal:
+                continue
+                
+            planet_lon = planets_sidereal[planet]
+            
+            # Determine house position
+            house_number = self.get_house_for_longitude(planet_lon, cusps_map)
+            
+            # Get house classification and points
+            house_type, points = self.get_house_classification(house_number)
+            
+            # Store detailed information
+            planet_details[planet] = {
+                'longitude': planet_lon,
+                'house_number': house_number,
+                'house_type': house_type,
+                'points': points,
+                'house_classification': {
+                    'kendra': house_number in self.kendra_houses,
+                    'panapara': house_number in self.panapara_houses,
+                    'apoklima': house_number in self.apoklima_houses
+                }
+            }
+            
+            planet_scores[planet] = points
+        
+        return {
+            'planet_scores': planet_scores,
+            'planet_details': planet_details,
+            'house_classifications': {
+                'kendra_houses': self.kendra_houses,
+                'panapara_houses': self.panapara_houses,
+                'apoklima_houses': self.apoklima_houses
+            },
+            'point_system': {
+                'kendra_points': self.kendra_points,
+                'panapara_points': self.panapara_points,
+                'apoklima_points': self.apoklima_points
+            }
+        }
+
+
+class DreshkonBalaCalculator:
+    """Calculator for DreshkonBala (Decanate Strength based on planetary gender)."""
+    
+    def __init__(self):
+        self.planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']
+        self.max_points = 15  # 15 Shashtiamsa for correct Dreshkon
+        
+        # Planet gender classifications according to reference document
+        self.male_planets = ['Sun', 'Mars', 'Jupiter']
+        self.hermaphrodite_planets = ['Mercury', 'Saturn']
+        self.female_planets = ['Moon', 'Venus']
+        
+        # Dreshkon ranges (each sign has 3 Dreshkons of 10° each)
+        self.dreshkon_ranges = {
+            1: (0.0, 10.0),    # First Dreshkon: 0°-10°
+            2: (10.0, 20.0),   # Second Dreshkon: 10°-20°
+            3: (20.0, 30.0)    # Third Dreshkon: 20°-30°
+        }
+    
+    def get_planet_gender(self, planet: str) -> str:
+        """Get the gender classification of a planet."""
+        if planet in self.male_planets:
+            return "Male"
+        elif planet in self.hermaphrodite_planets:
+            return "Hermaphrodite"
+        elif planet in self.female_planets:
+            return "Female"
+        else:
+            return "Unknown"
+    
+    def get_dreshkon_number(self, degree_in_sign: float) -> int:
+        """Determine which Dreshkon (1, 2, or 3) a planet occupies within its sign."""
+        # Normalize degree to 0-30 range
+        degree = degree_in_sign % 30.0
+        
+        if 0.0 <= degree < 10.0:
+            return 1  # First Dreshkon
+        elif 10.0 <= degree < 20.0:
+            return 2  # Second Dreshkon  
+        elif 20.0 <= degree < 30.0:
+            return 3  # Third Dreshkon
+        else:
+            # Edge case, default to first
+            return 1
+    
+    def gets_dreshkon_strength(self, planet: str, dreshkon_number: int) -> bool:
+        """Check if a planet gets strength in the given Dreshkon based on its gender."""
+        gender = self.get_planet_gender(planet)
+        
+        if gender == "Male" and dreshkon_number == 1:
+            return True  # Male planets get strength in 1st Dreshkon
+        elif gender == "Hermaphrodite" and dreshkon_number == 2:
+            return True  # Hermaphrodite planets get strength in 2nd Dreshkon
+        elif gender == "Female" and dreshkon_number == 3:
+            return True  # Female planets get strength in 3rd Dreshkon
+        else:
+            return False
+    
+    def calculate_dreshkon_bala(self, planets_sidereal: Dict[str, float]) -> Dict[str, Any]:
+        """Calculate DreshkonBala for all planets based on their position within their signs."""
+        
+        planet_scores = {}
+        planet_details = {}
+        
+        for planet in self.planets:
+            if planet not in planets_sidereal:
+                continue
+                
+            planet_lon = planets_sidereal[planet]
+            
+            # Get sign and degree within sign
+            sign_index = _sign_index(planet_lon)
+            degree_in_sign = _deg_in_sign(planet_lon)
+            
+            # Determine which Dreshkon the planet is in
+            dreshkon_number = self.get_dreshkon_number(degree_in_sign)
+            
+            # Get planet gender
+            gender = self.get_planet_gender(planet)
+            
+            # Check if planet gets strength in this Dreshkon
+            gets_strength = self.gets_dreshkon_strength(planet, dreshkon_number)
+            
+            # Calculate points
+            points = self.max_points if gets_strength else 0
+            
+            # Get Dreshkon name
+            dreshkon_names = {1: "First", 2: "Second", 3: "Third"}
+            dreshkon_name = dreshkon_names[dreshkon_number]
+            
+            # Store detailed information
+            planet_details[planet] = {
+                'sign_index': sign_index,
+                'sign_name': ZODIAC_SIGNS[sign_index],
+                'degree_in_sign': round(degree_in_sign, 2),
+                'dreshkon_number': dreshkon_number,
+                'dreshkon_name': dreshkon_name,
+                'dreshkon_range': self.dreshkon_ranges[dreshkon_number],
+                'planet_gender': gender,
+                'gets_strength': gets_strength,
+                'points': points,
+                'explanation': f"{gender} planet in {dreshkon_name} Dreshkon ({'✓' if gets_strength else '✗'} gets strength)"
+            }
+            
+            planet_scores[planet] = points
+        
+        return {
+            'planet_scores': planet_scores,
+            'planet_details': planet_details,
+            'gender_classifications': {
+                'male_planets': self.male_planets,
+                'hermaphrodite_planets': self.hermaphrodite_planets,  
+                'female_planets': self.female_planets
+            },
+            'strength_rules': {
+                'male_planets_get_strength_in': "First Dreshkon (0°-10°)",
+                'hermaphrodite_planets_get_strength_in': "Second Dreshkon (10°-20°)",
+                'female_planets_get_strength_in': "Third Dreshkon (20°-30°)",
+                'max_points': self.max_points
+            },
+            'dreshkon_ranges': self.dreshkon_ranges
         }
 
 
@@ -1427,10 +1763,25 @@ def _calculate_shadbala(planets_sidereal: Dict[str, float], cusps_map: Dict[int,
             }
         }
     
-    # Add SaptavarigiyaBala analysis to the result
+    # Calculate YugmayugmaBala analysis
+    yugmayugma_calculator = YugmayugmaBalaCalculator()
+    yugmayugma_analysis = yugmayugma_calculator.calculate_yugmayugma_bala(planets_sidereal)
+    
+    # Calculate KendraBala analysis  
+    kendra_calculator = KendraBalaCalculator()
+    kendra_analysis = kendra_calculator.calculate_kendra_bala(planets_sidereal, cusps_map)
+    
+    # Calculate DreshkonBala analysis
+    dreshkon_calculator = DreshkonBalaCalculator()
+    dreshkon_analysis = dreshkon_calculator.calculate_dreshkon_bala(planets_sidereal)
+    
+    # Add comprehensive analysis to the result
     result = {
         'shadbala_scores': shadbala_scores,
-        '_saptavargiya_analysis': saptavargiya_analysis
+        '_saptavargiya_analysis': saptavargiya_analysis,
+        '_yugmayugma_analysis': yugmayugma_analysis,
+        '_kendra_analysis': kendra_analysis,
+        '_dreshkon_analysis': dreshkon_analysis
     }
     
     return result

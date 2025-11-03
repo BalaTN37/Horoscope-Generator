@@ -2137,6 +2137,39 @@
               <div id="saptavargiya-modal-content"></div>
             </div>
           </div>
+          
+          <!-- YugmayugmaBala Details Modal -->
+          <div id="yugmayugma-details-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 8px; max-width: 80%; max-height: 80%; overflow-y: auto;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 id="yugmayugma-modal-title">YugmayugmaBala Analysis</h4>
+                <button onclick="closeYugmayugmaDetails()" style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 0.5rem; cursor: pointer;">×</button>
+              </div>
+              <div id="yugmayugma-modal-content"></div>
+            </div>
+          </div>
+          
+          <!-- KendraBala Details Modal -->
+          <div id="kendra-details-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 8px; max-width: 80%; max-height: 80%; overflow-y: auto;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 id="kendra-modal-title">KendraBala Analysis</h4>
+                <button onclick="closeKendraDetails()" style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 0.5rem; cursor: pointer;">×</button>
+              </div>
+              <div id="kendra-modal-content"></div>
+            </div>
+          </div>
+
+          <!-- DreshkonBala Details Modal -->
+          <div id="dreshkon-details-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 8px; max-width: 80%; max-height: 80%; overflow-y: auto;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 id="dreshkon-modal-title">DreshkonBala Analysis</h4>
+                <button onclick="closeDreshkonDetails()" style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 0.5rem; cursor: pointer;">×</button>
+              </div>
+              <div id="dreshkon-modal-content"></div>
+            </div>
+          </div>
         `;
       } else {
         calculatorHtml += `
@@ -2148,7 +2181,307 @@
       
       calculatorHtml += `
         </div>
+        
+        <!-- YugmayugmaBala Analysis -->
+        <div style="margin-bottom: 2rem;">
+          <h4 style="color: #495057; border-bottom: 2px solid #007bff; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            🎯 YugmayugmaBala Analysis (Odd/Even Sign Strength)
+          </h4>
       `;
+      
+      // Add YugmayugmaBala analysis if available
+      if (data.shadbala?._yugmayugma_analysis) {
+        const yugmayugma = data.shadbala._yugmayugma_analysis;
+        const planetScores = yugmayugma.planet_scores || {};
+        const planetDetails = yugmayugma.planet_details || {};
+        const calculationRules = yugmayugma.calculation_rules || {};
+        
+        calculatorHtml += `
+          <div class="yugmayugma-overview" style="margin-bottom: 1.5rem;">
+            <div class="highlight" style="padding: 1rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 8px; border-left: 4px solid #9c27b0;">
+              <h5 style="margin: 0 0 0.5rem 0; color: #4a148c;">🌗 YugmayugmaBala Overview</h5>
+              <div style="font-size: 0.9rem; color: #495057; line-height: 1.4;">
+                Strength based on planetary placement in odd or even signs in Rashi and Navamsha charts.<br>
+                <strong>Odd Sign Planets:</strong> ${calculationRules.odd_sign_planets?.join(', ') || 'Not available'}<br>
+                <strong>Even Sign Planets:</strong> ${calculationRules.even_sign_planets?.join(', ') || 'Not available'}<br>
+                <strong>Max per chart:</strong> ${calculationRules.max_points_per_chart || 0} Shashtiamsa
+              </div>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        `;
+        
+        // Create cards for each planet's YugmayugmaBala
+        Object.entries(planetScores).forEach(([planet, totalScore]) => {
+          const details = planetDetails[planet] || {};
+          const rashi = details.rashi_chart || {};
+          const navamsha = details.navamsha_chart || {};
+          const preference = details.planet_preference || '';
+          
+          const maxPoints = calculationRules.total_max_points || 30;
+          const percentage = (totalScore / maxPoints) * 100;
+          
+          let strengthLevel = 'Weak';
+          let colorClass = 'weak';
+          if (percentage >= 80) {
+            strengthLevel = 'Excellent';
+            colorClass = 'excellent';
+          } else if (percentage >= 60) {
+            strengthLevel = 'Strong'; 
+            colorClass = 'strong';
+          } else if (percentage >= 40) {
+            strengthLevel = 'Good';
+            colorClass = 'good';
+          } else if (percentage >= 20) {
+            strengthLevel = 'Average';
+            colorClass = 'average';
+          }
+          
+          calculatorHtml += `
+            <div class="yugmayugma-card" style="padding: 1rem; border-radius: 8px; border: 1px solid #ddd; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <h5 style="margin: 0; color: #2c3e50;">${planet}</h5>
+                <span class="strength-badge strength-badge-${colorClass}" style="padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+                  ${strengthLevel}
+                </span>
+              </div>
+              <div style="font-size: 1.5rem; font-weight: bold; color: #495057; margin-bottom: 0.5rem;">
+                ${totalScore} / ${maxPoints}
+              </div>
+              <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.8rem;">
+                ${percentage.toFixed(1)}% strength • Prefers ${preference}
+              </div>
+              <div class="yugma-bar" style="width: 100%; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden; margin-bottom: 0.8rem;">
+                <div style="width: ${Math.min(100, percentage)}%; height: 100%; background: linear-gradient(90deg, #9c27b0 0%, #e91e63 100%); transition: width 0.5s ease;"></div>
+              </div>
+              <div style="font-size: 0.85rem; color: #495057;">
+                <div style="margin-bottom: 0.3rem;">
+                  <strong>Rashi:</strong> ${rashi.sign_name || 'N/A'} (${rashi.sign_type || 'N/A'}) → ${rashi.points || 0} pts
+                </div>
+                <div>
+                  <strong>Navamsha:</strong> ${navamsha.sign_name || 'N/A'} (${navamsha.sign_type || 'N/A'}) → ${navamsha.points || 0} pts
+                </div>
+              </div>
+              <button onclick="showYugmayugmaDetails('${planet}')" style="width: 100%; margin-top: 0.8rem; padding: 0.4rem; background: linear-gradient(135deg, #9c27b0 0%, #e91e63 100%); color: white; border: none; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">
+                📊 View Details
+              </button>
+            </div>
+          `;
+        });
+        
+        calculatorHtml += `
+          </div>
+          
+          <div class="yugmayugma-formula-explanation" style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #9c27b0; margin-top: 1rem;">
+            <h5 style="margin: 0 0 0.5rem 0; color: #4a148c;">📚 YugmayugmaBala Formula Explanation:</h5>
+            <div style="font-size: 0.9rem; color: #495057; line-height: 1.4;">
+              <strong>Classical Rules:</strong><br>
+              • <strong>Moon & Venus:</strong> Get 15 Shashtiamsa for each EVEN sign (Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces)<br>
+              • <strong>Sun, Mars, Mercury, Jupiter, Saturn:</strong> Get 15 Shashtiamsa for each ODD sign (Aries, Gemini, Leo, Libra, Sagittarius, Aquarius)<br>
+              • <strong>Maximum:</strong> 30 Shashtiamsa (15 from Rashi + 15 from Navamsha)<br>
+              • <strong>Minimum:</strong> 0 Shashtiamsa (when planet is in unfavorable sign type in both charts)
+            </div>
+          </div>
+        `;
+      } else {
+        calculatorHtml += `
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; color: #666; text-align: center;">
+            YugmayugmaBala analysis not available. This requires Rashi and Navamsha chart calculations.
+          </div>
+        `;
+      }
+      
+      // Add KendraBala analysis if available
+      if (data.shadbala?._kendra_analysis) {
+        const kendra = data.shadbala._kendra_analysis;
+        const planetScores = kendra.planet_scores || {};
+        const planetDetails = kendra.planet_details || {};
+        const pointSystem = kendra.point_system || {};
+        
+        calculatorHtml += `
+        <!-- KendraBala Analysis -->
+        <div style="background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 1.5rem; margin: 1rem 0; border-left: 5px solid #28a745;">
+          <h4 style="margin: 0 0 1rem 0; color: #155724; display: flex; align-items: center; gap: 0.5rem;">
+            🏛️ KendraBala Analysis (Angular House Strength)
+          </h4>
+          
+          <div class="kendra-overview" style="margin-bottom: 1.5rem;">
+            <div style="background: #d4edda; border-radius: 8px; padding: 1rem; border: 1px solid #c3e6cb;">
+              <h5 style="margin: 0 0 0.5rem 0; color: #155724;">🎯 KendraBala Overview</h5>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.8rem;">
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #28a745;">${pointSystem.kendra_points || 60}</div>
+                  <div style="font-size: 0.85rem; color: #666;">Kendra (1,4,7,10)</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #ffc107;">${pointSystem.panapara_points || 30}</div>
+                  <div style="font-size: 0.85rem; color: #666;">Panapara (2,5,8,11)</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #dc3545;">${pointSystem.apoklima_points || 15}</div>
+                  <div style="font-size: 0.85rem; color: #666;">Apoklima (3,6,9,12)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        // Create cards for each planet's KendraBala
+        Object.keys(planetScores).forEach(planet => {
+          const score = planetScores[planet] || 0;
+          const details = planetDetails[planet] || {};
+          const houseNum = details.house_number || 0;
+          const houseType = details.house_type || 'Unknown';
+          
+          // Determine strength level and color
+          let strengthLevel = 'Weak';
+          let colorClass = 'weak';
+          if (score >= 60) {
+            strengthLevel = 'Excellent';
+            colorClass = 'excellent';
+          } else if (score >= 30) {
+            strengthLevel = 'Strong';
+            colorClass = 'strong';
+          } else if (score >= 15) {
+            strengthLevel = 'Average';
+            colorClass = 'average';
+          }
+          
+          calculatorHtml += `
+            <div class="kendra-card" style="padding: 1rem; border-radius: 8px; border: 1px solid #ddd; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <h5 style="margin: 0; color: #2c3e50;">${planet}</h5>
+                <span class="kendra-badge kendra-badge-${colorClass}" style="padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+                  ${strengthLevel}
+                </span>
+              </div>
+              <div style="font-size: 1.5rem; font-weight: bold; color: #495057; margin-bottom: 0.5rem;">
+                ${score} Shashtiamsa
+              </div>
+              <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.8rem;">
+                House ${houseNum} (${houseType} House)
+              </div>
+              <div class="kendra-details" style="background: #f8f9fa; border-radius: 6px; padding: 0.6rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.85rem;">
+                  <div><strong>Position:</strong> House ${houseNum}</div>
+                  <div><strong>Type:</strong> ${houseType}</div>
+                  <div><strong>Points:</strong> ${score}</div>
+                  <div><strong>Classification:</strong> ${houseType === 'Kendra' ? 'Angular' : houseType === 'Panapara' ? 'Succedent' : 'Cadent'}</div>
+                </div>
+              </div>
+              <button onclick="showKendraDetails('${planet}')" style="width: 100%; margin-top: 0.8rem; padding: 0.4rem; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">
+                View Details
+              </button>
+            </div>
+          `;
+        });
+        
+        calculatorHtml += `
+          <div class="kendra-formula-explanation" style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #28a745; margin-top: 1rem;">
+            <h5 style="margin: 0 0 0.5rem 0; color: #155724;">📚 KendraBala Formula Explanation:</h5>
+            <div style="font-size: 0.9rem; color: #495057; line-height: 1.4;">
+              <strong>Classical Rules:</strong><br>
+              • <strong>Kendra Houses (1, 4, 7, 10):</strong> 60 Shashtiamsa - Angular houses with maximum strength<br>
+              • <strong>Panapara Houses (2, 5, 8, 11):</strong> 30 Shashtiamsa - Succedent houses with moderate strength<br>
+              • <strong>Apoklima Houses (3, 6, 9, 12):</strong> 15 Shashtiamsa - Cadent houses with minimum strength<br>
+              • <strong>Note:</strong> Based on planet positions in Rashi chart only (not Chalit chart)
+            </div>
+          </div>
+        `;
+      } else {
+        calculatorHtml += `
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; color: #666; text-align: center; margin: 1rem 0;">
+            KendraBala analysis not available. This requires house cusp calculations.
+          </div>
+        `;
+      }
+      
+      calculatorHtml += `
+        </div>
+      `;
+
+      // Add DreshkonBala analysis if available
+      const dreshkonAnalysis = data.shadbala && data.shadbala._dreshkon_analysis;
+      
+      if (dreshkonAnalysis) {
+        calculatorHtml += `
+        <!-- DreshkonBala Analysis -->
+        <div class="shadbala-subsection" style="margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 12px; border: 2px solid #f39c12;">
+          <h4 style="margin: 0 0 1rem 0; color: #d68910; display: flex; align-items: center; gap: 0.5rem;">
+            🎭 DreshkonBala Analysis (Decanate Strength)
+          </h4>
+          <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div class="row">
+              <h5 style="margin: 0 0 0.5rem 0; color: #b7950b;">🎯 DreshkonBala Overview</h5>
+              <p style="margin: 0; color: #7d6608; font-size: 0.9rem;">
+                Strength based on planetary gender and decanate position within each sign (10° segments)
+              </p>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0;">
+        `;
+
+        // Create cards for each planet's DreshkonBala
+        const planets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
+        planets.forEach(planet => {
+          if (dreshkonAnalysis.planet_details && dreshkonAnalysis.planet_details[planet]) {
+            const details = dreshkonAnalysis.planet_details[planet];
+            const score = dreshkonAnalysis.planet_scores[planet];
+            
+            let cardColor = '#f8f9fa';
+            let strengthClass = 'weak';
+            let strengthText = 'No Strength';
+            
+            if (score > 0) {
+              cardColor = '#d4edda';
+              strengthClass = 'strong';
+              strengthText = 'Has Strength';
+            }
+            
+            calculatorHtml += `
+              <div class="dreshkon-card" style="padding: 1rem; border-radius: 8px; border: 1px solid #ddd; background: ${cardColor}; cursor: pointer;" onclick="showDreshkonDetails('${planet}')">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                  <h5 style="margin: 0; color: #2c3e50;">${planet}</h5>
+                  <span class="dreshkon-badge" style="padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background: ${score > 0 ? '#d4edda' : '#f8d7da'}; color: ${score > 0 ? '#155724' : '#721c24'};">
+                    ${strengthText}
+                  </span>
+                </div>
+                <div style="font-size: 1.5rem; font-weight: bold; color: #495057; margin-bottom: 0.5rem;">
+                  ${score} Shashtiamsa
+                </div>
+                <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.8rem;">
+                  ${details.planet_gender} planet in ${details.dreshkon_name} Dreshkon
+                </div>
+                <div style="font-size: 0.8rem; color: #868e96;">
+                  ${details.sign_name} ${details.degree_in_sign.toFixed(1)}° • Click for details
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        calculatorHtml += `
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.8); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+            <h5 style="margin: 0 0 0.5rem 0; color: #b7950b;">📚 DreshkonBala Formula Explanation:</h5>
+            <div style="font-size: 0.9rem; color: #7d6608; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;"><strong>Male planets</strong> (Sun, Mars, Jupiter): Get 15 Shashtiamsa in <strong>1st Dreshkon</strong> (0°-10°)</div>
+              <div style="margin-bottom: 0.5rem;"><strong>Hermaphrodite planets</strong> (Mercury, Saturn): Get 15 Shashtiamsa in <strong>2nd Dreshkon</strong> (10°-20°)</div>
+              <div><strong>Female planets</strong> (Moon, Venus): Get 15 Shashtiamsa in <strong>3rd Dreshkon</strong> (20°-30°)</div>
+            </div>
+          </div>
+        </div>
+        `;
+      } else {
+        calculatorHtml += `
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; color: #666; text-align: center; margin: 1rem 0;">
+            DreshkonBala analysis not available.
+          </div>
+        `;
+      }
       
       content.innerHTML = calculatorHtml;
     }
@@ -2837,11 +3170,359 @@
       document.getElementById('saptavargiya-details-modal').style.display = 'none';
     }
     
+    // YugmayugmaBala modal functions
+    function showYugmayugmaDetails(planet) {
+      const modal = document.getElementById('yugmayugma-details-modal');
+      const title = document.getElementById('yugmayugma-modal-title');
+      const content = document.getElementById('yugmayugma-modal-content');
+      
+      if (!window.lastChartData || !window.lastChartData.shadbala?._yugmayugma_analysis) {
+        alert('YugmayugmaBala data not available');
+        return;
+      }
+      
+      const yugmayugma = window.lastChartData.shadbala._yugmayugma_analysis;
+      const planetDetails = yugmayugma.planet_details ? yugmayugma.planet_details[planet] : null;
+      const planetScore = yugmayugma.planet_scores ? yugmayugma.planet_scores[planet] : 0;
+      
+      if (!planetDetails) {
+        alert(`No YugmayugmaBala data available for ${planet}`);
+        return;
+      }
+      
+      title.textContent = `${planet} - YugmayugmaBala Analysis`;
+      
+      const rashi = planetDetails.rashi_chart || {};
+      const navamsha = planetDetails.navamsha_chart || {};
+      const preference = planetDetails.planet_preference || 'Unknown';
+      
+      let detailsHtml = `
+        <div style="margin-bottom: 1.5rem;">
+          <h5 style="color: #2c3e50; margin: 0 0 0.5rem 0;">Total Points: ${planetScore} / 30 Shashtiamsa</h5>
+          <p style="color: #666; margin: 0; font-size: 0.9rem;">
+            ${planet} gets strength in <strong>${preference}</strong>
+          </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #007bff;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">📊 Rashi Chart (D1)</h6>
+            <div style="font-size: 0.9rem; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Sign:</strong> ${rashi.sign_name || 'N/A'}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Type:</strong> ${rashi.sign_type || 'N/A'} Sign
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Gets Strength:</strong> ${rashi.gets_strength ? 'Yes' : 'No'}
+              </div>
+              <div style="font-size: 1.2rem; font-weight: bold; color: #007bff;">
+                Points: ${rashi.points || 0}
+              </div>
+            </div>
+          </div>
+          
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #28a745;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🌟 Navamsha Chart (D9)</h6>
+            <div style="font-size: 0.9rem; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Sign:</strong> ${navamsha.sign_name || 'N/A'}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Type:</strong> ${navamsha.sign_type || 'N/A'} Sign
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Gets Strength:</strong> ${navamsha.gets_strength ? 'Yes' : 'No'}
+              </div>
+              <div style="font-size: 1.2rem; font-weight: bold; color: #28a745;">
+                Points: ${navamsha.points || 0}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: #e8f4f8; padding: 1rem; border-radius: 6px; border-left: 4px solid #17a2b8; margin-bottom: 1rem;">
+          <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🎯 Calculation Logic:</h6>
+          <div style="font-size: 0.85rem; color: #495057; line-height: 1.5;">
+      `;
+      
+      if (preference.includes('Even')) {
+        detailsHtml += `
+            <strong>${planet}</strong> is an <strong>Even Sign Planet</strong> (Moon & Venus group)<br>
+            • Gets 15 Shashtiamsa when placed in <strong>Even Signs:</strong> Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces<br>
+            • Gets 0 Shashtiamsa when placed in <strong>Odd Signs:</strong> Aries, Gemini, Leo, Libra, Sagittarius, Aquarius
+        `;
+      } else {
+        detailsHtml += `
+            <strong>${planet}</strong> is an <strong>Odd Sign Planet</strong> (Sun, Mars, Mercury, Jupiter, Saturn group)<br>
+            • Gets 15 Shashtiamsa when placed in <strong>Odd Signs:</strong> Aries, Gemini, Leo, Libra, Sagittarius, Aquarius<br>
+            • Gets 0 Shashtiamsa when placed in <strong>Even Signs:</strong> Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces
+        `;
+      }
+      
+      detailsHtml += `
+          </div>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 1rem; border-radius: 6px; border-left: 4px solid #ffc107;">
+          <h6 style="margin: 0 0 0.5rem 0; color: #856404;">📚 Classical Reference (BPHS):</h6>
+          <p style="margin: 0; font-size: 0.85rem; color: #856404; line-height: 1.4;">
+            "Moon and Venus are powerful in even signs in Rashi chart and Navamsha chart and they get fifteen Shashtiamsa for each. 
+            Sun, Mars, Mercury, Jupiter and Saturn get fifteen Shashtiamsa each for occupying odd Rashis in Rashi chart and Navamsha chart."
+          </p>
+        </div>
+      `;
+      
+      content.innerHTML = detailsHtml;
+      modal.style.display = 'block';
+    }
+    
+    function closeYugmayugmaDetails() {
+      document.getElementById('yugmayugma-details-modal').style.display = 'none';
+    }
+    
+    // KendraBala modal functions
+    function showKendraDetails(planet) {
+      const modal = document.getElementById('kendra-details-modal');
+      const title = document.getElementById('kendra-modal-title');
+      const content = document.getElementById('kendra-modal-content');
+      
+      if (!window.lastChartData || !window.lastChartData.shadbala?._kendra_analysis) {
+        alert('KendraBala data not available');
+        return;
+      }
+      
+      const kendra = window.lastChartData.shadbala._kendra_analysis;
+      const planetDetails = kendra.planet_details ? kendra.planet_details[planet] : null;
+      const planetScore = kendra.planet_scores ? kendra.planet_scores[planet] : 0;
+      const pointSystem = kendra.point_system || {};
+      
+      if (!planetDetails) {
+        alert(`No KendraBala data available for ${planet}`);
+        return;
+      }
+      
+      title.textContent = `${planet} - KendraBala Analysis`;
+      
+      const houseNum = planetDetails.house_number || 0;
+      const houseType = planetDetails.house_type || 'Unknown';
+      const longitude = planetDetails.longitude || 0;
+      const classification = planetDetails.house_classification || {};
+      
+      let houseDescription = '';
+      let strengthDescription = '';
+      
+      if (houseType === 'Kendra') {
+        houseDescription = 'Angular House - Most powerful position';
+        strengthDescription = 'Maximum strength - Planets in Kendra houses are considered very strong and influential.';
+      } else if (houseType === 'Panapara') {
+        houseDescription = 'Succedent House - Moderate strength position';
+        strengthDescription = 'Moderate strength - Planets in Panapara houses have balanced influence.';
+      } else if (houseType === 'Apoklima') {
+        houseDescription = 'Cadent House - Weakest position';
+        strengthDescription = 'Minimum strength - Planets in Apoklima houses have reduced influence.';
+      }
+      
+      let detailsHtml = `
+        <div style="margin-bottom: 1.5rem;">
+          <h5 style="color: #2c3e50; margin: 0 0 0.5rem 0;">KendraBala Score: ${planetScore} Shashtiamsa</h5>
+          <p style="color: #666; margin: 0; font-size: 0.9rem;">
+            ${planet} is positioned in House ${houseNum} (${houseType} type)
+          </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #28a745;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🏠 House Information</h6>
+            <div style="font-size: 0.9rem; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;">
+                <strong>House Number:</strong> ${houseNum}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>House Type:</strong> ${houseType}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Longitude:</strong> ${longitude.toFixed(2)}°
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Classification:</strong> ${houseDescription}
+              </div>
+            </div>
+          </div>
+          
+          <div style="padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #007bff;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">⚡ Strength Analysis</h6>
+            <div style="font-size: 0.9rem; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Points Earned:</strong> ${planetScore}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Maximum Possible:</strong> ${pointSystem.kendra_points || 60}
+              </div>
+              <div style="margin-bottom: 0.5rem;">
+                <strong>Percentage:</strong> ${((planetScore / (pointSystem.kendra_points || 60)) * 100).toFixed(1)}%
+              </div>
+              <div style="color: #495057; font-size: 0.85rem;">
+                ${strengthDescription}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: #e8f4f8; padding: 1rem; border-radius: 6px; border-left: 4px solid #17a2b8; margin-bottom: 1rem;">
+          <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🎯 KendraBala Point System:</h6>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
+            <div style="text-align: center; padding: 0.5rem; background: #d4edda; border-radius: 4px;">
+              <div style="font-weight: bold; color: #28a745; font-size: 1.1rem;">${pointSystem.kendra_points || 60}</div>
+              <div style="font-size: 0.8rem; color: #155724;">Kendra (1,4,7,10)</div>
+            </div>
+            <div style="text-align: center; padding: 0.5rem; background: #fff3cd; border-radius: 4px;">
+              <div style="font-weight: bold; color: #856404; font-size: 1.1rem;">${pointSystem.panapara_points || 30}</div>
+              <div style="font-size: 0.8rem; color: #856404;">Panapara (2,5,8,11)</div>
+            </div>
+            <div style="text-align: center; padding: 0.5rem; background: #f8d7da; border-radius: 4px;">
+              <div style="font-weight: bold; color: #721c24; font-size: 1.1rem;">${pointSystem.apoklima_points || 15}</div>
+              <div style="font-size: 0.8rem; color: #721c24;">Apoklima (3,6,9,12)</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 1rem; border-radius: 6px; border-left: 4px solid #ffc107;">
+          <h6 style="margin: 0 0 0.5rem 0; color: #856404;">📚 Classical Reference (BPHS):</h6>
+          <p style="margin: 0; font-size: 0.85rem; color: #856404; line-height: 1.4;">
+            "Planets in a kendra get 60 shashtiamsas, in Panaparas get 30 shashtiamsas, in Apoklima get 15 shashtiamsas as Kendra Bala. 
+            The calculation is based on Rashi chart positions only, not the Chalit chart. 
+            Kendras are houses 1, 4, 7 & 10. Panaparas are houses 2, 5, 8 & 11. Apoklimas are houses 3, 6, 9 & 12."
+          </p>
+        </div>
+      `;
+      
+      content.innerHTML = detailsHtml;
+      modal.style.display = 'block';
+    }
+    
+    function closeKendraDetails() {
+      document.getElementById('kendra-details-modal').style.display = 'none';
+    }
+    
+    // DreshkonBala modal functions
+    function showDreshkonDetails(planet) {
+      const modal = document.getElementById('dreshkon-details-modal');
+      const title = document.getElementById('dreshkon-modal-title');
+      const content = document.getElementById('dreshkon-modal-content');
+      
+      if (!window.lastChartData || !window.lastChartData.shadbala?._dreshkon_analysis) {
+        alert('DreshkonBala data not available');
+        return;
+      }
+      
+      const dreshkon = window.lastChartData.shadbala._dreshkon_analysis;
+      const planetDetails = dreshkon.planet_details ? dreshkon.planet_details[planet] : null;
+      const planetScore = dreshkon.planet_scores ? dreshkon.planet_scores[planet] : 0;
+      const strengthRules = dreshkon.strength_rules || {};
+      
+      if (!planetDetails) {
+        alert(`No DreshkonBala data available for ${planet}`);
+        return;
+      }
+      
+      title.textContent = `${planet} - DreshkonBala Analysis`;
+      
+      const dreshkonRanges = dreshkon.dreshkon_ranges || {};
+      const genderClassifications = dreshkon.gender_classifications || {};
+      
+      let strengthDescription = '';
+      if (planetScore > 0) {
+        strengthDescription = `${planet} gets full strength (15 Shashtiamsa) in this decanate position.`;
+      } else {
+        strengthDescription = `${planet} does not get strength in this decanate position.`;
+      }
+      
+      const detailsHtml = `
+        <div style="max-height: 70vh; overflow-y: auto;">
+          <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+            <h5 style="color: #2c3e50; margin: 0 0 0.5rem 0;">DreshkonBala Score: ${planetScore} Shashtiamsa</h5>
+            <div style="font-size: 0.9rem; color: #6c757d; margin-bottom: 1rem;">
+              ${strengthDescription}
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div>
+                <h6 style="margin: 0 0 0.3rem 0; color: #495057;">📍 Position Details</h6>
+                <div style="font-size: 0.85rem; color: #6c757d;">
+                  <div><strong>Sign:</strong> ${planetDetails.sign_name}</div>
+                  <div><strong>Degree:</strong> ${planetDetails.degree_in_sign.toFixed(2)}°</div>
+                  <div><strong>Dreshkon:</strong> ${planetDetails.dreshkon_name}</div>
+                </div>
+              </div>
+              
+              <div>
+                <h6 style="margin: 0 0 0.3rem 0; color: #495057;">⚧ Gender Classification</h6>
+                <div style="font-size: 0.85rem; color: #6c757d;">
+                  <div><strong>Planet Gender:</strong> ${planetDetails.planet_gender}</div>
+                  <div><strong>Gets Strength:</strong> ${planetDetails.gets_strength ? 'Yes ✓' : 'No ✗'}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🎯 DreshkonBala System Explanation:</h6>
+            <div style="font-size: 0.9rem; color: #6c757d; line-height: 1.5;">
+              <div style="margin-bottom: 0.5rem;">Each sign is divided into 3 Dreshkons (decanates) of 10° each:</div>
+              <div style="margin-bottom: 0.5rem;">• <strong>1st Dreshkon (0°-10°):</strong> Male planets get 15 Shashtiamsa</div>
+              <div style="margin-bottom: 0.5rem;">• <strong>2nd Dreshkon (10°-20°):</strong> Hermaphrodite planets get 15 Shashtiamsa</div>
+              <div>• <strong>3rd Dreshkon (20°-30°):</strong> Female planets get 15 Shashtiamsa</div>
+            </div>
+          </div>
+          
+          <div style="background: #e8f4f8; padding: 1rem; border-radius: 6px; border-left: 4px solid #17a2b8; margin-bottom: 1rem;">
+            <h6 style="margin: 0 0 0.8rem 0; color: #495057;">🏷️ Gender Classifications:</h6>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem;">
+              <div style="text-align: center; padding: 0.5rem; background: #d4edda; border-radius: 4px;">
+                <div style="font-weight: bold; color: #28a745; font-size: 0.9rem;">Male Planets</div>
+                <div style="font-size: 0.7rem; color: #155724;">${genderClassifications.male_planets ? genderClassifications.male_planets.join(', ') : 'Sun, Mars, Jupiter'}</div>
+              </div>
+              <div style="text-align: center; padding: 0.5rem; background: #fff3cd; border-radius: 4px;">
+                <div style="font-weight: bold; color: #856404; font-size: 0.9rem;">Hermaphrodite</div>
+                <div style="font-size: 0.7rem; color: #533f03;">${genderClassifications.hermaphrodite_planets ? genderClassifications.hermaphrodite_planets.join(', ') : 'Mercury, Saturn'}</div>
+              </div>
+              <div style="text-align: center; padding: 0.5rem; background: #f8d7da; border-radius: 4px;">
+                <div style="font-weight: bold; color: #721c24; font-size: 0.9rem;">Female Planets</div>
+                <div style="font-size: 0.7rem; color: #491217;">${genderClassifications.female_planets ? genderClassifications.female_planets.join(', ') : 'Moon, Venus'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      content.innerHTML = detailsHtml;
+      modal.style.display = 'block';
+    }
+    
+    function closeDreshkonDetails() {
+      document.getElementById('dreshkon-details-modal').style.display = 'none';
+    }
+    
     // Close modal when clicking outside
     document.addEventListener('click', function(event) {
       const modal = document.getElementById('saptavargiya-details-modal');
+      const yugmayugmaModal = document.getElementById('yugmayugma-details-modal');
+      const kendraModal = document.getElementById('kendra-details-modal');
+      const dreshkonModal = document.getElementById('dreshkon-details-modal');
+      
       if (event.target === modal) {
         closeSaptavargivaDetails();
+      }
+      if (event.target === yugmayugmaModal) {
+        closeYugmayugmaDetails();
+      }
+      if (event.target === kendraModal) {
+        closeKendraDetails();
+      }
+      if (event.target === dreshkonModal) {
+        closeDreshkonDetails();
       }
     });
   </script>

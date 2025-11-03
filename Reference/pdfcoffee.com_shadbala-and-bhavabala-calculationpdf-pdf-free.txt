@@ -1,0 +1,1404 @@
+TEXT BOOK 
+
+FOR 
+
+SHADBALA (GRAHAS)
+AND 
+BHAVABALA 
+
+BY 
+
+V. P. JAIN 
+
+S.N.Kuf:OO:r Sher Roa:J. 
+Judge 
+
+New Delhl-110003 
+
+FOREWORD 
+
+Shrl V. P. Jain enjoys a unique positionamongst Astrologer teachers, being an Astrologer as 
+well as MA In Mathematics with Astronomy. He Is 
+one of the most prominent· teachers In Delhi 
+teaching Astronomy relevant to Astrology as well 
+as 'Shadabala' for the last five years, to the 
+Inquisitive and brilliant elite of budding Astrologerspreparing for 'Jyotlsh Praveen' and 'JyotlshVlsharad' examlnaUon:!i conducted by · Indian 
+.council of Astro.loglcal Sciences (Regd.) · Madras. 
+founded by Dr. 13. V. Raman. 
+
+As oer OU( expectation, he has jUSt broughtout the first pan of Shadbala -slightly time consuming 
+mathematical calc:.tlatlon for 
+quantification of overall relative planetary strength.
+Clear understanding of Shadbala Is necessary for 
+brilliant astrological predictions. 
+
+Predictions that a person shall earn a fortune 
+after shifting to western side far away from his 
+hometown: that he Is likely to lose elections to a 
+lady belonging to erstwhile royal family, much before 
+elections without there being any possibU!ty of 
+Imagining such a candidate; that a person would 
+
+
+acquire so much promlnance that security guardswould move around him, and several other similar 
+predictions could be based only on properunderstanding of Shadbala strength of planets, their 
+periods and inter-periods. Brlddha Yavan Jataka 
+and Sarvartha ChlDtemant and other classical 
+works are replet«; with many hints to make such 
+brilliant predictions. Budding astrologers must 
+therefore study this book to lay a solid foundation · 
+to make brilliant predictions on the basis of 
+
+Sthanbala, Dlgbala, Drugbala, Kalabala,
+Cheathabala, Nalaarglkabala and appreciating value 
+of and Kaathaphalaa. 
+
+Shrl V. P. Jain has assured us that second 
+part of this book with classical references and manyIllustrations shall be brought out very soon to 
+provide very rich material for budding astrologersenabling them to make brilliant predictions on the 
+scientlflc basis of quantification of planetarystrength which fonns the very foundation of Vedic 
+and poat-vedlc astrology. 
+
+(5. N. Kapoor) 
+
+ACKNOWLEDGEMENT 
+
+I am grateful to the following for the help and 
+
+inspiration given to me for completing the task successfully. 
+
+(I Dr. B.V. Raman, the BEESHMA PITAMAH of 
+astrological world, for I have adopted his principles 
+& tables from his book on Graha and Bhava BaJa. 
+
+(I Justice S.N. Kapoor, my teacher, who had spared 
+his valuable time for writing foreword for this book. 
+
+(I Shri M.N. Kedar, my teacher of Astrology and old 
+colleague, who hal! inspired me and also for his 
+continuous persuasion without which I would not have 
+completed this book. 
+
+(I All other teachers of ICAS, Delhi Chapter I who 
+taught me astrology, the divine science. 
+
+(I Shri K. Rangachari who edited the language of the 
+book. 
+
+(I Smt. Neeru Aggarwal who worked hard for 
+composing and designing the book. 
+
+V.P Jain 
+305 Technology Apartments 
+l.P.Extention, Delhi] I0092 
+
+
+CONTENTS 
+
+Preface 
+
+Introduction -
+Bhava Balas of Planets & 
+their Significance By Dr. T.S. Wasan 
+
+1. Shadbala -Introductory 
+
+2. Positional Strength (Sthana bala) 4 
+
+3. Directional (Digbala) 21 
+
+4. Temporal Strength (Kala bala) 24 
+
+s. Motional strength (chesta bala) 42 
+
+6. Natural Strength (Naisargika bala) 47 
+
+7. Aspect strength (Drik bala) 48 
+
+8. House strength (Bhava bala) 56 
+
+9. lshta Phala and Kashta Phala 62 
+I d. Tables ( I to IX ) 65 
+II Summary 71 
+
+
+PREFACE 
+
+Ttie astrological predictions are generally based on 
+the pvsition of the planets in the birth chart (called Rasi 
+chart or lagna chart or (D-1). The position of the planets 
+in own house, exaltation sign, Mooltrikona sign, or friend's 
+sign are treated as very good. On the other hand if the 
+planet is debilitated, combust, in enemy's sign etc. are 
+treated as bad or the planets .become weak or ineffective 
+or will give unfavourable results. It is like a general check 
+up of a patient by a doctor. Whenever the need arises, the 
+doctor asks for X-ray and several other tests. 
+
+In similar way this great science ofastrology provides 
+many theoretical and practical,methods to find out the real 
+strength ofthe bhavas. In practice the theoretical procedure 
+is to judge the strength from sub-divisional charts, through 
+delineation and judgement ofbhavas with reference to other 
+bhavas etc. 
+
+To find out the real strength of the planet and bhava, 
+the mathematical valuation ofstrength is also described in 
+the classical texts. This is six-fold analysis of the strengthof the planets. 
+
+The author passed Jyotisha Praveena and JyotishaVisharada Examinations as a student of the astrologicalclasses are conducted by Delhi Chapter I ofIndian Council 
+of Astrological Sciences. Since 1991 he is teachingAstronomy, Shadbala, Longevity and predictive astrology. 
+There was a great demand from the students of a lesson 
+Type book on SHAD BALAS, which may be convenient for 
+the beginners to understand the subject thoroughly. 
+
+This Part I includes the introduction and various types 
+
+
+of mathematical calculations to fmd out the shadbalas of 
+planets and the strength ofthe twelve bhavas. There are 
+many books available on this subject, but in this book the 
+author has tried to make it very simple for the beginners; 
+
+The part II of this book will contain the practical use 
+of the shadbalas and bhava balas in predictive astrology. 
+
+Dr. T.S. Wasaon, former Chairman Bangalorechapter and presently vice president, I.C.A.S. has also, 
+at our request, sent his views on the use of $hadbala. 
+
+We hope the astrologer community, well wishers and 
+especially the budding astrologers, we mean students of 
+astrology would fmd this book quite handy informative and 
+useful. 
+
+Sansthan 
+
+
+its direction in travel. The said planet should not be combust 
+or debilitated. 
+
+Shubha grahas, when they are Vakri (Retrograde),
+they give good results. if malefics are retrograde, they 
+cause grief and purposeless wandering. But according to 
+Bh.avartha Ratnakara, the malefics give good results 
+when they are retrograde. 
+
+Jataka Tathva says retrograde planets have 
+exaltation power. 
+
+The effects of Planets in odd and even rasis are as 
+follows. In odd rasis it makes the person courageous and 
+warrior like. If it is weak in those rasis it makes the native 
+cruel and dull witted. In even rasis it gives soft nature, 
+fear for quarrel, love for water, flowers and clothes. lfthey 
+arc weak they give contrary results to the above. 
+
+A planet with good Divaratri BaJa is capable of 
+conferring lands, vehicles etc. and the native will defeat 
+his enemies. Divaratri Bala is also called as Nathonatha 
+Bala. 
+
+A planet w·hich becomes a victor in graha yuddhacan give complete happiness and kingdom that can last for 
+many years. 
+
+The c!Tccts of lord ofthe year, month, week and hora 
+arc experienced in their dasha. They give happiness, wealth 
+and fame. 
+
+The lord of the month will give two fold results as 
+against the lord ofthe year. The week lord gives two fold 
+results when compared to the month lord. Hora lord gives 
+two fold results when c'omparcd to week lords. Here hora 
+means "Kala Hora" 
+
+A planet with paksha bala destroys the enemies and 
+confers diamonds. rubies, com·cyance, wife, gold, land and 
+fame. 
+
+u 
+
+
+Benefics with alround strength gives good habits, 
+truthful nature upright and respectful towards wise men and 
+god and will be blessed with good robes and oranaments. 
+
+Malefics with all round strength makes a person selfish, 
+jealous of virtuous people, intent on promoting quarrels.
+They are wicked, treacherous, dirty, ungrateful, slanderers 
+and ugly. 
+
+m 
+
+
+cflo'(l'lll1 'fll: 
+
+Shri Veetaragaya Namah 
+
+CHAPTER 1 
+
+SHADBALA -INTRODUCTORY 
+
+Shadbalas consist of different types of strengths by which 
+the dynanism ofplanets ·are dertermined. 'Shad' means six 
+in Sanskrit. The categories of balas, and the method of 
+arriving at and the necessity for finding out their strength, 
+are the questions that naturally arise in our mind when 'we 
+think of shadbala. 
+
+The shadbalas are of six kinds namely :
+
+
+(i) Sthana BaJa (Positional) 
+(ii) Dig BaJa (Directional) 
+(iii) Kala BaJa (Temporal) 
+(iv) Chesta BaJa (Motional) 
+(v) Naisargik BaJa (Natural) 
+(vi) Drik BaJa (Aspectual). 
+The references to these Balas are found in different 
+classical texts like Brihat Prasara Jatak Parijata,
+Saravali and Phaladipika to quote a few. While the purposes 
+of calculating the strength of planets are given below, the 
+actual method of their calculation is described in subsequentchapters. 
+
+
+Utility of Shadbalas in Astrology :
+
+
+Would a brother/friend/relative ofours who is week 
+be in a position to help us in times of need? The natural 
+answer would be 'No'. That relative/friend will not be in 
+a position to help us (as he is weak) though he would like 
+to help us by heart. Instead he would expect us to help 
+him. The same idea also applies to planets. A weak planet 
+will not be in a position to give the desired results but may 
+even harm the native irrespective of its nature of being a 
+Benefic or Malefic. Hence it is very essential to know the 
+strength of planets before venturing on predictions. 
+
+1. Benefic or Malefic results of Dasa-Antardasa of 
+any planet would depend upon the relative strength 
+of that planet. Normally the results of main Dasa 
+Nath are spread through out the dasa period but 
+mainly the results of Antar dasa arc felt during the 
+Antar-dasa Nath's period. If the Dasa Nath is 
+strong and Antar dasa Nath is weak, the results 
+due to Dasa Nath will be predominant while that 
+of Antar dasa Nath will be lesser in intensity. If 
+the Antar dasa Nath is also powerful, the results 
+of Antar dasa Nath would prevail. 
+2. The Bhava results will also. be influenced by the 
+planets which are posited in the bhava or are 
+aspecting it, or the lords and Karakas of that 
+Bhava according to their inherent strength. The 
+stronger the planet, the better will be its results 
+for that bhava. 
+3. Ayurdaya too depends on the strength of planetsand relative bhavas. 
+4. lshta (auspicious) phala and Kashta (inauspicious) 
+phalas are obtained by considering the Uchchabala 
+and Chcsta-Bala of the various planets. By the 
+2 
+
+
+calculation of these Ishta and Kashta we 
+know whether a particular planet will give more 
+happiness or trouble in general. 
+
+It can therefore be seen that the shadbalas of planets,
+Ishtaphala and Kashtaphala, play an important role while 
+giving predictions, though most of the Astrologers do not 
+use these due to the tedious and time consuming calculations 
+involved. But by giving predictions without considering 
+shadbala, one may lead to fallacious conclusions. Hence 
+it is necessary to ascertain the strength of each planet and 
+bhava before giving predictions. 
+
+3 
+
+
+CHAPTER 2 
+
+POSITIONAL STRENGTH 
+
+Shadbalas mean six types ofstrengths as "shad" in Sanskrit 
+means, six. Each planet will occupy a sign and a house and 
+due to its position or aspect by other planets it gets certain 
+strength. 
+
+These strengths are measured by the following :
+
+
+(I) Positional Strength or Sthana Bala 
+(2) Directional Strength or Dig Bala 
+(3) Temporal strength or Kala Bala 
+(4) Motional Strength or Chesta Bala 
+(5) Natural Strength or Naisargik BaJa 
+(6) Aspect Strength or Drik Bala 
+Before proceeding to the method of calculation ofthe 
+above six strengths we should have a horoscope which will 
+be called the standard horoscope for this book :Date 
+ofBirth : 12/13-9-1981 Saturday/Sunday 
+Time ofBirth : I:30 A.M.(IST) 48 ghati 32 phala 
+LMT : Jb-gm_ 52' A.M. 
+
+Terrestrial Latitude 28° 39' (N) 
+
+Terrestrial Longitude 77° 13' (E) 
+
+
+SAPTAMSA -D/7 NA V AMSHA -D/9 
+
+DWADASAMSA-D/12 TRIMSAM!)A -D/30 
+
+Note : 
+
+1. Units for shadbala : Shadbala are measured m 
+Rupas. 
+One Rupa = 60 Shashtiamsas 
+
+2. The two shadowy planets Rahu and Ketu are 
+excluded for Shadbala calculations. 
+The method ofcalculating each ofthe six strengths is givenin the foUowing pages : 
+
+9 
+
+
+POSITIONAl STRENGTH i.e. Sthana BaJa : 
+
+A planet occupies a certain sign which can be 
+
+i) Exaltation sign 
+ii) own or Mooltrikona sign 
+iii) a friend's sign 
+.iv)' a Neutral's sign 
+v) an enemy's stgn or 
+vi) Debilitation sign 
+These positions are giving certain strength or weakness to 
+a planet. The strength gained due to position in a particular 
+place including a sign is known as positional strength I 
+sthana BaJa. It consists of five types of balas namely : 
+
+(a) Uchchabala 
+Saptavargiya bala 
+(c) Yugma Yugma BaJa i.e. Ojayugmarasyamsa BaJa 
+(d) Kendra BaJa 
+(e) Drekkana BaJa . 
+.. (a) UchchaBala : 
+This strength is maximum when the planet is at its deep 
+exaltation point and is assigned sixty shashtiamsas. When 
+.it is at its debilitation point, its strength is minimum say, a 
+value ofzero shashtiamsa. There is gradual increase from 
+debilitation point to exaltation point and decrease from 
+exaltation point to debilitation point. The distance between 
+exaltation point and debilitation point is 180" on either side 
+of the zodiac. 
+This implies that the Uchchabala of a planet is due 
+to its distance from the debilitation' point and it gains sixty 
+shastiamsas in 180". If x" is its distance from debilitation 
+
+.1 0 
+
+
+Saptavargiya ·BaJa :-The strength of a planet 'due, 
+to its position in the seven vargas is known as 
+SBJ?tavargiyabala. If aPlanet is in 
+
+(i) Mooltrikona sign = 45 Shashtiamsa 
+(In rashi chart only) 
+(il) Own sign (Sva Rashi) = 30 Shashtiamsa 
+(iii) Fast friends sign = 22.5 Shashtiamsa 
+(Adhi Mitra Rashi) 
+(iv) Friend's Sign = 15 Shashtiamsa 
+(Mitra Rashi) 
+(v) Neutrals' sign = 7.5 Shashtiamsa 
+(Sarna Rashi) 
+(vi) Enemy's Sign = 3.75 Shashtiamsa 
+(Shatru Rashi) 
+(vii) Bitter Enemy's sign = 1.875 Shashtiamsa . 
+(Adhi Shatru Rashi) 
+The Saptavarga charts have been given earlier. 
+Sun is in Mooltrikona in Rashi chart = 45 Shashtiamsa, 
+Sun in Moon's bora which is Neutral as per Panchadhamatri 
+chakra = 7.5 
+
+Sun· in Mars's Rashi in Dreshkon Chart a FF = 22.5 
+Sun in Moon's Rashi a Neutral (in Saptamsa) -= 75 etc. 
+This (as given on the next page) is the way to fill the chart 
+
+and get Saptavarga BaJa. 
+
+15 
+
+
+Exercise-1 
+
+Horoscope: POB = Delhi 
+DOB = 1Oth June, 1933 TOB = 9hJ1' AM• 
+
+Asc. 
+Mars 
+Jupiter 
+Moon 
+Satum(R) 
+Rahu 
+Sun 
+Mercury 
+Venus 
+Ketu 
+
+= 15"29' in Cancer 
+= 23°44' in Leo 
+= '21°43' in Leo 
+= 23°32 in Sagittarius 
+= 23°17' in Capricorn 
+= 8°32' in Aquarius 
+= 25°53' in Taurus 
+= 10°10' in Gemini 
+= 9°3' in Gemini 
+= 8°32' in Leo. 
+
+1. Find out the Uchchabala, Kendra Bala and Dreshkon 
+Bala of the above horoscope. 
+2. Describe Saptavarigya and Yugmayugma bala of 
+the horosocope stated above. 
+3. Compute the total Sthanbala. 
+20 
+
+
+When these planets are at Bhava Madhya at their 
+powerful house, they will get 60 shashtiamsa as directional 
+strength. 
+
+Their directional strength will be zero, when they will 
+be at the Bhava Madhya at their powerless point as theywill lose all directional power. 
+
+The directional strength increases uniformly from 
+powerless point to the Powerful point from zero to sixty 
+shashtiamsa and decreases uniformly from powerful point 
+to powerless point from sixty to zero shashtiamsa. The 
+difference between the longitudes of powerful and 
+powerless point equal to hundred and eighty degrees hence 
+in one degree it gains or loses 
+
+60 / 180 = 1/3 shashtiamsa. 
+
+When the diherence oflongitudes of a planet from that of 
+its powerless point is divided by three it gives the directional 
+strength ofthe planet. The difference between the longitudes 
+of the planet and powerless point should not be more than 
+one hundred and eighty degrees. In case the difference 
+exceeds one hundred and eighty degrees deduct the 
+longitudes of the planet from powerless point. 
+
+CALCULATION OF DIGBALA OF THE PLANETS 
+OF THE STANDARD HOROSCOPE :
+
+
+The Bhava Madhya of the four Kendra Bhavas are as 
+follows (in decimals) :
+
+
+86.43 IV 166.15 
+
+VII 266.43 X 346.15 
+
+22 
+
+
+CHAPTER 4 
+
+KALA BALA -TEMPORAL 
+STRENGTH 
+
+The temporal strength is the strength ofplanets due to time 
+and it is found out by considering the year, month, day of 
+the week, Hora of the day etc. at the time of birth of the 
+native. 
+
+It consists of the following Nine Balas :
+
+
+(a) Nathonnath BaJa (b) Paksha BaJa 
+(c) Tribhaga Bala (d) Abda BaJa 
+(e) Masa BaJa (f) Vara BaJa 
+(g) Hora BaJa (h) Ayana BaJa 
+(i) Yuddha BaJa 
+(a) Nathonnath Bala : 
+
+Certain planets are strong at mid-night and powerless 
+at mid-day while certain others are powerless at mid-night 
+and powerful at mid-day. This strength is known as 
+Nathonnath Bala or Divaratri Bala and measured after 
+taking into account whether the native's birth took placeduring day-time or night-time. Sun, Jupiter and Venus are 
+powerful at mid-day and powerless at mid-night. While 
+Moon, Mars and Saturn are powerful at mid-night and 
+
+
+powerless at mid-day. Mercury is considered as powerful 
+always whether it may be day or night. 
+
+HOW TO CALCULATE THE STRENGTH : 
+
+The method is as under :
+
+
+Mid-night means local mid-night ·and by mid-dayrepresents local mid-day. 
+
+Sun, Jupiter and Venus will get sixty Shashtiamsha at 
+local Twelve Noon. Their strength goes on decreasing till, 
+at local mid-night, reduced to .zero. In the case of Moon,
+Mars and Saturn it is reversed i.e. they will have sixty 
+shashtiamsa at Local mid-night and zero at local mid-noon. 
+
+For finding out mid-day = Add half the din-man 
+(duration of day) in the time of sunrise. In the case of 
+standard horoscope sunrise is 6h 5'" (1ST) and sunset is 
+18b 28'" 
+
+Din -man= 18h 29'"-611 5'" = 12b 2410 
+• 
+
+Half of Din-man = 12b 24'" 7 2 = 6h 12'". 
+
+Mid-day= 6h 5'" + 6h 1210 = 12h 17'" (1ST) 
+
+17111
+
+Mid-night = I2h 17'" + 1211 = 24h 17'" = 011 (1ST) 
+
+Step I -Find out the difference of time of birth of the 
+native and that of local mid-night and convert into minutes 
+(it should not exceed 12 hours or 720 minutes) for example: 
+
+(a) If the time ofbirth is 5-30 AM (1ST) and local midnight 
+is 0-15 (1ST) the difference is 5b30m-Ohl5'" 
+= 5h]5'"= 315'". 
+(b) If the time ofbirth is 2-30 PM (1ST) and local time 
+mid-night is 0-15 (1ST) or 24-15 (IST) difference 
+is 24h15'"-14h30'"= 91'45'"= 585'"as 2-30 PM is 
+]4b30m. 
+Step II-As the maximum strength is sixty shashtiamsa 
+
+25 
+
+
+gained I lost in 12X60 =nom so for finding out the strength 
+of the planets strong at mid-day divide the difference by 
+seven hundred and twenty and multiplying by sixty i.e. 
+dividing by twelve we get the strength of Sun, Jupiter and 
+Venus. 
+
+i.e. in this example for case (a) 
+315 x 60 + 720 = 315 + 12 = 26.25 shashtiamsas 
+
+For case (b) 
+
+585 x 60 + 720 = 585 + 12 = 48.75 shashtiamsas 
+
+for the planets strong at mid-night i.e. Moon , Mars and 
+Saturn deduct above results from sixty. 
+
+t.e. for case (a) 
+60.00-26.25 = 33.75 shashtiamsas 
+for case (b) 
+
+60.00-48.75 = 11.25 shatiamsas 
+
+Now we apply it to the standard horos·cope for 
+calculating the nathonnatha Bala. The birth time is I hour 
+30 minutes = 90 minutes. 
+
+The difference oftime of birth and the local mid-night 
+= 90m -17m= 73'" 
+
+Nathonnath Bala of Sun, Jupiter and Venus 
+= 73 + 12 =6.I shashtiamsas. 
+
+Nathonnath Bala-.o( Moon, Mars and Saturn 
+.= 60-6.1 = 53.9 shashtiamsas 
+
+Mercury is always powerful hence its Nathonnath Bala 
+
+= 60 shashtiamsas. 
+
+Though different methods are given at different places, 
+the method explained above is the simplest in modern 
+context. Therefore other methods for calculating the 
+
+26 
+
+
+BaJa have not been given to avoid confusion. 
+
+(b) Paksha BaJa : 
+This is the strength of the planets gained by the 
+Paksha/fortnight in which the native was born. Ashubh 
+(Malefic) planets are strong in Krishna Paksha i.e. dark 
+halfwhen the Moon is waning. The shubha planets arc 
+strong in Shukla Paksha i.e. when the Moon is waxing. Sun, 
+Mars, Saturn and afflicted Mercury are Ashubhas (Malefics 
+or Papas) while Jupiter, Venus and well associated Mercury 
+are shubhas (Benefics). Moon is benefic from eighth day 
+of bright half (shukla Paksha) to 8th day of dark half 
+(Krishna Paksha). 
+
+For calculation of PAKSHA BALA 
+
+Find out the difference of longitudes of Moon and 
+Sun. It should not be more than one hundred and eighty 
+degrees, the formula becomes 
+
+(Moon's longitude-Sun's longitude) x 60 + 180 
+=(Moon's longitude-Sun's Longitude) + 3 
+ifthe numerator is more than one hundred and eighty reverse 
+the Moon and Sun i.e. (Sun's longitude-Moon's Longitude) 
+divided by three will give the shashtiamsas of shubhas 
+(Benefics). The Paksha Bala of Ashubhas (Malefics) will 
+
+be obtained by deducting the Paksha Bala of Bcnefics from 
+sixty. Moon's Paksha Bala will always be doubled. 
+For the standard horoscope :(
+Moon's longitude.:... Sun's longitude)+ 3 
+
+(as the numerator is less than 180°) 
+= (309.50-146.37) + 3 = 163.13 + 3 = 54.38 
+Ben.efics i.e. Venus and Jupiter. 
+Paksha BaJa = 54.38 Shashtiamsa each. 
+Paksha Bala of Moon= 54.38 x 2 = 108.76 shashtiamsas 
+
+27 
+
+
+As Mercury is associated with Jupiter and Saturn but 
+nearer to Jupiter it will be taken as benefic. Its Paksha Bala 
+is 54.38. 
+PakshaBala of Mars, Sun and Saturn 
+
+=60-54.38 =5.62 shashtiamsas each. 
+
+By the above it is concluded that the students should 
+not confuse.themselves with the Paksha. When the Moon 
+is increasing the Balas of Benefics and the Moon are 
+increasing and of Malefics decreasing. 
+
+When the Moon is decreasing the balas ofbenefics 
+and Moon are decreasing and malefics increasing. The 
+Paksha Bala depends on the longitudes of the Moon and 
+the Sun. 
+
+Substance of the above is as under:Find 
+out 
+
+(i) (Longitude of Moon-Sun) + 3 
+or (Longitude of Sun-Moon)+ 3 
+(The numerator should be less than 180°) 
+It will give the Paksha Bala of Shubhas irrespective 
+of Paksha whether it is Krishna or shukla. 
+
+(ii) For malefics-Paksha Bala = 60-result of(i) 
+(iii) For Moon -take it as Benefic and multiply the 
+Bala by two. 
+(c) Tribhag Bala : 
+It is the strength obtained by the planets due to that 
+part of day/ night in which the native was born. 
+The day and night arc divided into three equal parts 
+and for every part one planet gets sixty shashtiarnsas while 
+Jupiter always gets sixty shahtiamsas and the rest get zero. 
+The chart showing the planets to get sixty shashtiamsas is 
+
+28 
+
+
+given below : 
+Day Night 
+lst Part Mercury Moon 
+lind Part Sun Venus 
+Illrd Part Saturn Mars 
+
+Jupiter always gets sixty shatiamsas. 
+
+Method for calculation of Tribhaga BaJa :Find 
+the time of Sun rise and sunset at the place of 
+birth. Deducting Sunrise time from Sunset time (in Railway 
+time) we get the duration of day. Dividing this by three we 
+will get the length of each part of the day. By adding one 
+p'art with Sun rise time the ending time oflst part is arrived 
+at, which will be the beginning time ofthe II part. By addingthe duration of time of a part to it we will get the ending 
+time of II part which is also the starting time of III partand it will end at Sun set. 
+Find out the Ratriman i.e. duration of night= Twentyfour -duration of the day (Dinaman) and dividing it bythree we will get the duration of each part for night. As 
+we have found out for the day we shall find the I, II and 
+Ill parts of night by substituting Sunset for Sunrise and 
+Sunrise for Sunset in the above. 
+Now the Tribhaga Bala of the standard horoscope is 
+calculated :
+
+
+Sunrise = 6-05 AM 
+
+Sunset = 6-29 PM = 18-29 PM 
+Duration of day = J8h29m -6h05'" = I2h24m 
+
+Duration of night = 24h -12h24'" = 1Jl'36'" 
+As the. birth time is 1-30 AM i.e. night we are to find 
+the Part of night. 
+
+29 
+
+
+So II h36m + 3 = 3h-52m is the duration of each part . 
+of 'Ratriman' 
+
+1st Part of night starts from time of Sunset ISh29m and 
+adding one part i.e. 3h52mwe observe I part ends at 22hlJm. 
+
+lind Part of night starts from 22h2J m and extends upto(22h2J m+3h52m;., 26h13m) 2h I3m (early morning of the next 
+day) . ' 
+
+III Part of night starts from 26hJ3m (or 2h13m AM) to 6h 
+sm (time of Sunrise of next day) 
+
+Therefore the native was born in II part ofnight. So Venus 
+will get sixty shashtiamsas. 
+
+STRENGTH: 
+Venus and Jupiter would get sixty shashtiamsas each 
+as tribhaga BaJa and the rest will get zero. 
+
+(d) Abda BaJa : 
+For Astrological purposes only the Indians considered 
+a year of three hundred and sixty days and a month ofthirtydays. These years and months are neither related to 
+movement of Sun nor that of Moon. They are not related 
+, to luni-solar year also. 
+The Abdadhipati i.e. lord of the first day of such 
+an year of the birth ofNative will get fifteen shashtiamsa 
+as Abda Bala and rest will get zero. 
+'Ahargana' is the number of days passed upto anyparticular epoch. The number of days elapsed since the 
+creation are known as Srishtyadi Ahargana. 
+To count Srishtyadi ahargana upto a particular day 
+is difficult. 
+On the basis of the table I grven in the book Graha 
+and Bhava Balas by Dr. B.V. Raman another table of 
+
+30 
+
+
+No. of days passed up to the date of birth = 11 023 
+
+(as calculated in Abdabala) 
+
+11023 ..,_ 30 = 367 13/ 30 
+No. of days more than complete weeks in 367 months 
+
+= 367 X 2 = 734 
+
+N·o. of days more than complete weeks on the 1st day of 
+month in which the native was born = 734 + 1 = 735 
+
+Now 735 + 7 = 105 & remainder zero. 
+
+So 1st day of the month of birth was Tuesday and 
+its lord is Mars. Therefore, Mars gets thirty shatiarnsas as 
+Masa BaJa and the rest of the planets get zero. 
+
+(f) Vara BaJa : 
+The number of days including 12th Sept. 1981 = 
+11022 
+
+NOTE: The time ofbirth of the native is 1-30 AM of 
+13-9-1981. The Gregorian Calender date starts from midnight 
+while the Indian day starts from sunrise and ends on 
+the next Sun rise. Therefore, the date according to Indian 
+system was 12-9-81 and not 13-9-81. So we have incl_uded 
+
+.ihe 12th only not the 13th in the above data. 
+Now calculation ofVara on the day ofbirth = 11022 
+
++ 7 = 1574 4/ 
+7 i.e. four is the remainder after completion 
+of I 574 weeks. Now count zero = Tuesday, One = 
+Wednesday, Two = Thursday, Three = friday, Four = 
+Saturday. Therefore, the day was Saturday and its lord was 
+Saturn which will get fortyfive shashtiamsas and rest zero 
+as Vara Bala. · 
+(g) Hora BaJa : 
+Hora is of One hour and starts from the Sunrise. In 
+the present case Sunrise is 6-5 am IST and the time of 
+birth is 1-30 am i.e. 25-30 1ST. 
+
+32 
+
+
+(h) Ayana BaJa : 
+The strength of a planet being in the North or South 
+of the Celestial'Equator is known as Ayana Bala. 
+
+Ayana Bala depends upon d,eclination (Kranti) of a 
+planet. The declination is the ang'ular distance of a planet 
+from it to the foot ofthe perpendicular on celestial equator. 
+
+If the planet is in the north of Equator the declination 
+is North and word 'N' or (+) sign is written after the 
+degrees of declination. If it is towards south the word 'S' 
+or (-) sign is shown after the degrees of declination. 
+
+Sun crosses the equator twice every year. Once going 
+towards North from South and this point is known as 
+Vernal equinox or spring equinox and second time going 
+to South from North and this point is named 'Autumnal 
+Equinox'. At these two Equinoctical points (spring equinox 
+and Autumnal equinox) the declination of Sun is zero as it 
+is on the equator and its distance from equator is zero. 
+The declination is one of the pair (declination, Right 
+ascension) which shows the position of a heavenly body 
+with respect to vernal equinox and equator. 
+
+The declination is always measured in respect of a 
+Sayana Graha. Therefore, the sayana longitudes of 
+a planets are to be determined by adding ayanamsa 
+to the nirayana longitudes. 
+
+The maximum declination ofSun is 24°(23°27') which 
+is the inclination of ecliptic with the equator. For Ayana 
+Bala we will take the maximum declination as 24° towards 
+North and 24° towards south i.e. the total movement in 
+declination will be 24 + 24 = 48°. 
+
+Determination of declination from NirayanaLongitudes: 
+
+(I) Convert the N irayana longitudes ofall the planets 
+34 
+
+
+declination should be deducted from twenty four i.e. their 
+declination should be counted from the extreme southern 
+end. It can also be implied that they get maximum Ayanabala, 
+when they are at Northern end of their path afterwards they 
+start moving down. Sun's Ayanabala is always doubled. 
+
+For Saturn and Moon the southern declination is added 
+to· twenty four and Northern declineation deducted from 
+twentyfour which means that they get the maximum 
+Ayanabala while at the southern. end of their path and zero 
+when at the Northern end. 
+
+For Mercury the declination whether Southern or 
+Northern is always additive to twentyfour i.e. Mercury is 
+strong in Ayanabala when at the southern/Northern ends 
+and weak at the equator. 
+
+The maximum Ayanabala is sixty shashtiamsas and the 
+declination from Southern end to Northern end is 24 + 24 
+= 48". 
+
+·Jn 48" Ayanabala is raised from zero to sixty
+
+sashtiamsa so in x· the Ayanabala will be X X 60 + 48 
+
+i.e. the formula becomes 
+Ayanabala = (24 ± declination) x 60/48 
+the ± for addition or subtraction ofdeclination as per 
+. rules given above. 
+
+36 
+
+
+CHAPTER 5 
+
+MOTIONAL STRENGTH 
+= CHESTABALA 
+
+Chestabala is the strength due to retrogression ofa planet. 
+The planets become retrograde when they are nearer to 
+earth. (Refer to my book on Astronomy). The strength 
+gained due to arc of retrogression is known as chestabala. 
+Chestabala is maximum when the difference between the 
+average of mean longitude and true longitude with 
+sheeghrochcha is maximum i.e. when the planet is at a 
+maximum distance from earth, it is Apogee or saysheeghrochcha. 
+
+Earth moves round the sun or say Sun appears to move 
+round the earth. As the longitudes used are geo-centric 
+longitudes, the longitudes of Sun will be ever increasingand the Sun will not appear retrograde at any time. As 
+Moon revolves around the earth, its longitudes will also 
+be ever increasing and not decreasing at all i.e. the Moon 
+will never be retrograde. 
+
+The inferior planets retrograde when they are in 
+between the Earth and the Sun as they are nearer to earth 
+at that time. When they are nearest to the earth i.e. on 
+perigee, they are nearly in the middle of their retrograde 
+movement. They retrograde sometime before and sometime 
+after the perigee. 
+
+
+The superior planets are retrograde sometime before 
+and sometime after the opposition. When they are in 
+opposition, they are nearly in the middle of the retrograde 
+motion. 
+
+Longitudes : 
+Mean longitudes are the longitudes which are obtained 
+by considering the motion of a planet being uniform and 
+in a circular path instead of an elliptical one. 
+
+Epoch: 
+The epoch is taken at the begiiming of 1st January 
+1900 mid-night at 76°(E) {The meridian ·of Ujjainconsidered as meridian of India by the Indian 
+Astronomers.} 
+As inner planets (Mercury and Venus) remain nearer 
+to Sun, their mean longitudes will be taken as that of Sun. 
+It has been pointed out earlier that the superior planets 
+(Mars, .Jupiter and Saturn) will be in the middle of their 
+retrograde motion when they are nearest to earth and in 
+opposition with the Sun. 
+They will be farthest to earth when they are in 
+
+conjunction with the Sun. So fheir sheeghrochcha will be 
+the same as mean longitude of the Sun. 
+. For finding out the mean longitudes of Sun, Mars, 
+
+Jupiter and Saturn and seeghrochcha ofMercury and Venus 
+the tables from IV and IX will be used as shown below : 
+
+Calculation : 
+First find out the number of days elapsed from the 
+epoch to the time ofbirth. For the standard horoscope from 
+
+the mid-night (ofUjjain) ofist January 1900 to 1.30 AM 
+(IST) on 13th September, 1981. 
+198 1-1 900 = 8 1 years (as the base year is I900 and 
+
+not I90 I) 
+
+43 
+
+
+No of days in 81 yrs = 81 x 365 = 29565 days 
+
+Addit.ional days for leap year = 20 days 
+
+No. ofdays from 1-1-81 to 12-9-81 = 255 days 
+
+·No. ofdays from 12 mid-night of 
+
+Ujjain to 1.30 1ST* = 0.04 days 
+
+Total no. of days = 29840.04 days 
+
+• { 1.30 IST = 1h.30'-Oh.26' (LMT correction for Ujjain) 
+= 1h.04' = 0.04 days} 
+As stated earlier Mean longitude of Sun = Mean 
+longitude of Mercury = Mean longitude of Venus = 
+Seeghrochcha of Mars, Jupiter and Saturn 
+
+So the Mean loongitudes of Sun, Mars, Jupiter ,
+Saturn and Seeghrochca of Mercury and Venus are to be 
+found out as under for the standard horoscope. 
+
+Calculation of Mean longitude of Sun : 
+From Table IV 
+For 20,000 days = 272.0531 
+9000 days = 230.4239 
+800 days = 68.4821 
+40 days = 39.4240 (10 x 4 units value) 
+
+0.04 days = 0.04 ( 0.04 x 0.98 i.e. 0.04x1) 
+Total 610.4231 
+Constant at epoch= 257.4568 
+867.8799 =867°.88(I'ounded) 
+deduct multiples of 360 and get 
+867.88-720 = 147°.88 which is mean longitude of 
+
+Sun. 
+Calculations of Mean longitudes of Mars, Jupiter, 
+Saturn and Seeghrochcha of Mercury and Venus from 
+
+44 
+
+
+CHAPTER 7 
+
+ASPECT STRENGTH 
+OR DRIK BALA 
+
+Aspectual strength is the strength of Planets gained due 
+to aspect of other planets on it. 
+
+Drishti or Aspect : 
+The aspected planet is always taken ahead and 
+aspecting one behind i.e. for calculation of Drishti Kendra 
+or Aspect angle the longitudes of aspecting planets are 
+subtracted from the aspected planets. 
+Normally the planets aspect the other planets most 
+powerfully at the position 180 degree away from it. But 
+Mars, Jupiter and Saturn (outer planet) have special aspect 
+or vishesha Drishti i.e. Mars aspects the fourth and eighth 
+house with full Drishti while Saturn aspects the third and 
+tenth house with full Drishti and Jupiter aspects the fifth 
+and ninth house from it with full Drishti. 
+
+Drishti Kendra or Aspect Angle: 
+Drishti Kendra or Aspect Angle is obtained bysubtracting the longitudes of Aspecting planet from the 
+Aspected planet. 
+(Table follows on the following page) 
+
+
+30° to 60°. So there is an increase of 1 point for 
+every 2°. 
+
+(3) Increase from 15 points to 45 points is from 60° 
+to 90° the increase is of 30 points in 30°. In other 
+words for every degree the increase is I point. 
+(4) From 90° to 120° there is a decrease of 15 points(decrease of 15 points in ,30°) i.e. for every two 
+degrees there is a decrease of I point. 
+(5) From 120° to 150° (in 30°) there is decereasc 
+of30 points (30pts. to Opt.). So for every degree, 
+the decrease is of 1 point. 
+(6) From 150° to 180° (in 30°), the increase is zero 
+pt. to 60pts. (60 points), so for every degree, the 
+increase of 2 points. 
+(7) From 180° to 300° (in 120°) the decrease is from 
+60 pcints to 0 points (60 points) i.e. for everytwo degrees the decrease is of one point. 
+By using the figure (II method) we can calculate the 
+aspect value very easily. Before proceeding to actual 
+calculations, the special aspect may be considered fir.st. 
+
+(a) The special aspect of Mars arc of IV house and VIII 
+house i.e. when the aspect angle from Mars is 90° 
+to 120° and 210° to 240° and value of this special 
+Drishti is 15 Shasht iamsas or points. The reason for 
+these 15 points has not been given anywhere (to my 
+knowledge). But it is not without rule and in my view 
+the rule is the IV house starts from 90° and VIII starts 
+from 210° the aspect value is 45 shashtiamsas at 
+these aspect angles. To make it a full drishti an 
+addition of 60 -45 15 shashtiamsas is to be done. 
+(b) The special aspect ofjupitcr is on V and IX houses. 
+When it is 120° to 150° or 240° to 270° behind the 
+aspcctcd body and it is full = 60 shasht iamsas. The 
+51 
+
+
+aspect value at 120° and 240° behind is 30 pts and 
+to make it a full Drishti add 60 -30 = 30 points 
+. (shashtiamsas). 
+
+(c) The special aspect of saturn is on Illrd and Xth 
+houses i.e. from 60° to 90° and 270° to· 300° of 
+aspect angle. The aspect value at 60° and 270° of 
+aspect angle is 15 points. To get full Drishti value an 
+addition of 60 -15 = 45 points/shashtiamsas is to 
+be done. 
+So the addition for special aspects are summarized as 
+
+follows:Aspect 
+angle Add in 
+shashtiamsas 
+(i) Mars 90° to 120J 
+210° to 240° 
+15 
+(ii) Jupiter 120°to 150J 
+240° to 270° 
+30 
+(iii) Saturn 60° to 90J 
+270° to 300° 
+45 
+
+Subha grahas will have benefic Drishti to be denoted 1 
+by ( +) sign and Ashubhas will have Malefic Drishti to be 
+shown as (-) sign. 
+
+The Jupiter, Venus, Waxing Moon (7th to 8th) and 
+well are shubhas while Sun, Mars, 
+Saturn, Waning Moon (8 ofKrishna Paksha to 7th ofShukla 
+Paksha) and badly associated Mercury are Ashubhas. 
+
+Drishti Pinda : 
+The total Aspect value of all the planets considering 
+positive for shubhas and negative for Ashubhas, the Drishti 
+Pinda will be arrived at. 
+
+52 
+
+
+CHAPTER 8 
+
+HOUSE STRENGTH OR 
+BHAVA BALA 
+
+Each Bhava has been assinged certain events or function. 
+The first house is known as Tanu ·Bhava. It represents the 
+body of the individual including complexion etc. The II 
+Bhava represents Wealth, Family etc. If a bhava is strong, 
+the native will enjoy the indications of the Bhava fully. If 
+the bhava is week, the native will not be in a position to 
+enjoy the significations of the bhava. 
+
+The strength of a Bhava is determined by : 
+
+(i) Bhavadhipati Bala ic the strength of the lord of 
+the bhava. 
+(ii) Bhava Digbala. 
+(iii) Bhava aspect strength or say Bhava Drishti Bala. 
+(1) Bhavadhipati Bala : 
+It is the strength of the bhava or the lord of the Rashi 
+in which Bhava Madhya falls. These have been calculated 
+in previous chapters. 
+
+(2) Bhava Digbala : 
+It is the strength obtained by the various Bhavas due 
+
+to their Bhava Madhya being in different Rashis. The entire 
+zodiac has been classified into four types of Rashis namely: 
+
+(a) Nara rashis (Human signs) are represented by 
+,Mithuna (Gemini), Kanya (Virgo), Tula (Libra), 
+first half of Dhanu (Sagittarius) and Kumbha 
+(Aquarius). If the Madhya of ascendant falls in 
+Nara Rashi, the I house acquire a strength of 60 
+shashtiamsas (one Rupa) and it gradually loses 
+strength@ I 0 shashtiamsas per Bhava (whether 
+clock wise or anticlock wise) till it is reduced 
+to 0 in the VII Bhava. If the Bhava Madhya of 
+VII is in a Nara Rashi it will have digbala as zero. 
+In other words: 
+
+Bhava Madhya of I house = 60 shashtiamsas 
+
+if in Nara Rashi 
+
+Bhava Madhya of II/XII = 50 -do
+
+
+house if in Nara Rashi 
+
+Bhava Madhya of III/XI = 40 -do
+
+
+house if in Nara Rashi 
+
+Bhava Madhya of IV/X = 30 -do
+
+
+house if in N ara Rashi 
+
+Bhava Madhya ofV/IX = 20 -do
+
+
+house if in Nara Rashi 
+
+Bhava Madhya ofVINIII = 10 -do
+
+
+house if in Nara Rashi 
+
+Bhava Madhya of VII house = 0 -doif 
+in N ara Rash i 
+
+(b) Jalachara Rashis:-Watery or aquatic Rashis 
+are known as Jalachara Rashis. they are Karkata 
+(cancer), second half of Makar (Capricorn), and 
+Meena (Pices). If the Bhava Madhya of fourth 
+57 
+
+
+house falls in tliese Rashi, it will get 60. 
+shashtiamsas and in X it will get 0 shashtiamsas. 
+the digbala is reduced as such Rashis are away 
+from IV Bhava like the pr,evious example ofNara 
+Rash is. 
+
+(c) Chatushpada Rashis or Quadruped Rashis:These 
+are Mesha (Aries), Vrishabha (Taurus), 
+Sinha (Leo), second half of Dhanu· (Sagittarius) 
+and 1st half of Makar (Capricorn). If the Xth 
+Bhava Madhya falls in these it will get 60 
+shashtiamsas. The strength is reduced as it goesaway from Xth Bhava reaches near to IV Bhava. 
+(d) Keeta Rashis or insect sign :-There is onlyone Rashi namely Vrischika (Scorpio) which is 
+Keeta Rashi. When it is in the VII Bhava 
+Madhya, the VII bhava acquires a strength of60 
+shashtiamsas and if I Bhava Madhya falls in it,
+the I Bhava will have zero digbala. The digbalas 
+ofthe Bhavas whose Bhava Madhya falls in Keeta 
+Rashis goes on increasing by I 0 shashtiamsas per 
+house as it is away from I house. 
+(3) Bhava Drishtibala or Bhava's Aspect strength: 
+A Bhava gets certain strength by the aspect of the 
+planets on its Bhava Madhya. The Drishti Bala on the 
+various Bhavas is measured as was done for the Drishti 
+Bala of the Planets in chapter VII with the following 
+changes:
+
+
+(a) Mercury is always benefic for Bhava Drishti Bala 
+Irrespective of its association. 
+(b) The Drishti BaJa's of Mercury and Jupiterincluding special aspect are taken as obtained · 
+(full). While that of other planets (including their 
+special aspect) are divided by 4 i.e. only one58 
+
+
+
+is essential for calculating their lshta Phala and Kashta 
+Ph ala. 
+
+Sun's Chesta BaJa : 
+Add ninty degrees to the Sayana longitude ofthe sun 
+and if it is more than 180° deduct it from 360°. After that 
+divide by 3. 
+
+In the case of standard horoscope : 
+Sun's Nirayana Longitude = 146°.37 
+
+Ayanamsa = +23°.60 
+
+Sun's Sayana Longitude = 169°.97 
+= +90° 
+= 259°.97 
+
+as it is more than 180° deduct from 360° 
+J60°-259°.97 = 100°.03 
+Chesta bala of Sun = 100.03 = 33.34 
+
+3 
+
+Chesta bala of Moon : 
+Deduct the longitiude of Sun from that ofMoon and 
+divide by three ifless than 180°, otherwise divide by three 
+after deducting it from 360° 
+
+In the case of Standard Horoscope : 
+Moon's Longitude = 309.50 
+Sun's Longitude = -146.37 
+
+163.13 
+
+which is less than 180° so no necessity of deducting it from 
+360°. 
+Moon's Chesta Bala = 163.13 = 54.38 
+3 
+= Paksha Bala of Benefics. 
+
+63 
+
+
+SUMMARY 
+
+Shadbala : Six -fold strength consists of: 
+
+1. Positional Strength 2. Directional Strength 
+3. Temporal strength 4. Motional Strength 
+5. Natural Strength 6. Aspect Strength 
+t. Positional Strength or Sthana Bala : 
+It consists of five balas : 
+(i) Uchchabala : It is obtained by dividing the 
+difference of longitudes between the planet and the 
+debilitation point by 3. In ifX and Dare the longitudes 
+of planet and debilitation point, it is= X-D/3 or D-X/3where the numerator should be less than 180°. 
+(ii) Saptvargiya bala : It is obtained by a planetaccording to its relation with the lord of the rashi where it 
+is posited in the seven divisional charts : 
+1. Rashi, 2. Hora, 3. Drekkana, 4. Saptmansha, 
+5. Navamsha, 6. Dwadsamsha, 7. Trimsamsha 
+Prepare the Panchdha Maitri chaka and allot the strength 
+in Sashtiamsha as given below: Mooltrikona sign 45, Own 
+sign 30, Fast Friend's Sign 22.5, Friend's Sign 15, Neutral's 
+sign 7.5, Enemy's sign 3.75 and Bitter enemy's sign 1.875. 
+
+(iii) Yugma Yugma Bala or Ojayugma Bala : Moon 
+and Venus get I 5 shashtiamsa bala for each if they are 
+posited in even sign and even navamsha otherwise zero. 
+The rest i.e. Sun, Mars. Mercury, Jupiter anrl saturn get 
+15 shashtiamsa·bala for each in odd rashi and odd navamsha 
+otherwise zero. 
+(iv) Kendra Bala :The planets which are psoited in 
+kendra get 60, in Panphara 30 and in Apoklima 15 
+shashtimsa bala. 
+71 
+
+
+Mercury. Malefics are Sun, Mars, saturn andaffiicted 
+Mercury. 
+
+Longitude of Moon -Longitude of Sun 
+Paksha Bala ofbenefics "'-----------
+
+
+3 
+in case numerator is more than 180° reverse the 
+position of the Moon and the Sun. 
+
+For malefics Paksha Bala = 60-Paksha bala of shubha 
+
+For Moon Paksha Bala = 2 x Paksha: BaJa of shubhas 
+
+.(iii) Tribhag Bala : 
+
+Day and night each is divided into three parts. The 
+lord of the part of the day or night in which the native was 
+born gets 60 shashtiamsa bala. Jupiter always gets 60 
+shashtiamsa bala. Rest of the planets get o_bala. 
+
+(iv) Abda bala : 
+The lord of the frrst day of the year (reckoned 360 
+days per year from shristiyadi) gets 15 shashtiamsa bala 
+and other zero. 
+
+(v) Masa Bala : 
+The lord of the frrst day of the month (reckoned 30 
+days per month from shristiyadi ) gest 30 shashtiamsa baia' 
+and rest zero. 
+
+(vi) Vara bala : 
+The lord of the week-day ofbirth gets 45 shashtiamsa 
+bala and rest zero. 
+
+(vii) Hora Bala: 
+Lord of the Hora of birth time gets 60 shashtiamsa 
+bala and others zero. 
+
+73 
+
+
+(viii)Ayana Bala : 
+
+. Sun, Mars, Jupiter and Venus are strong when their 
+declination is 24° (N) and weak on 24° (S) declination. 
+It is reversed in case of Moon and Saturn. While Mercury 
+is strong at declineation 24°(N) and 24°(S). 
+
+Ayan bala for Sun, Mars; Jupiter and Venus in shashtiamsa 
+= (24+ North dec lineation or (-) south declineation) x 60 
+
++ 48 
+
+Ayan bala for Moon and Saturn in shashtiamsa.;, (24+
+Southern declineation or (-) Northern dec lineation) x 60 
+
++ 48 
+
+Ayan bala for Mercury in shashtiamsa = (24 + declineation 
+whether North or south) x 60 + 48 
+Ayan bala of Sun is always doubled. 
+(iX) Yudha ha"La:· 
+
+In case the difference of longitudes between two 
+planets (excluding Sun and Moon) is less than 1°, they are 
+at war. 
+
+Yudha Bala =The difference oftheir strength upto Hora bala 
+
+difference ofdiameter of their discs 
+
+It is added to winner's strength and c:teducted from 
+the loser. 
+
+The Sum of these nine balas is kala bala. 
+
+4. Motional strength (chesta bala) : 
+It is the strength gained by a planet due to retrogration. 
+
+Chesta kendra = [(M. long.+ T. long.)+ 2] 
+
+if numerator is more than 180°, deduct it from 360°. 
+
+74 
+
+
