@@ -1,0 +1,679 @@
+KALA BALA - TEMPORAL
+STRENGTH
+
+KALA BALA - TEMPORAL
+STRENGTH
+The temporal strength is the strength of planets due to time
+and it is found out by considering the year, month, day of
+the week, Hora of the day etc. at the time of birth of the
+native.
+It consists of the following Nine Balas :-
+(a) Nathonnath BaJa (b) Paksha BaJa
+(c) Tribhaga Bala (d) Abda BaJa
+(e) Masa BaJa (f) Vara BaJa
+(g) Hora BaJa (h) Ayana BaJa
+(i) Yuddha BaJa
+(a) Nathonnath Bala :
+Certain planets are strong at mid-night and powerless
+at mid-day while certain others are powerless at mid-night
+and powerful at mid-day. This strength is known as
+Nathonnath Bala or Divaratri Bala and measured after
+taking into account whether the native's birth took place
+during day-time or night-time. Sun, Jupiter and Venus are
+powerful at mid-day and powerless at mid-night. While
+Moon, Mars and Saturn are powerful at mid-night and
+powerless at mid-day. Mercury is considered as powerful
+always whether it may be day or night.
+HOW TO CALCULATE THE STRENGTH :
+The method is as under :-
+Mid-night means local mid-night ·and by mid-day
+represents local mid-day.
+Sun, Jupiter and Venus will get sixty Shashtiamsha at
+local Twelve Noon. Their strength goes on decreasing till,
+at local mid-night, reduced to .zero. In the case of Moon,
+Mars and Saturn it is reversed i.e. they will have sixty
+shashtiamsa at Local mid-night and zero at local mid-noon.
+For finding out mid-day = Add half the din-man
+(duration of day) in the time of sunrise. In the case of
+standard horoscope sunrise is 6h 5m (1ST) and sunset is
+18h 28m(IST)
+
+Din -man= 18h 29m- 6h 5m = 12h 24m
+•Half of Din-man = 12h 24m divideby 2 = 6h 12m.
+Mid-day= 6h 5m + 6h 12m = 12h 17m (1ST)
+Mid-night = I2h 17m + 12h = 24h 17m = 0h 17m (1ST)
+
+Step I - Find out the difference of time of birth of the
+native and that of local mid-night and convert into minutes
+(it should not exceed 12 hours or 720 minutes) for example:
+(a) If the time ofbirth is 5-30 AM (1ST) and local midnight
+is 0-15 (1ST) the difference is 5b30m- Ohl5'"
+= 5h15m= 315m.
+b) If the time ofbirth is 2-30 PM (1ST) and local time
+mid-night is 0-15 (1ST) or 24-15 (IST) difference
+is 24h15'"-14h30'"= 91'45'"= 585'"as 2-30 PM is
+14b30m.
+
+Step II- As the maximum strength is sixty shashtiamsa
+gained I lost in 12X60 =720m so for finding out the strength
+of the planets strong at mid-day divide the difference by
+seven hundred and twenty and multiplying by sixty i.e.
+dividing by twelve we get the strength of Sun, Jupiter and
+Venus.
+
+i.e. in this example for case (a)
+315 x 60 + 720 = 315 + 12 = 26.25 shashtiamsas
+For case (b)
+585 x 60 + 720 = 585 + 12 = 48.75 shashtiamsas
+
+for the planets strong at mid-night i.e. Moon , Mars and
+Saturn deduct above results from sixty.
+t.e. for case (a)
+60.00- 26.25 = 33.75 shashtiamsas
+for case (b)
+60.00- 48.75 = 11.25 shatiamsas
+
+Now we apply it to the standard horos·cope for
+calculating the nathonnatha Bala. The birth time is I hour
+30 minutes = 90 minutes.
+The difference oftime of birth and the local mid-night
+= 90m -17m= 73'"
+Nathonnath Bala of Sun, Jupiter and Venus
+= 73 + 12 = 6 .I shashtiamsas.
+Nathonnath Bala-.o( Moon, Mars and Saturn
+.= 60- 6.1 = 53.9 shashtiamsas
+Mercury is always powerful hence its Nathonnath Bala
+= 60 shashtiamsas.
+Though different methods are given at different places,
+the method explained above is the simplest in modern
+context. Therefore other methods for calculating the
+
+Nathonnah BaJa have not been given to avoid confusion.
+
+(b) Paksha BaJa :
+This is the strength of the planets gained by the
+Paksha/fortnight in which the native was born. Ashubh
+(Malefic) planets are strong in Krishna Paksha i.e. dark
+halfwhen the Moon is waning. The shubha planets arc
+strong in Shukla Paksha i.e. when the Moon is waxing. Sun,
+Mars, Saturn and afflicted Mercury are Ashubhas (Malefics
+or Papas) while Jupiter, Venus and well associated Mercury
+are shubhas (Benefics). Moon is benefic from eighth day
+of bright half (shukla Paksha) to 8th day of dark half
+(Krishna Paksha).
+
+For calculation of P AKSHA BALA
+Find out the difference of longitudes of Moon and
+Sun. It should not be more than one hundred and eighty
+degrees, the formula becomes
+(Moon's longitude- Sun's longitude) x 60 divide by 180
+=(Moon's longitude- Sun's Longitude) divide by 3
+if the numerator is more than one hundred and eighty reverse
+the Moon and Sun i.e. (Sun's longitude-Moon's Longitude)
+divided by three will give the shashtiamsas of shubhas
+(Benefics). The Paksha Bala of Ashubhas (Malefics) will
+be obtained by deducting the Paksha Bala of Bcnefics from
+sixty. Moon's Paksha Bala will always be doubled.
+
+For the standard horoscope :-
+(Moon's longitude.:... Sun's longitude)divide by 3
+(as the numerator is less than 180°)
+= (309.50- 146.37) divide by 3 = 163.13 divide by 3 = 54.38
+Ben.efics i.e. Venus and Jupiter.
+Paksha BaJa = 54.38 Shashtiamsa each.
+Paksha Bala of Moon= 54.38 x 2 = 108.76 shashtiamsas
+
+As Mercury is associated with Jupiter and Saturn but
+nearer to Jupiter it will be taken as benefic. Its Paksha Bala
+is 54.38.
+PakshaBala of Mars, Sun and Saturn
+= 60- 54.38 = 5.62 shashtiamsas each.
+
+By the above it is concluded that the students should
+not confuse.themselves with the Paksha. When the Moon
+is increasing the Balas of Benefics and the Moon are
+increasing and of Malefics decreasing.
+When the Moon is decreasing the balas ofbenefics
+and Moon are decreasing and malefics increasing. The
+Paksha Bala depends on the longitudes of the Moon and
+the Sun.
+
+
+(c) Tribhag Bala :
+It is the strength obtained by the planets due to that
+part of day/ night in which the native was born.
+The day and night arc divided into three equal parts
+and for every part one planet gets sixty shashtiarnsas while
+Jupiter always gets sixty shahtiamsas and the rest get zero.
+The chart showing the planets to get sixty shashtiamsas is
+
+[
+  {
+    "Part": "1st Part",
+    "Day": "Mercury",
+    "Night": "Moon"
+  },
+  {
+    "Part": "2nd Part",
+    "Day": "Sun",
+    "Night": "Venus"
+  },
+  {
+    "Part": "3rd Part",
+    "Day": "Saturn",
+    "Night": "Mars"
+  }
+]
+
+
+Jupiter always gets sixty shatiamsas.
+Method for calculation of Tribhaga BaJa :-
+Find the time of Sun rise and sunset at the place of
+birth. Deducting Sunrise time from Sunset time (in Railway
+time) we get the duration of day. Dividing this by three we
+will get the length of each part of the day. By adding one
+p'art with Sun rise time the ending time oflst part is arrived
+at, which will be the beginning time of the II part. By adding
+the duration of time of a part to it we will get the ending
+time of II part which is also the starting time of III part
+and it will end at Sun set.
+Find out the Ratriman i.e. duration of night= Twenty
+four - duration of the day (Dinaman) and dividing it by
+three we will get the duration of each part for night. As
+we have found out for the day we shall find the I, II and
+Ill parts of night by substituting Sunset for Sunrise and
+Sunrise for Sunset in the above.
+
+Now the Tribhaga Bala of the standard horoscope is
+calculated :-
+
+Sunrise =
+Sunset =
+6-05 AM
+6-29 PM = 18-29 PM
+Duration of day = J8h29m - 6h05'" = I 2h24m
+Duration of night = 24h - 12h24'" = 1 Jl'36'"
+As the. birth time is 1-30 AM i.e. night we are to find
+the Part of night.
+29
+So II h36m + 3 = 3h-52m is the duration of each part .
+of 'Ratriman'
+1st Part of night starts from time of Sunset I Sh29m and
+adding one part i.e. 3h52mwe observe I part ends at 22hlJm.
+lind Part of night starts from 22h2J m and extends upto
+(22h2J m+ 3h52m;., 26h 13m) 2h I 3m (early morning of the next
+day) . '
+III Part of night starts from 26hJ3m (or 2h13m AM) to 6h
+sm (time of Sunrise of next day)
+Therefore the native was born in II part of night. So Venus
+will get sixty shashtiamsas.
+STRENGTH:
+Venus and Jupiter would get sixty shashtiamsas each
+as tribhaga BaJa and the rest will get zero.
+(d) Abda BaJa :
+For Astrological purposes only the Indians considered
+a year of three hundred and sixty days and a month of thirty
+days. These years and months are neither related to
+movement of Sun nor that of Moon. They are not related
+, to luni-solar year also.
+The Abdadhipati i.e. lord of the first day of such
+an year of the birth ofNative will get fifteen shashtiamsa
+as Abda Bala and rest will get zero.
+'Ahargana' is the number of days passed upto any
+particular epoch. The number of days elapsed since the
+creation are known as Srishtyadi Ahargana.
+To count Srishtyadi ahargana upto a particular day
+is difficult.
+On the basis of the table I grven in the book Graha
+and Bhava Balas by Dr. B.V. Raman another table of
+
+Ahargana has been prepared in which the table starts from
+1951 instead of 1827.
+On the basis of this new table which is given as Table
+-1 (page 65) the ahargana for the date of birth of the
+standard horoscope is as under :-
+Ahargana on 31-12-1980 = 10767
+No. of days passed from = 243
+1-1-81 to (as per table II)
+No. of days passed in Sept. 1981 = 13
+
+11023
+
+Dividing it by three hundred and sixty we get a quotient
+of thirty and remainder as two hundred and twenty three.
+.. No. of years completed is thirty and every year
+number of days more than complete week = 360 divideby 7 = 3
+(which is the remainder). So in thirty completed years we
+will have number of days more than completed weeks will
+be 30 x 3 = 90.
+
+The first day of next year will be 90 +I= 91 days.
+Dividing it by seven we get 91 + 7 = 13 & remainder nil.
+The frrst day of the year in which the birth took place
+was therefore Tuesday and lord is Mars.{Tableiii)
+So Mars will have Abda BaJa = 15 Shashtiamsa and
+other planets will get 0.
+
+(e) Masa Bala :
+In a Month ofthirty days, Number of days more than
+complete weeks are two (thirty divided by seven and
+remainder is two).
+To find out the day on the 1st day of the month in
+which the native was born the calculations are :-
+
+No. of days passed up to the date of birth = 11 023
+(as calculated in Abdabala)
+11023 ..,_ 30 = 367 13
+/ 30
+No. of days more than complete weeks in 367 months
+= 367 X 2 = 734
+N·o. of days more than complete weeks on the 1st day of
+month in which the native was born = 734 + 1 = 735
+Now 735 + 7 = 105 & remainder zero.
+So 1st day of the month of birth was Tuesday and
+its lord is Mars. Therefore, Mars gets thirty shatiarnsas as
+Masa BaJa and the rest of the planets get zero.
+
+(f) Vara BaJa :
+The number of days including 12th Sept. 1981 =
+11022
+NOTE: The time ofbirth of the native is 1-30 AM of
+13-9-1981. The Gregorian Calender date starts from midnight
+while the Indian day starts from sunrise and ends on
+the next Sun rise. Therefore, the date according to Indian
+system was 12-9-81 and not 13-9-81. So we have incl_uded
+. ihe 12th only not the 13th in the above data.
+Now calculation ofVara on the day ofbirth = 11022
++ 7 = 1574 4
+/
+7 i.e. four is the remainder after completion
+of I 574 weeks. Now count zero = Tuesday, One =
+Wednesday, Two = Thursday, Three = friday, Four =
+Saturday. Therefore, the day was Saturday and its lord was
+Saturn which will get fortyfive shashtiamsas and rest zero
+as Vara Bala. ·
+
+(g) Hora BaJa :
+Hora is of One hour and starts from the Sunrise. In
+the present case Sunrise is 6-5 am IST and the time of
+birth is 1-30 am i.e. 25-30 1ST.
+
+As the day of birth is Saturday. The lors of 1st Hora will
+be Saturn, that of II will be Jupiter and so on.
+
+So the lord of twentieth Hora is Mercury and it will
+get sixty shashtiamsas as Hora Bala and other planets will
+get zero.
+
+(h) Ayana BaJa :
+The strength of a planet being in the North or South
+of the Celestial'Equator is known as Ayana Bala.
+Ayana Bala depends upon d,eclination (Kranti) of a
+planet. The declination is the ang'ular distance of a planet
+from it to the foot of the perpendicular on celestial equator.
+If the planet is in the north of Equator the declination
+is North and word 'N' or (+) sign is written after the
+degrees of declination. If it is towards south the word 'S'
+or (-) sign is shown after the degrees of declination.
+Sun crosses the equator twice every year. Once going
+towards North from South and this point is known as
+Vernal equinox or spring equinox and second time going
+to South from North and this point is named 'Autumnal
+Equinox'. At these two Equinoctical points (spring equinox
+and Autumnal equinox) the declination of Sun is zero as it
+is on the equator and its distance from equator is zero.
+The declination is one of the pair (declination, Right
+ascension) which shows the position of a heavenly body
+with respect to vernal equinox and equator.
+The declination is always measured in respect of a
+Sayana Graha. Therefore, the sayana longitudes of
+a planets are to be determined by adding ayanamsa
+to the nirayana longitudes.
+The maximum declination of Sun is 24°(23°27') which
+is the inclination of ecliptic with the equator. For Ayana
+Bala we will take the maximum declination as 24° towards
+North and 24° towards south i.e. the total movement in
+declination will be 24 + 24 = 48°.
+Determination of declination from Nirayana
+Longitudes:
+(I) Convert the N irayana longitudes of all the planets
+34
+into Sayana longitj.ldes.
+(2) Find out their distance from the nearest equinoctical
+vernal equinox !Uld Autumnal Equinox have 0° and 180"
+Sayana longitudes. This: distance will be called
+'Bh.uja'.
+1. From o• to 90" Bhuja will be
+2. From 90• to 180" Bhuja will be
+longitude - o·
+1800- longitude
+longitude - 180°
+360° - longitude
+3. From 180" to 270" Bhuja will be
+4. ·From 270° to 360° Bhuja will be
+When Bhuja is Declination is
+o· 0
+1 5• 362'
+30• 362' + 341' = 703'
+45° 703' + 299' = 1002'
+60• 1002' + 236' = 1238'
+75• 1238' + 150' = 1388'
+90• 1388' +52'= 1440'
+For intermediate longitudes fmd the Declination by the
+rule of three. Let the degrees of planet be 215" as it is in
+between 180" and.270" so Bhuja is 215 - 180 = 35"
+Declination for 35• of Bhuja for {30"+5"(proportion of
+increase from 30• to 45")}.
+= 703' + 299 X 5 +15
+= 703' + 100' = 803' nearly.
+Calculation of Ayana BaJa :
+For Sun, Venus, Mars and Jupiter the North
+declination should be added to twenty four and Southern
+35
+declination should be deducted from twenty four i.e. their
+declination should be counted from the extreme southern
+end. It can also be implied that they get maximum Ayanabala,
+when they are at Northern end of their path afterwards they
+start moving down. Sun's Ayanabala is always doubled.
+For Saturn and Moon the southern declination is added
+to· twenty four and Northern declineation deducted from
+twentyfour which means that they get the maximum
+Ayanabala while at the southern. end of their path and zero
+when at the Northern end.
+For Mercury the declination whether Southern or
+Northern is always additive to twentyfour i.e. Mercury is
+strong in Ayanabala when at the southern/Northern ends
+and weak at the equator.
+The maximum Ayanabala is sixty shashtiamsas and the
+declination from Southern end to Northern end is 24 + 24
+= 48".
+·Jn 48" Ayanabala is raised from zero to sixty
+sashtiamsa so in x· the Ayanabala will be X X 60 + 48
+i.e. the formula becomes
+Ayanabala = (24 ± declination) x 60/48
+the ± for addition or subtraction of declination as per
+. rules given above.
+
+The calculation of Ayanabala for standard horoscope
+is given in the following chart.
+Ayanamsa = 23° 35' 50" = 23.60
+Calaculation of Ayanabala of the
+standard horoscope
+Part A
+Name of Nirayana Sayana
+Planet Longitude Longitude
+Sun
+Moon
+Mars
+Mercury
+Jupiter
+Venus
+Saturn
+Nirayana
+Ayanamsa
+146.37
+309.50
+I 03.18
+170.53
+170.45
+186.27
+166.43
+146.37
++23.60
+169.97
+169.97
+333.10
+126.78
+194.13
+194.05
+209.87
+190.03
+and so on for other planets
+Difference from Equinoctical Point
+180- 169.97 = 10.03 (N)
+360- 333.10 = 26.90 (S)
+180- 126.78 = 53.22 (N)
+194.13- 180 = 14.13 (S)
+194.05- 180 = 14.05 (S)
+209.87- 180 = 29.87 (S)
+190.03-180 = 10.03 (S)
+37
+Difference from
+Equinoctical
+point
+10.03 (N)
+26.90 (S)
+53.22 (N)
+14.13 (S)
+14.05 (S)
+29.87 (S)
+10.03 (S)
+
+[
+  {
+    "Declination_in_Minutes_Calculation": "362 × 10.03/15 = 242.06",
+    "Declination_in_Minutes": "4° 02'",
+    "Declination_in_Decimals": 4.03
+  },
+  {
+    "Declination_in_Minutes_Calculation": "362 + 341 × 11.90/15 = 632.53",
+    "Declination_in_Minutes": "10° 33'",
+    "Declination_in_Decimals": 10.55
+  },
+  {
+    "Declination_in_Minutes_Calculation": "1002 + 236 × 8.22/15 = 1131.33",
+    "Declination_in_Minutes": "18° 51'",
+    "Declination_in_Decimals": 18.85
+  },
+  {
+    "Declination_in_Minutes_Calculation": "362 × 14.13/15 = 341.06",
+    "Declination_in_Minutes": "5° 41'",
+    "Declination_in_Decimals": 5.68
+  },
+  {
+    "Declination_in_Minutes_Calculation": "362 × 14.05/15 = 339",
+    "Declination_in_Minutes": "5° 39'",
+    "Declination_in_Decimals": 5.65
+  },
+  {
+    "Declination_in_Minutes_Calculation": "362 + 341 × 14.87/15 = 700",
+    "Declination_in_Minutes": "11° 40'",
+    "Declination_in_Decimals": 11.67
+  },
+  {
+    "Declination_in_Minutes_Calculation": "362 × 10.03/15 = 242.06",
+    "Declination_in_Minutes": "4° 02'",
+    "Declination_in_Decimals": 4.03
+  }
+]
+
+Note: Declination of longitudes from 0° to 180° is North. and
+180° to 360° is South.
+
+[
+  {
+    "Planet": "Sun",
+    "Ayanabala_Calculation": "(24 + 4.03) × 5/4 × 2 = 70.08",
+    "Ayanabala": 70.08
+  },
+  {
+    "Planet": "Moon",
+    "Ayanabala_Calculation": "(24 + 10.55) × 5/4 = 43.19",
+    "Ayanabala": 43.19
+  },
+  {
+    "Planet": "Mars",
+    "Ayanabala_Calculation": "(24 + 18.85) × 5/4 = 53.56",
+    "Ayanabala": 53.56
+  },
+  {
+    "Planet": "Mercury",
+    "Ayanabala_Calculation": "(24 + 5.68) × 5/4 = 37.10",
+    "Ayanabala": 37.10
+  },
+  {
+    "Planet": "Jupiter",
+    "Ayanabala_Calculation": "(24 - 5.65) × 5/4 = 22.94",
+    "Ayanabala": 22.94
+  },
+  {
+    "Planet": "Venus",
+    "Ayanabala_Calculation": "(24 - 11.67) × 5/4 = 15.41",
+    "Ayanabala": 15.41
+  },
+  {
+    "Planet": "Saturn",
+    "Ayanabala_Calculation": "(24 + 4.03) × 5/4 = 35.04",
+    "Ayanabala": 35.04
+  }
+]
+
+
+(h) Yuddhabala :
+Two planets are said to be at war when the difference
+between their longitudes is less than one degree. The planet
+with lesser longitude wins in this war and gains some
+strength while the strength of the loser is deducted by the
+same amount.
+Sun and Moon are two luminaries and as such any
+planet in conjunction or within one degree of these two is
+not at war with them.
+Calculation for Yuddhabala
+The balas (in shashtiamsas) upto in Kalabala
+are calculated for both the planets at war i.e. Positional
+strength + directional strength + temporal strength upto
+Horabala (Temporal strength except Ayanabala and
+Yuddhabala which is now being found out).
+It is to be divided by the difference of the diameters
+of the discs (in seconds) of the fighting planets.
+
+Diameter of the discs of planets
+Planets
+Mars
+Mercury
+Jupiter
+Venus
+Saturn
+Diameter of disc
+(Bimb Pariman)
+9".4
+6".6
+190".4
+16".6
+158".0
+
+The Yuddhabala of the standard horoscope.
+In this horoscope Mercury and Jupiter are at war as
+their longitudes are respectively 170°.53 and 170°.45. The
+longitude of Jupiter is lesser and hence Jupiter wins.
+
+
+Balas upto Hora Bala :
+Mercury Jupiter
+Positional strength 238.16 152.98
+Directional strength 31.97 31.99
+Temporal strength
+Nathonnath bala 60.00 6.10
+Paksha Bala 54.38 54.38
+Tribhagabala - 60.00
+Hora bala 60.00 -
+Total 444.51 305.45
+
+Difference= 444.51-305.45 = 139.06 (shashtiamsa)
+Difference in diameter of disc= 190.4-6.6 = 183".8
+Yuddhabala = 139.06 + 183.8 = 0.8 (shashtiamsa)
+Now Mercury's yuddhab.ala is - 0.80 (negative)
+Jupiter's yuddhabala is + 0.80 (positive)
+Note : Table for Computation of Total Kalabala for
+standard Horoscope is given on the following page
+
+{
+  "Kalabala_Computation": [
+    {
+      "Category": "Nathonnath Bala",
+      "Values": {
+        "Sun": 6.10,
+        "Moon": 53.90,
+        "Mars": 53.90,
+        "Mercury": 60.00,
+        "Jupiter": 6.10,
+        "Venus": 6.10,
+        "Saturn": 53.90
+      }
+    },
+    {
+      "Category": "Paksha Bala",
+      "Values": {
+        "Sun": 5.62,
+        "Moon": 108.76,
+        "Mars": 5.62,
+        "Mercury": 54.38,
+        "Jupiter": 54.38,
+        "Venus": 54.38,
+        "Saturn": 5.62
+      }
+    },
+    {
+      "Category": "Tribbhaga Bala",
+      "Values": {
+        "Mercury": 60,
+        "Jupiter": 60
+      }
+    },
+    {
+      "Category": "Abda Bala",
+      "Values": {
+        "Mars": 15
+      }
+    },
+    {
+      "Category": "Masa Bala",
+      "Values": {
+        "Mars": 30
+      }
+    },
+    {
+      "Category": "Vara Bala",
+      "Values": {
+        "Saturn": 45
+      }
+    },
+    {
+      "Category": "Hora Bala",
+      "Values": {
+        "Mercury": 60
+      }
+    },
+    {
+      "Category": "Ayana Bala",
+      "Values": {
+        "Sun": 70.08,
+        "Moon": 43.19,
+        "Mars": 53.56,
+        "Mercury": 37.10,
+        "Jupiter": 22.94,
+        "Venus": 15.41,
+        "Saturn": 35.04
+      }
+    },
+    {
+      "Category": "Yuddha Bala",
+      "Values": {
+        "Mercury": -0.80,
+        "Jupiter": 0.80
+      }
+    },
+    {
+      "Category": "TOTAL",
+      "Values": {
+        "Sun": 81.80,
+        "Moon": 205.85,
+        "Mars": 158.08,
+        "Mercury": 210.68,
+        "Jupiter": 144.22,
+        "Venus": 135.89,
+        "Saturn": 139.56
+      }
+    }
+  ]
+}

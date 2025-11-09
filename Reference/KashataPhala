@@ -1,0 +1,119 @@
+ISHTA PHALA AND KASHTA PHALA
+
+The Ishta Phala or Kashta Phala indicate the nature of
+results to be had in the Dasha or Antar-Dasha of a planet.lf
+the lshta (good) phala, of a planet is more than its Kashta
+(bad) Phala. The planet will be more helpful in its Dasha
+or Antar-Dasha. If the Kashta Phala is more than the lshta
+Phala, it indicates that the ptaitet is not helpful in this period
+and may give adverse results. The formulae for lshta Phala
+and Kashta Phala are:
+
+Ishta Phala = Square root of (Uchcha Bala x Chesta BaJa)
+Kashta Phala = Square root of((60- Uchcha BaJa) (60- Chesta BaJa))
+
+We have to fmd out the Uchcha Bala and Chesta Bala
+for finding out the lshta Phala and Kashta Phala.
+The Uchcha Bala of all the planets of the standard
+horoscope have been calculated while finding out the
+positional strength. The Chesta Bala of all the planets except
+the two lumanaries (Sun and Moon) have been found out
+in chapter 5.
+Though Sun and Moon never retrograde, yet a method
+has been prescribed to fmd out their Chesta Bala, which
+is essential for calculating their lshta Phala and Kashta
+Ph ala.
+Sun's Chesta BaJa :
+Add ninty degrees to the Sayana longitude of the sun
+and if it is more than 180° deduct it from 360°. After that
+divide by 3.
+
+
+In the case of standard horoscope :
+Sun's Nirayana Longitude = 146°.37
+Ayanamsa = +23°.60
+Sun's Sayana Longitude = 169°.97
+= +90°
+= 259°.97
+as it is more than 180° deduct from 360°
+J60°- 259°.97 = 100°.03
+Chesta bala of Sun = 100.03 / 3 = 33.34
+
+Moon :
+Deduct the longitiude of Sun from that of Moon and
+divide by three ifless than 180°, otherwise divide by three
+after deducting it from 360°
+In the case of Standard Horoscope :
+Moon's Longitude = 309.50
+Sun's Longitude = - 146.37
+163.13
+which is less than 180° so no necessity of deducting it from
+360°.
+Moon's Chesta Bala = 163.13 / 3= 54.38
+
+= Paksha Bala of Benefics.
+[
+  {
+    "Planet": "Sun",
+    "Ishta_Phala_Calculation": "√(14.54 × 33.3) = 22.00",
+    "Ishta_Phala": 22.00,
+    "Kashta_Phala_Calculation": "√(45.46 × 26.7) = 34.84",
+    "Kashta_Phala": 34.84
+  },
+  {
+    "Planet": "Moon",
+    "Ishta_Phala_Calculation": "√(32.17 × 54.38) = 41.83",
+    "Ishta_Phala": 41.83,
+    "Kashta_Phala_Calculation": "√(27.83 × 5.62) = 12.51",
+    "Kashta_Phala": 12.51
+  },
+  {
+    "Planet": "Mars",
+    "Ishta_Phala_Calculation": "√(4.94 × 20.93) = 10.17",
+    "Ishta_Phala": 10.17,
+    "Kashta_Phala_Calculation": "√(55.06 × 39.07) = 46.38",
+    "Kashta_Phala": 46.38
+  },
+  {
+    "Planet": "Mercury",
+    "Ishta_Phala_Calculation": "√(58.16 × 28.76) = 40.90",
+    "Ishta_Phala": 40.90,
+    "Kashta_Phala_Calculation": "√(1.84 × 31.24) = 7.58",
+    "Kashta_Phala": 7.58
+  },
+  {
+    "Planet": "Jupiter",
+    "Ishta_Phala_Calculation": "√(34.85 × 8.43) = 17.13",
+    "Ishta_Phala": 17.13,
+    "Kashta_Phala_Calculation": "√(25.15 × 51.57) = 36.01",
+    "Kashta_Phala": 36.01
+  },
+  {
+    "Planet": "Venus",
+    "Ishta_Phala_Calculation": "√(3.09 × 28.18) = 9.33",
+    "Ishta_Phala": 9.33,
+    "Kashta_Phala_Calculation": "√(56.91 × 31.82) = 42.55",
+    "Kashta_Phala": 42.55
+  },
+  {
+    "Planet": "Saturn",
+    "Ishta_Phala_Calculation": "√(48.81 × 5.05) = 15.70",
+    "Ishta_Phala": 15.70,
+    "Kashta_Phala_Calculation": "√(11.19 × 54.95) = 24.80",
+    "Kashta_Phala": 24.80
+  }
+]
+
+For this horoscope Moon and Mercury are the planets
+which have more Ishta Phala than Kashta Phala. So they
+will give good results during their Dasha and Antar-Dashas
+while the others are reverse. Especially Venus and Mars
+whose Kashta Phala is much more than the Ishta Phala,
+will give adverse results in their Dashas and Antar-Dashas.
+Though Sun, Jupiter and Saturn are also having their Kashta
+Phala more than Ishta Phala but the difference is not so
+wide as in other cases. The results of Dashas and Antar-
+Dashas are to be judged very carefully as the stronger of
+the lords ofDasha or Antar-Dasha will predominate over
+the other for giving the results.
+

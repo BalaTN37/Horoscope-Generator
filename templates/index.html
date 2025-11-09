@@ -5,171 +5,501 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vedic Astrology Chart</title>
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
-    .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; }
-    label { display: block; margin-top: 0.5rem; font-weight: 600; }
-    input, select { width: 100%; padding: 0.5rem; }
-    button { padding: 0.6rem 1rem; margin-top: 1rem; }
+    /* CSS Custom Properties for Theme */
+    :root {
+      /* Light Theme - Cosmic Colors */
+      --bg-primary: #0f0c29;
+      --bg-secondary: #1a1640;
+      --bg-tertiary: #24204d;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --bg-card-hover: rgba(255, 255, 255, 0.08);
+      --text-primary: #ffffff;
+      --text-secondary: #b8b5d1;
+      --text-muted: #8884a7;
+      --accent-primary: #6366f1;
+      --accent-secondary: #8b5cf6;
+      --accent-tertiary: #ec4899;
+      --accent-gold: #fbbf24;
+      --accent-success: #10b981;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --gradient-cosmic: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8f9fc;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #e9ecef;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --bg-card-hover: rgba(255, 255, 255, 1);
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --accent-primary: #4f46e5;
+      --accent-secondary: #7c3aed;
+      --accent-tertiary: #db2777;
+      --accent-gold: #f59e0b;
+      --accent-success: #059669;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --gradient-cosmic: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body { 
+      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif; 
+      background: var(--bg-primary);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(102, 126, 234, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(118, 75, 162, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(240, 147, 251, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.3) 0px, transparent 50%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 1rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="light"] body {
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(102, 126, 234, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(118, 75, 162, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(240, 147, 251, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.1) 0px, transparent 50%);
+    }
+
+    /* Header and Theme Toggle */
+    .header {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px var(--shadow-color);
+      animation: fadeInDown 0.6s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient-cosmic);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .theme-toggle {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: var(--bg-tertiary);
+      border-radius: 30px;
+      cursor: pointer;
+      border: 2px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent-primary);
+      transform: scale(1.05);
+    }
+
+    .theme-toggle-slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      background: var(--gradient-cosmic);
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    [data-theme="light"] .theme-toggle-slider {
+      transform: translateX(30px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: 400px 1fr; 
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Glassmorphism Card */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      box-shadow: 0 8px 32px var(--shadow-color);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 48px var(--shadow-color);
+      border-color: var(--accent-primary);
+    }
+
+    label { 
+      display: block; 
+      margin-top: 1rem; 
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+    }
+
+    input, select { 
+      width: 100%; 
+      padding: 0.75rem 1rem;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent-primary);
+      background: var(--bg-card);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+      transform: scale(1.02);
+    }
+
+    input::placeholder {
+      color: var(--text-muted);
+    }
+
+    button { 
+      padding: 0.75rem 1.5rem; 
+      margin-top: 1rem;
+      background: var(--gradient-cosmic);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
     
+    /* DateTime Grid Styles */
     /* DateTime Grid Styles */
     .datetime-grid {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.5rem;
       margin-top: 0.5rem;
       flex-wrap: wrap;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background: #fafafa;
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-tertiary);
+      transition: all 0.3s ease;
+    }
+
+    .datetime-grid:focus-within {
+      border-color: var(--accent-primary);
+      background: var(--bg-card);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
     }
     
     .date-group {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.2rem;
+      gap: 0.3rem;
     }
     
     .small-label {
-      font-size: 0.7rem;
-      color: #666;
+      font-size: 0.65rem;
+      color: var(--text-muted);
       margin: 0;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     
     .date-input, .year-input, .time-input {
-      padding: 0.4rem 0.2rem;
+      padding: 0.5rem 0.3rem;
       text-align: center;
-      font-size: 0.9rem;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-      background: white;
-      font-weight: 500;
+      font-size: 0.95rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--text-primary);
     }
     
     .date-input {
-      width: 35px;
+      width: 45px;
     }
     
     .year-input {
-      width: 55px;
+      width: 70px;
     }
     
     .time-input {
-      width: 35px;
+      width: 45px;
     }
     
     .ampm-select {
-      width: 50px;
-      padding: 0.4rem 0.2rem;
+      width: 60px;
+      padding: 0.5rem 0.3rem;
       text-align: center;
-      font-size: 0.85rem;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-      background: white;
-      font-weight: 500;
+      font-size: 0.9rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--text-primary);
     }
     
     .date-input:focus, .year-input:focus, .time-input:focus, .ampm-select:focus {
       outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.2);
-      background: #fff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      background: var(--bg-secondary);
+      transform: scale(1.05);
     }
     
     .date-input.error, .year-input.error, .time-input.error {
-      border-color: #dc3545;
-      background-color: #fff5f5;
+      border-color: var(--accent-tertiary);
+      background-color: rgba(236, 72, 153, 0.1);
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
     
     .date-separator, .time-separator {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #888;
-      margin: 0 0.2rem;
-      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 0 0.3rem;
+      margin-top: 1.2rem;
       user-select: none;
     }
     
     .time-separator {
-      font-size: 0.8rem;
-      color: #999;
+      font-size: 0.85rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
       font-style: italic;
-      margin: 0 0.4rem;
-      margin-top: 1rem;
+      margin: 0 0.5rem;
+      margin-top: 1.2rem;
     }
-    pre { background: #f7f7f9; padding: 1rem; overflow: auto; max-height: 300px; }
-    canvas { width: 100%; height: 520px; border: 1px solid #ddd; margin-bottom: 1rem; }
-    .row { display:flex; gap:1rem; align-items:end }
+
+    pre { 
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      padding: 1rem;
+      overflow: auto;
+      max-height: 300px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    canvas { 
+      width: 100%; 
+      height: 520px; 
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      background: var(--bg-card);
+      transition: all 0.3s ease;
+    }
+
+    .row { 
+      display: flex;
+      gap: 1rem;
+      align-items: end;
+    }
     
     /* Collapsible Sections */
     .section-container {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin: 1rem 0;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px var(--shadow-color);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease;
+      overflow: hidden;
+    }
+
+    .section-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 48px var(--shadow-color);
+      border-color: var(--accent-primary);
     }
     
     .section-header {
-      padding: 1rem;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 1.5rem;
+      background: var(--gradient-card);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-radius: 8px 8px 0 0;
-      transition: background 0.2s ease;
+      border-radius: 14px 14px 0 0;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid var(--border-color);
     }
     
     .section-header:hover {
-      background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+      background: var(--bg-card-hover);
+    }
+
+    .section-header:active {
+      transform: scale(0.98);
     }
     
     .section-title {
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .section-title span {
+      font-size: 1.5rem;
+      filter: drop-shadow(0 2px 4px var(--shadow-color));
     }
     
     .section-summary {
-      color: #6c757d;
+      color: var(--text-muted);
       font-size: 0.9rem;
-      margin-left: 1.5rem;
+      margin-left: 2.25rem;
+      margin-top: 0.25rem;
     }
     
     .section-controls {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.75rem;
       align-items: center;
     }
     
     .download-btn {
-      background: #28a745;
+      background: linear-gradient(135deg, var(--accent-success), #34d399);
       color: white;
       border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
       font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
     }
     
     .download-btn:hover {
-      background: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
     }
     
     .expand-icon {
-      font-size: 1.2rem;
-      transition: transform 0.2s ease;
-      color: #6c757d;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      color: var(--text-muted);
     }
     
     .section-expanded .expand-icon {
@@ -180,89 +510,129 @@
       padding: 0;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
     }
     
     .section-expanded .section-content {
-      max-height: 2000px;
-      padding: 1rem;
+      max-height: 3000px;
+      padding: 2rem;
     }
     
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 0.5rem 0;
+      margin: 1rem 0;
     }
     
     .data-table th,
     .data-table td {
-      padding: 0.5rem;
+      padding: 0.75rem;
       text-align: left;
-      border-bottom: 1px solid #dee2e6;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
     }
     
     .data-table th {
-      background: #f8f9fa;
-      font-weight: 600;
+      background: var(--bg-tertiary);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    .data-table tr {
+      transition: all 0.3s ease;
+    }
+
+    .data-table tbody tr:hover {
+      background: var(--bg-card-hover);
+      transform: scale(1.01);
     }
     
     .data-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-      margin: 0.5rem 0;
+      gap: 1.5rem;
+      margin: 1rem 0;
     }
     
     .data-card {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 6px;
-      border-left: 4px solid #007bff;
+      background: var(--bg-tertiary);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-primary);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--shadow-color);
+    }
+
+    .data-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px var(--shadow-color);
+      border-left-color: var(--accent-secondary);
     }
     
     .highlight {
-      background: #fff3cd;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      border-left: 3px solid #ffc107;
+      background: rgba(251, 191, 36, 0.2);
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-gold);
+      transition: all 0.3s ease;
+    }
+
+    .highlight:hover {
+      background: rgba(251, 191, 36, 0.3);
     }
     
     /* South Indian Chart Styles */
     .south-indian-chart {
-      width: 400px;
-      height: 400px;
+      width: 450px;
+      height: 450px;
       margin: 2rem auto;
       border-collapse: collapse;
-      border: 3px solid #2c3e50;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 3px solid var(--accent-primary);
+      background: var(--bg-card);
+      box-shadow: 0 12px 40px var(--shadow-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .south-indian-chart:hover {
+      box-shadow: 0 16px 60px var(--shadow-color);
+      transform: scale(1.02);
     }
     
     .south-indian-chart td {
       width: 25%;
       height: 25%;
-      border: 1px solid #6c757d;
+      border: 2px solid var(--border-color);
       text-align: center;
       vertical-align: middle;
       position: relative;
       font-weight: bold;
       font-size: 18px;
-      color: #2c3e50;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .south-indian-chart td:hover {
+      background: var(--bg-card-hover) !important;
+      transform: scale(1.05);
+      z-index: 10;
     }
     
     .south-indian-chart .center-cell {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      color: #6c757d;
+      background: var(--gradient-card);
+      color: var(--text-secondary);
       font-size: 14px;
+      font-weight: 700;
     }
     
     .south-indian-chart .sign-cell {
-      background: #ffffff;
-      transition: background-color 0.2s ease;
-    }
-    
-    .south-indian-chart .sign-cell:hover {
-      background: #f8f9fa;
+      background: var(--bg-secondary);
+      transition: all 0.3s ease;
     }
     
     /* Ascendant highlighting */
@@ -273,25 +643,38 @@
     .south-indian-chart .ascendant-cell::before {
       content: '';
       position: absolute;
-      top: 2px;
-      left: 2px;
-      right: 2px;
-      bottom: 2px;
-      border: 3px solid #ff6b35;
-      border-radius: 50%;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 3px solid var(--accent-tertiary);
+      border-radius: 8px;
       pointer-events: none;
       z-index: 1;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.98);
+      }
     }
     
     .south-indian-chart .ascendant-cell .sign-number {
-      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-gold));
       color: white;
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: 12px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       position: relative;
       z-index: 2;
+      box-shadow: 0 2px 8px rgba(236, 72, 153, 0.4);
     }
     
     /* Planet placement styles */
@@ -301,52 +684,57 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      padding: 2px;
+      padding: 4px;
       box-sizing: border-box;
     }
     
     .sign-number {
       font-weight: bold;
       font-size: 14px;
-      color: #6c757d;
-      margin-bottom: 2px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      transition: all 0.3s ease;
     }
     
     .planets-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1px;
-      max-height: calc(100% - 20px);
+      gap: 2px;
+      max-height: calc(100% - 25px);
       overflow: hidden;
     }
     
     .planet-item {
       font-size: 12px;
-      font-weight: 500;
-      color: #2c3e50;
+      font-weight: 600;
+      color: var(--text-primary);
       text-align: center;
-      line-height: 1.1;
+      line-height: 1.2;
       white-space: nowrap;
-      padding: 1px 2px;
-      border-radius: 2px;
-      transition: all 0.2s ease;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px var(--shadow-color);
     }
     
     /* Planet type color coding */
     .planet-item.benefic {
-      background: rgba(40, 167, 69, 0.1);
-      color: #155724;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
+      color: var(--accent-success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
     
     .planet-item.malefic {
-      background: rgba(220, 53, 69, 0.1);
-      color: #721c24;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(244, 114, 182, 0.2));
+      color: var(--accent-tertiary);
+      border: 1px solid rgba(236, 72, 153, 0.3);
     }
     
     .planet-item.luminary {
-      background: rgba(255, 193, 7, 0.1);
-      color: #856404;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(252, 211, 77, 0.2));
+      color: var(--accent-gold);
+      border: 1px solid rgba(251, 191, 36, 0.3);
     }
     
     /* Dynamic font sizing for multiple planets */
@@ -357,17 +745,17 @@
     
     /* Hover effects for planets */
     .planet-item:hover {
-      transform: scale(1.05);
+      transform: scale(1.15);
       z-index: 10;
       position: relative;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px var(--shadow-color);
     }
     
     /* Responsive chart */
     @media (max-width: 768px) {
       .south-indian-chart {
-        width: 320px;
-        height: 320px;
+        width: 350px;
+        height: 350px;
       }
       
       .south-indian-chart td {
@@ -377,121 +765,152 @@
       .south-indian-chart .center-cell {
         font-size: 12px;
       }
+
+      .glass-card {
+        padding: 1.5rem;
+      }
+
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
     }
     
     /* Shadbala Strength Styling */
     .strength-badge {
-      padding: 0.2rem 0.5rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 12px;
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      transition: all 0.3s ease;
+    }
+
+    .strength-badge:hover {
+      transform: scale(1.05);
     }
     
     .strength-badge-excellent {
-      background: #28a745;
+      background: linear-gradient(135deg, var(--accent-success), #34d399);
       color: white;
     }
     
     .strength-badge-strong {
-      background: #20c997;
+      background: linear-gradient(135deg, #14b8a6, #2dd4bf);
       color: white;
     }
     
     .strength-badge-good {
-      background: #ffc107;
-      color: #212529;
+      background: linear-gradient(135deg, var(--accent-gold), #fcd34d);
+      color: #78350f;
     }
     
     .strength-badge-average {
-      background: #17a2b8;
+      background: linear-gradient(135deg, var(--accent-secondary), #a78bfa);
       color: white;
     }
     
     .strength-badge-weak {
-      background: #dc3545;
+      background: linear-gradient(135deg, var(--accent-tertiary), #f472b6);
       color: white;
     }
     
     /* UchchaBala specific styling */
     .uchcha-badge {
-      padding: 0.2rem 0.6rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 12px;
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    .uchcha-badge:hover {
+      transform: scale(1.05);
     }
     
     .uchcha-badge-excellent {
-      background: #d1f2eb;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
+      color: var(--accent-success);
+      border: 2px solid var(--accent-success);
     }
     
     .uchcha-badge-strong {
-      background: #d1ecf1;
-      color: #0c5460;
-      border: 1px solid #bee5eb;
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(45, 212, 191, 0.2));
+      color: #14b8a6;
+      border: 2px solid #14b8a6;
     }
     
     .uchcha-badge-good {
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeaa7;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(252, 211, 77, 0.2));
+      color: var(--accent-gold);
+      border: 2px solid var(--accent-gold);
     }
     
     .uchcha-badge-average {
-      background: #e2e3e5;
-      color: #495057;
-      border: 1px solid #d6d8db;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(167, 139, 250, 0.2));
+      color: var(--accent-secondary);
+      border: 2px solid var(--accent-secondary);
     }
     
     .uchcha-badge-weak {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(244, 114, 182, 0.2));
+      color: var(--accent-tertiary);
+      border: 2px solid var(--accent-tertiary);
     }
     
     .uchcha-card {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.3s ease;
     }
     
     .uchcha-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--shadow-color);
     }
     
     /* SaptavarigiyaBala specific styling */
     .saptavargiya-badge {
-      padding: 0.2rem 0.6rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 12px;
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    .saptavargiya-badge:hover {
+      transform: scale(1.05);
     }
     
     .saptavargiya-badge-excellent {
-      background: #4caf50;
+      background: linear-gradient(135deg, var(--accent-success), #34d399);
       color: white;
     }
     
     .saptavargiya-badge-strong {
-      background: #8bc34a;
+      background: linear-gradient(135deg, #14b8a6, #2dd4bf);
       color: white;
     }
     
     .saptavargiya-badge-good {
-      background: #ff9800;
-      color: white;
+      background: linear-gradient(135deg, var(--accent-gold), #fcd34d);
+      color: #78350f;
     }
     
     .saptavargiya-badge-average {
-      background: #2196f3;
+      background: linear-gradient(135deg, var(--accent-secondary), #a78bfa);
       color: white;
     }
     
     .saptavargiya-badge-weak {
-      background: #f44336;
+      background: linear-gradient(135deg, var(--accent-tertiary), #f472b6);
       color: white;
     }
     
@@ -500,75 +919,75 @@
     }
     
     .saptavargiya-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--shadow-color);
     }
     
     .strength-row-excellent {
-      background: rgba(40, 167, 69, 0.1);
+      background: rgba(16, 185, 129, 0.15);
     }
     
     .strength-row-strong {
-      background: rgba(32, 201, 151, 0.1);
+      background: rgba(20, 184, 166, 0.15);
     }
     
     .strength-row-good {
-      background: rgba(255, 193, 7, 0.1);
+      background: rgba(251, 191, 36, 0.15);
     }
     
     .strength-row-average {
-      background: rgba(23, 162, 184, 0.1);
+      background: rgba(139, 92, 246, 0.15);
     }
     
     .strength-row-weak {
-      background: rgba(220, 53, 69, 0.1);
+      background: rgba(236, 72, 153, 0.15);
     }
     
     /* Divisional Charts Styling */
     .divisional-charts-container {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
     
     .chart-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid #e9ecef;
-      padding-bottom: 0.5rem;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
     }
     
     .chart-tab-btn {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
       cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
       font-size: 0.9rem;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      box-shadow: 0 2px 8px var(--shadow-color);
     }
     
     .chart-tab-btn:hover {
-      background: #007bff !important;
+      background: var(--gradient-cosmic) !important;
       color: white !important;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+      border-color: transparent;
     }
     
     .chart-tab-btn.active {
-      background: #007bff;
+      background: var(--gradient-cosmic);
       color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
     }
     
     .chart-content {
-      animation: fadeIn 0.3s ease-in;
+      animation: fadeIn 0.4s ease-in;
     }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
     .divisional-chart-grid {
       margin-bottom: 2rem;
     }
@@ -604,13 +1023,14 @@
     
     .positions-table-container th,
     .positions-table-container td {
-      border: 1px solid #dee2e6;
-      padding: 0.5rem;
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
       text-align: left;
+      color: var(--text-primary);
     }
     
     .positions-table-container thead {
-      background: #e9ecef;
+      background: var(--bg-tertiary);
     }
     
     @media (max-width: 768px) {
@@ -630,18 +1050,445 @@
         overflow-x: auto;
       }
     }
+
+    /* Error message styling */
+    #err {
+      color: var(--accent-tertiary);
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(236, 72, 153, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent-tertiary);
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Place list dropdown */
+    #place-list {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px var(--shadow-color);
+      max-height: 300px;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #place-list div {
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    #place-list div:hover {
+      background: var(--bg-card-hover);
+      transform: translateX(5px);
+    }
+
+    /* Loading animation */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Two-View System Styles */
+    .view-container {
+      min-height: calc(100vh - 100px);
+      position: relative;
+    }
+
+    .view {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+      transform: translateY(20px);
+    }
+
+    .view.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      transform: translateY(0);
+    }
+
+    /* Input View - Centered */
+    #input-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 150px);
+      padding: 2rem;
+    }
+
+    #input-view.active {
+      display: flex;
+    }
+
+    .input-form-wrapper {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .form-title h2 {
+      font-size: 2.5rem;
+      background: var(--gradient-cosmic);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .form-title p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    /* Results View - Full Width */
+    #results-view {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    #results-view.active {
+      display: block;
+    }
+
+    /* Action Bar */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px var(--shadow-color);
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .action-bar-left {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .action-bar-right {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-new-chart {
+      background: var(--gradient-cosmic);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-new-chart:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      border-color: var(--accent-primary);
+    }
+
+    .birth-info-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .birth-info-chip strong {
+      color: var(--text-primary);
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-content {
+      text-align: center;
+      color: white;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    .loading-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .loading-subtext {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Share Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px var(--shadow-color);
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+
+    .share-url-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .share-url {
+      flex: 1;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: var(--accent-primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-secondary);
+      transform: scale(1.05);
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+    }
+
+    @media (max-width: 768px) {
+      .action-bar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .action-bar-left,
+      .action-bar-right {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-new-chart,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .birth-info-chip {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Vedic Astrology Chart</h1>
-  <div class="grid">
-    <div>
-      <label>Place</label>
-      <div class="row" style="align-items:center; gap:0.5rem; position:relative">
-        <input id="place" type="text" placeholder="City, State, Country" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="onPlaceInput()" onkeydown="onPlaceKey(event)" style="flex:1" />
-        <button type="button" onclick="applyPlace()">Find</button>
-        <div id="place-list" style="position:absolute; top:100%; left:0; right:0; z-index:9999"></div>
+  <div class="header">
+    <h1>✨ Vedic Astrology Chart</h1>
+    <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <div class="theme-toggle-slider">
+        <span id="theme-icon">🌙</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Generating Your Chart</div>
+      <div class="loading-subtext">Calculating planetary positions...</div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="modal-overlay" id="share-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">📤 Share Your Chart</div>
+        <button class="modal-close" onclick="closeShareModal()">✕</button>
+      </div>
+      <div class="share-url-container">
+        <div class="share-url" id="share-url"></div>
+        <button class="copy-btn" id="copy-btn" onclick="copyShareUrl()">Copy</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+        Share this URL with others to show your birth chart results.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main View Container -->
+  <div class="view-container">
+    
+    <!-- INPUT VIEW -->
+    <div id="input-view" class="view active">
+      <div class="input-form-wrapper">
+        <div class="form-title">
+          <h2>✨ Vedic Astrology Chart ✨</h2>
+          <p>Enter your birth details to generate your personalized chart</p>
+        </div>
+        
+        <div class="glass-card">
+          <label>Place</label>
+          <div class="row" style="align-items:center; gap:0.5rem; position:relative">
+            <input id="place" type="text" placeholder="City, State, Country" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="onPlaceInput()" onkeydown="onPlaceKey(event)" style="flex:1" />
+            <button type="button" onclick="applyPlace()">Find</button>
+            <div id="place-list" style="position:absolute; top:100%; left:0; right:0; z-index:9999"></div>
+          </div>
       <label>Date & Time (local)</label>
       <div class="datetime-grid">
         <div class="date-group">
@@ -707,10 +1554,37 @@
         <option value="mean" selected>Mean (default)</option>
         <option value="true">True</option>
       </select>
-      <button onclick="submitForm()">Generate</button>
-      <div id="err" style="color:crimson; margin-top:0.5rem"></div>
+      <button onclick="submitForm()">Generate Chart</button>
+      <div id="err"></div>
+        </div>
+      </div>
     </div>
-    <div id="results-container">
+    <!-- END INPUT VIEW -->
+
+    <!-- RESULTS VIEW -->
+    <div id="results-view" class="view">
+      
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="action-bar-left">
+          <button class="btn-new-chart" onclick="showInputView()">
+            ← New Chart
+          </button>
+          <div class="birth-info-chip">
+            <span id="result-birth-info">Birth details will appear here</span>
+          </div>
+        </div>
+        <div class="action-bar-right">
+          <button class="btn-secondary" onclick="openShareModal()">
+            🔗 Share
+          </button>
+          <button class="btn-secondary" onclick="downloadAllData()">
+            💾 Download
+          </button>
+        </div>
+      </div>
+
+      <div id="results-container" class="results-area">
       <!-- Canvas chart replaced by table-based chart in collapsible sections -->
       <!-- <canvas id="chart"></canvas> -->
       
@@ -1040,13 +1914,218 @@
       
       <!-- Legacy output (hidden by default) -->
       <details style="margin-top: 1rem;">
-        <summary style="cursor: pointer; padding: 0.5rem; background: #f8f9fa; border-radius: 4px;">🔍 Raw Data (for debugging)</summary>
+        <summary style="cursor: pointer; padding: 0.5rem; background: var(--bg-tertiary); border-radius: 8px; color: var(--text-primary);">🔍 Raw Data (for debugging)</summary>
         <pre id="out" style="margin-top: 0.5rem;"></pre>
       </details>
     </div>
   </div>
+  </div>
+      </div>
+    </div>
+    <!-- END RESULTS VIEW -->
+
+  </div>
+  <!-- END VIEW CONTAINER -->
 
   <script>
+    // View Management System
+    let currentChartData = null;
+    let currentBirthDetails = null;
+
+    // Check for URL parameters on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      if (urlParams.has('data')) {
+        try {
+          const encodedData = urlParams.get('data');
+          const decodedData = JSON.parse(atob(encodedData));
+          loadChartFromUrl(decodedData);
+        } catch (e) {
+          console.error('Error loading chart from URL:', e);
+        }
+      } else {
+        // Try to load last chart from localStorage
+        loadLastChart();
+      }
+    });
+
+    function showInputView() {
+      document.getElementById('input-view').classList.add('active');
+      document.getElementById('results-view').classList.remove('active');
+      
+      // Clear URL parameters
+      window.history.pushState({}, '', window.location.pathname);
+    }
+
+    function showResultsView() {
+      document.getElementById('input-view').classList.remove('active');
+      document.getElementById('results-view').classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showLoadingOverlay() {
+      document.getElementById('loading-overlay').classList.add('active');
+    }
+
+    function hideLoadingOverlay() {
+      document.getElementById('loading-overlay').classList.remove('active');
+    }
+
+    function saveChartToLocalStorage(birthDetails, chartData) {
+      try {
+        const dataToSave = {
+          birthDetails: birthDetails,
+          chartData: chartData,
+          timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('lastChart', JSON.stringify(dataToSave));
+      } catch (e) {
+        console.error('Error saving to localStorage:', e);
+      }
+    }
+
+    function loadLastChart() {
+      try {
+        const saved = localStorage.getItem('lastChart');
+        if (saved) {
+          const data = JSON.parse(saved);
+          // Only auto-load if it's less than 24 hours old
+          const savedTime = new Date(data.timestamp);
+          const now = new Date();
+          const hoursDiff = (now - savedTime) / (1000 * 60 * 60);
+          
+          if (hoursDiff < 24) {
+            currentBirthDetails = data.birthDetails;
+            currentChartData = data.chartData;
+            renderChartResults(data.chartData);
+            updateBirthInfoChip(data.birthDetails);
+            showResultsView();
+          }
+        }
+      } catch (e) {
+        console.error('Error loading from localStorage:', e);
+      }
+    }
+
+    function loadChartFromUrl(data) {
+      // Populate form fields
+      document.getElementById('place').value = data.place || '';
+      document.getElementById('lat').value = data.lat || '';
+      document.getElementById('lon').value = data.lon || '';
+      document.getElementById('tz').value = data.tz_offset || '';
+      
+      // Parse and set date/time
+      if (data.datetime) {
+        const dt = new Date(data.datetime);
+        document.getElementById('day').value = dt.getDate();
+        document.getElementById('month').value = dt.getMonth() + 1;
+        document.getElementById('year').value = dt.getFullYear();
+        let hours = dt.getHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        document.getElementById('hour').value = hours;
+        document.getElementById('minute').value = dt.getMinutes();
+        document.getElementById('ampm').value = ampm;
+        updateHiddenDatetime();
+      }
+      
+      // Set options
+      document.getElementById('ayan').value = data.ayanamsa || 'lahiri';
+      document.getElementById('house').value = data.house_system || 'equal';
+      document.getElementById('nodeType').value = data.node_type || 'mean';
+      
+      // Auto-generate chart
+      setTimeout(() => {
+        submitForm();
+      }, 500);
+    }
+
+    function updateBirthInfoChip(details) {
+      const chip = document.getElementById('result-birth-info');
+      chip.innerHTML = `
+        <strong>${details.place}</strong> • 
+        ${details.date} ${details.time} • 
+        Lat: ${details.lat}, Lon: ${details.lon}
+      `;
+    }
+
+    function openShareModal() {
+      if (!currentBirthDetails) {
+        alert('No chart data to share');
+        return;
+      }
+      
+      const shareData = {
+        place: currentBirthDetails.place,
+        lat: currentBirthDetails.lat,
+        lon: currentBirthDetails.lon,
+        datetime: currentBirthDetails.datetime,
+        tz_offset: currentBirthDetails.tz_offset,
+        ayanamsa: currentBirthDetails.ayanamsa,
+        house_system: currentBirthDetails.house_system,
+        node_type: currentBirthDetails.node_type
+      };
+      
+      const encoded = btoa(JSON.stringify(shareData));
+      const shareUrl = `${window.location.origin}${window.location.pathname}?data=${encoded}`;
+      
+      document.getElementById('share-url').textContent = shareUrl;
+      document.getElementById('share-modal').classList.add('active');
+      document.getElementById('copy-btn').textContent = 'Copy';
+      document.getElementById('copy-btn').classList.remove('copied');
+    }
+
+    function closeShareModal() {
+      document.getElementById('share-modal').classList.remove('active');
+    }
+
+    function copyShareUrl() {
+      const urlText = document.getElementById('share-url').textContent;
+      const copyBtn = document.getElementById('copy-btn');
+      
+      navigator.clipboard.writeText(urlText).then(() => {
+        copyBtn.textContent = '✓ Copied!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy URL. Please copy manually.');
+      });
+    }
+
+    function downloadAllData() {
+      if (!currentChartData) {
+        alert('No chart data to download');
+        return;
+      }
+      
+      const dataStr = JSON.stringify(currentChartData, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `vedic_chart_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Close modals when clicking outside
+    window.addEventListener('click', function(e) {
+      const shareModal = document.getElementById('share-modal');
+      if (e.target === shareModal) {
+        closeShareModal();
+      }
+    });
+
     // Canvas chart replaced by table-based chart
     // const canvas = document.getElementById('chart');
     // const ctx = canvas.getContext('2d');
@@ -1471,6 +2550,9 @@
         return; 
       }
       
+      // Show loading overlay
+      showLoadingOverlay();
+      
       // Debug logging
       console.log('DEBUG: Submitting with values:');
       console.log('dt:', dt);
@@ -1486,81 +2568,264 @@
         });
         const json = await res.json();
         if (!json.ok) throw new Error(json.error || 'Failed');
-        drawChart(json.data);
+        
+        // Store birth details
+        const dateObj = new Date(dt);
+        const timeStr = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        const dateStr = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        currentBirthDetails = {
+          place: place,
+          lat: lat,
+          lon: lon,
+          datetime: dt,
+          date: dateStr,
+          time: timeStr,
+          tz_offset: tz,
+          ayanamsa: ayan,
+          house_system: house,
+          node_type: nodeType
+        };
+        
+        currentChartData = json.data;
+        
+        // Save to localStorage
+        saveChartToLocalStorage(currentBirthDetails, currentChartData);
+        
+        // Render results
+        renderChartResults(json.data);
+        
+        // Update birth info chip
+        updateBirthInfoChip(currentBirthDetails);
+        
+        // Hide loading and show results view
+        hideLoadingOverlay();
+        showResultsView();
+        
         document.getElementById('out').textContent = JSON.stringify(json.data, null, 2);
-        renderAllSections(json.data);
       } catch (e) {
         console.error('DEBUG: Error in submitForm:', e);
         console.error('DEBUG: Full error:', e.message);
         err.textContent = e.message;
+        hideLoadingOverlay();
       }
+    }
+
+    function renderChartResults(data) {
+      drawChart(data);
+      renderAllSections(data);
     }
 
     // Simple place autosuggest with caching and fast selection
     let placeTimer;
     const placeCache = new Map(); // q(lower) -> [{name,lat,lon}]
-    async function onPlaceInput(){
-      const q = document.getElementById('place').value.trim();
-      const list = document.getElementById('place-list');
-      if (placeTimer) clearTimeout(placeTimer);
-      if (q.length < 3) { list.innerHTML=''; return; }
-      const key = q.toLowerCase();
-      // If cached, show immediately for responsiveness
-      if (placeCache.has(key)) {
-        renderPlaceList(list, placeCache.get(key));
-      } else {
-        list.innerHTML = `<div style="background:#fff; border:1px solid #ddd; padding:8px">Searching…</div>`;
+    // New Autocomplete Implementation
+    let autocompleteCache = new Map();
+    let autocompleteTimer = null;
+
+    async function onPlaceInput() {
+      const input = document.getElementById('place');
+      const query = input.value.trim();
+      const dropdownContainer = document.getElementById('place-list');
+      
+      // Clear previous timer
+      if (autocompleteTimer) {
+        clearTimeout(autocompleteTimer);
       }
-      placeTimer = setTimeout(async () => {
-        try {
-          const res = await fetch(`/api/places?q=${encodeURIComponent(q)}`);
-          const json = await res.json();
-          if (!json.ok) throw new Error(json.error||'place search failed');
-          placeCache.set(key, json.data || []);
-          renderPlaceList(list, placeCache.get(key));
-        } catch(e) { list.innerHTML=''; }
-      }, 120);
+      
+      // Clear dropdown if less than 3 characters
+      if (query.length < 3) {
+        dropdownContainer.innerHTML = '';
+        dropdownContainer.style.display = 'none';
+        return;
+      }
+      
+      // Show loading state
+      showLoadingDropdown(dropdownContainer);
+      
+      // Debounce the API call
+      autocompleteTimer = setTimeout(async () => {
+        await fetchAndShowPlaces(query, dropdownContainer);
+      }, 300);
     }
 
-    function renderPlaceList(list, data){
-      const items = (data||[]).map(i => `<div class="item" data-lat="${i.lat}" data-lon="${i.lon}" style="padding:6px 8px; cursor:pointer; border-bottom:1px solid #eee">${i.name}</div>`).join('');
-      list.innerHTML = items ? `<div id="place-dd" style="position:absolute; top:100%; left:0; z-index:9999; background:#fff; border:1px solid #ddd; width:100%; max-height:220px; overflow:auto; box-shadow:0 6px 16px rgba(0,0,0,0.1)">${items}</div>` : `<div style="background:#fff; border:1px solid #ddd; padding:8px">No results. Type a more specific place.</div>`;
-      list.querySelectorAll('.item').forEach(el => {
-        // mousedown triggers earlier than click for snappier UX
-        el.addEventListener('mousedown', handlePlacePick, { passive: true });
-        el.addEventListener('click', handlePlacePick, { passive: true });
+    function showLoadingDropdown(container) {
+      container.style.display = 'block';
+      container.innerHTML = `
+        <div style="padding: 12px; text-align: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-secondary);">
+          <div class="loading" style="margin: 0 auto 8px;"></div>
+          <div>Searching places...</div>
+        </div>
+      `;
+    }
+
+    async function fetchAndShowPlaces(query, container) {
+      const cacheKey = query.toLowerCase();
+      
+      try {
+        let places;
+        
+        // Check cache first
+        if (autocompleteCache.has(cacheKey)) {
+          places = autocompleteCache.get(cacheKey);
+        } else {
+          // Fetch from API
+          const response = await fetch(`/api/places?q=${encodeURIComponent(query)}`);
+          const data = await response.json();
+          
+          if (data.ok && data.data) {
+            places = data.data;
+            // Cache the results
+            autocompleteCache.set(cacheKey, places);
+          } else {
+            places = [];
+          }
+        }
+        
+        // Display results
+        displayPlaceDropdown(container, places);
+        
+      } catch (error) {
+        console.error('Error fetching places:', error);
+        container.innerHTML = `
+          <div style="padding: 12px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-secondary);">
+            Error loading places. Please try again.
+          </div>
+        `;
+      }
+    }
+
+    function displayPlaceDropdown(container, places) {
+      if (!places || places.length === 0) {
+        container.innerHTML = `
+          <div style="padding: 12px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-secondary);">
+            No places found. Try a different search.
+          </div>
+        `;
+        return;
+      }
+      
+      // Create dropdown with places
+      const dropdownHTML = places.map(place => `
+        <div class="autocomplete-item" 
+             data-name="${place.name}" 
+             data-lat="${place.lat}" 
+             data-lon="${place.lon}"
+             style="padding: 12px; cursor: pointer; border-bottom: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); transition: all 0.2s;">
+          ${place.name}
+        </div>
+      `).join('');
+      
+      container.innerHTML = `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; max-height: 300px; overflow-y: auto; box-shadow: 0 8px 32px var(--shadow-color); backdrop-filter: blur(20px);">
+          ${dropdownHTML}
+        </div>
+      `;
+      
+      // Add click handlers
+      const items = container.querySelectorAll('.autocomplete-item');
+      items.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          this.style.background = 'var(--bg-card-hover)';
+          this.style.paddingLeft = '16px';
+        });
+        item.addEventListener('mouseleave', function() {
+          this.style.background = 'var(--bg-card)';
+          this.style.paddingLeft = '12px';
+        });
+        item.addEventListener('click', function() {
+          selectPlace(this);
+        });
       });
+      
+      container.style.display = 'block';
     }
 
-    async function handlePlacePick(ev){
-      const el = ev.currentTarget;
-      const list = document.getElementById('place-list');
-      document.getElementById('place').value = el.textContent;
-      const lat = parseFloat(el.getAttribute('data-lat'));
-      const lon = parseFloat(el.getAttribute('data-lon'));
-      document.getElementById('lat').value = lat.toFixed(4);
-      document.getElementById('lon').value = lon.toFixed(4);
-      // Clear dropdown immediately for perceived speed
-      list.innerHTML='';
-      // Fire-and-forget timezone fetch; don't block UI
+    function selectPlace(element) {
+      const name = element.getAttribute('data-name');
+      const lat = element.getAttribute('data-lat');
+      const lon = element.getAttribute('data-lon');
+      
+      // Set values
+      document.getElementById('place').value = name;
+      document.getElementById('lat').value = parseFloat(lat).toFixed(4);
+      document.getElementById('lon').value = parseFloat(lon).toFixed(4);
+      
+      // Hide dropdown
+      const dropdownContainer = document.getElementById('place-list');
+      dropdownContainer.innerHTML = '';
+      dropdownContainer.style.display = 'none';
+      
+      // Fetch timezone
+      fetchTimezone(lat, lon);
+    }
+
+    async function fetchTimezone(lat, lon) {
       try {
         const dt = document.getElementById('dt').value;
-        fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`)
-          .then(r=>r.json())
-          .then(j=>{ if (j.ok) document.getElementById('tz').value = j.data.tz_offset; })
-          .catch(()=>{});
-      } catch {}
+        const response = await fetch(`/api/tz?datetime=${encodeURIComponent(dt)}&lat=${lat}&lon=${lon}`);
+        const data = await response.json();
+        if (data.ok) {
+          document.getElementById('tz').value = data.data.tz_offset;
+        }
+      } catch (error) {
+        console.error('Error fetching timezone:', error);
+      }
     }
 
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      const placeInput = document.getElementById('place');
+      const dropdownContainer = document.getElementById('place-list');
+      if (placeInput && dropdownContainer && e.target !== placeInput && !dropdownContainer.contains(e.target)) {
+        dropdownContainer.innerHTML = '';
+        dropdownContainer.style.display = 'none';
+      }
+    });
+
+
     function onPlaceKey(ev){
+      const dropdownContainer = document.getElementById('place-list');
+      
       if (ev.key === 'Enter'){
         ev.preventDefault();
-        const list = document.getElementById('place-list');
-        const first = list.querySelector('.item');
-        if (first) first.click(); else applyPlace();
+        const firstItem = dropdownContainer.querySelector('.autocomplete-item');
+        if (firstItem) {
+          selectPlace(firstItem);
+        } else {
+          applyPlace();
+        }
       }
+      
       if (ev.key === 'Escape'){
-        document.getElementById('place-list').innerHTML='';
+        dropdownContainer.innerHTML = '';
+        dropdownContainer.style.display = 'none';
+      }
+      
+      // Arrow key navigation
+      if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+        ev.preventDefault();
+        const items = dropdownContainer.querySelectorAll('.autocomplete-item');
+        if (items.length === 0) return;
+        
+        let currentIndex = -1;
+        items.forEach((item, index) => {
+          if (item.style.background === 'var(--bg-card-hover)') {
+            currentIndex = index;
+            item.style.background = 'var(--bg-card)';
+            item.style.paddingLeft = '12px';
+          }
+        });
+        
+        if (ev.key === 'ArrowDown') {
+          currentIndex = (currentIndex + 1) % items.length;
+        } else {
+          currentIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+        }
+        
+        items[currentIndex].style.background = 'var(--bg-card-hover)';
+        items[currentIndex].style.paddingLeft = '16px';
+        items[currentIndex].scrollIntoView({ block: 'nearest' });
       }
     }
 
@@ -3523,6 +4788,36 @@
       }
       if (event.target === dreshkonModal) {
         closeDreshkonDetails();
+      }
+    });
+
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      const currentTheme = html.getAttribute('data-theme');
+      
+      if (currentTheme === 'light') {
+        html.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+      } else {
+        themeIcon.textContent = '🌙';
       }
     });
   </script>

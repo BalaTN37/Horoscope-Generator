@@ -1,0 +1,131 @@
+Directional strength or Digbala is the strength gained by
+the planets due to the occupancy of different directions by
+them in the horoscope.
+Direction :- The directions in a horoscope are as
+under:
+The Ascendant represents the East while the
+seventh house represents the west, the tenth the south
+while the fourth the northern direction.
+Every planet is powerful in a particular direction and
+gets certain amount of strength by virtue of its being posited
+in that direction.
+
+[
+  {
+    "Planets": "Jupiter & Mercury",
+    "Powerful_Direction": "I house",
+    "Powerless_Direction": "VII house"
+  },
+  {
+    "Planets": "Moon & Venus",
+    "Powerful_Direction": "IV house",
+    "Powerless_Direction": "X house"
+  },
+  {
+    "Planets": "Saturn",
+    "Powerful_Direction": "VII house",
+    "Powerless_Direction": "I house"
+  },
+  {
+    "Planets": "Sun & Mars",
+    "Powerful_Direction": "X house",
+    "Powerless_Direction": "IV house"
+  }
+]
+
+When these planets are at Bhava Madhya at their
+powerful house, they will get 60 shashtiamsa as directional
+strength.
+Their directional strength will be zero, when they will
+be at the Bhava Madhya at their powerless point as they
+will lose all directional power.
+The directional strength increases uniformly from
+powerless point to the Powerful point from zero to sixty
+shashtiamsa and decreases uniformly from powerful point
+to powerless point from sixty to zero shashtiamsa. The
+difference between the longitudes of powerful and
+powerless point equal to hundred and eighty degrees hence
+in one degree it gains or loses
+60 / 180 = 1/3 shashtiamsa.
+When the diherence oflongitudes of a planet from that of
+its powerless point is divided by three it gives the directional
+strength of the planet. The difference between the longitudes
+of the planet and powerless point should not be more than
+one hundred and eighty degrees. In case the difference
+exceeds one hundred and eighty degrees deduct the
+longitudes of t
+
+he planet from powerless point.
+
+CALCULATION OF DIGBALA OF THE PLANETS
+OF THE STANDARD HOROSCOPE :-
+The Bhava Madhya of the four Kendra Bhavas are as
+follows (in decimals) :-
+
+I 86.43 IV 166.15
+VII 266.43 X 346.15
+
+[
+  {
+    "Planet": "Sun",
+    "Longitude_of_Planet": 146.37,
+    "Powerless_Point": 166.15,
+    "Difference_of_Longitudes": 19.78,
+    "Digbala": 6.59
+  },
+  {
+    "Planet": "Moon",
+    "Longitude_of_Planet": 309.50,
+    "Powerless_Point": 346.15,
+    "Difference_of_Longitudes": 36.65,
+    "Digbala": 12.22
+  },
+  {
+    "Planet": "Mars",
+    "Longitude_of_Planet": 103.18,
+    "Powerless_Point": 166.15,
+    "Difference_of_Longitudes": 62.97,
+    "Digbala": 20.99
+  },
+  {
+    "Planet": "Mercury",
+    "Longitude_of_Planet": 170.53,
+    "Powerless_Point": 266.43,
+    "Difference_of_Longitudes": 95.90,
+    "Digbala": 31.97
+  },
+  {
+    "Planet": "Jupiter",
+    "Longitude_of_Planet": 170.45,
+    "Powerless_Point": 266.43,
+    "Difference_of_Longitudes": 95.98,
+    "Digbala": 31.99
+  },
+  {
+    "Planet": "Venus",
+    "Longitude_of_Planet": 186.27,
+    "Powerless_Point": 346.15,
+    "Difference_of_Longitudes": 159.88,
+    "Digbala": 53.29
+  },
+  {
+    "Planet": "Saturn",
+    "Longitude_of_Planet": 166.43,
+    "Powerless_Point": 86.43,
+    "Difference_of_Longitudes": 80.00,
+    "Digbala": 26.67
+  }
+]
+
+Let us see for Sun 166.15- 146.37 = 19.78
+(as the difference from longitude of Sun- powerless point
+is more than one hundred and eighty degrees the deduction
+has been done from Powerless point.)
+For Moon 346.15 - 309.50 36.65 and
+For Saturn 166.43 - 86.43 = 80
+(here we have subtracted the longitudes of powerless point
+from that of Saturn as it is less than one hundred and eighty
+degrees.)
+Plt-iase therefore ensure that the difference between
+the longitudes of the planet and that of powerless point is
+always less than one hundred and eighty degrees.

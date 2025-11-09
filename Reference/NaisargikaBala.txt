@@ -1,0 +1,44 @@
+NATURAL STRENGTH OR NAISARGIKA BALA
+
+This strength depends upon the luminosity ·of the planets.
+It is constant and same for all the horoscopes.
+Following table shows the Natural strength of all the seven
+planets:
+
+[
+  {
+    "Planet": "Sun",
+    "Ratio_of_Natural_Strength": "7/7 × 60",
+    "Natural_Strength": 60.00
+  },
+  {
+    "Planet": "Moon",
+    "Ratio_of_Natural_Strength": "6/7 × 60",
+    "Natural_Strength": 51.43
+  },
+  {
+    "Planet": "Mars",
+    "Ratio_of_Natural_Strength": "2/7 × 60",
+    "Natural_Strength": 17.14
+  },
+  {
+    "Planet": "Mercury",
+    "Ratio_of_Natural_Strength": "3/7 × 60",
+    "Natural_Strength": 25.71
+  },
+  {
+    "Planet": "Jupiter",
+    "Ratio_of_Natural_Strength": "4/7 × 60",
+    "Natural_Strength": 34.29
+  },
+  {
+    "Planet": "Venus",
+    "Ratio_of_Natural_Strength": "5/7 × 60",
+    "Natural_Strength": 42.86
+  },
+  {
+    "Planet": "Saturn",
+    "Ratio_of_Natural_Strength": "1/7 × 60",
+    "Natural_Strength": 8.57
+  }
+]

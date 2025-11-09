@@ -1,0 +1,259 @@
+MOTIONAL STRENGTH
+= CHESTABALA
+CHAPTER 5
+Chestabala is the strength due to retrogression of a planet.
+The planets become retrograde when they are nearer to
+earth. (Refer to my book on Astronomy). The strength
+gained due to arc of retrogression is known as chestabala.
+Chestabala is maximum when the difference between the
+average of mean longitude and true longitude with
+sheeghrochcha is maximum i.e. when the planet is at a
+maximum distance from earth, it is Apogee or say
+sheeghrochcha.
+Earth moves round the sun or say Sun appears to move
+round the earth. As the longitudes used are geo-centric
+longitudes, the longitudes of Sun will be ever increasing
+and the Sun will not appear retrograde at any time. As
+Moon revolves around the earth, its longitudes will also
+be ever increasing and not decreasing at all i.e. the Moon
+will never be retrograde.
+The inferior planets retrograde when they are in
+between the Earth and the Sun as they are nearer to earth
+at that time. When they are nearest to the earth i.e. on
+perigee, they are nearly in the middle of their retrograde
+movement. They retrograde sometime before and sometime
+after the perigee.
+The superior planets are retrograde sometime before
+and sometime after the opposition. When they are in
+opposition, they are nearly in the middle of the retrograde
+motion.
+
+Mean longitudes are the longitudes which are obtained
+by considering the motion of a planet being uniform and
+in a circular path instead of an elliptical one.
+Epoch:
+The epoch is taken at the begiiming of 1st January
+1900 mid-night at 76°(E) {The meridian ·of Ujjain
+considered as meridian of India by the Indian
+Astronomers.}
+As inner planets (Mercury and Venus) remain nearer
+to Sun, their mean longitudes will be taken as that of Sun.
+It has been pointed out earlier that the superior planets
+(Mars, .Jupiter and Saturn) will be in the middle of their
+retrograde motion when they are nearest to earth and in
+opposition with the Sun.
+They will be farthest to earth when they are in
+conjunction with the Sun. So fheir sheeghrochcha will be
+the same as mean longitude of the Sun.
+. For finding out the mean longitudes of Sun, Mars,
+Jupiter and Saturn and seeghrochcha of Mercury and Venus
+the tables from IV and IX will be used as shown below :
+Calculation :
+First find out the number of days elapsed from the
+epoch to the time ofbirth. For the standard horoscope from
+the mid-night (ofUjjain) ofist January 1900 to 1.30 AM
+(IST) on 13th September, 1981.
+198 1-1 900 = 8 1 years (as the base year is 1900 and
+not 1901)
+
+
+No of days in 81 yrs = 81 x 365 = 29565 days
+Addit.ional days for leap year = 20 days
+No. ofdays from 1-1-81 to 12-9-81 = 255 days
+·No. of days from 12 mid-night of
+Ujjain to 1.30 1ST*
+Total no. of days
+= 0.04 days
+= 29840.04 days
+• { 1.30 IST = 1h.30'- Oh.26' (LMT correction for Ujjain)
+= 1h.04' = 0.04 days}
+As stated earlier Mean longitude of Sun = Mean
+longitude of Mercury = Mean longitude of Venus =
+Seeghrochcha of Mars, Jupiter and Saturn
+So the Mean loongitudes of Sun, Mars, Jupiter ,
+Saturn and Seeghrochca of Mercury and Venus are to be
+found out as under for the standard horoscope.
+Calculation of Mean longitude of Sun :
+From Table IV
+For 20,000 days
+9000 days
+800 days
+= 272.0531
+= 230.4239
+= 68.4821
+40 days = 39.4240 (10 x 4 units value)
+0.04 days = 0.04 ( 0.04 x 0.98 i.e. 0.04x1)
+Total 610.4231
+Constant at epoch= 257.4568
+867.8799 =867°.88(I'ounded)
+deduct multiples of 360 and get
+867.88- 720 = 147°.88 which is mean longitude of
+
+
+Sun.
+Calculations of Mean longitudes of Mars, Jupiter,
+Saturn and Seeghrochcha of Mercury and Venus from=
+
+{
+  "Mean_Longitudes_And_Seeghrachcha": {
+    "Data": [
+      {
+        "Days": 20000,
+        "Mars": 40.39,
+        "Jupiter": 221.93,
+        "Saturn": 308.79,
+        "Mercury": 126.36,
+        "Venus": 2.93
+      },
+      {
+        "Days": 9000,
+        "Mars": 36.17,
+        "Jupiter": 27.89,
+        "Saturn": 305.09,
+        "Mercury": 110.86,
+        "Venus": 19.32
+      },
+      {
+        "Days": 800,
+        "Mars": 59.22,
+        "Jupiter": 66.58,
+        "Saturn": 26.75,
+        "Mercury": 33.85,
+        "Venus": 201.72
+      },
+      {
+        "Days": 40,
+        "Mars": 20.96,
+        "Jupiter": 3.32,
+        "Saturn": 1.34,
+        "Mercury": 163.69,
+        "Venus": 64.09
+      },
+      {
+        "Days": 0.04,
+        "Mars": 0.02,
+        "Jupiter": null,
+        "Saturn": null,
+        "Mercury": 0.16,
+        "Venus": 0.06
+      }
+    ],
+    "For_29840.04_days": {
+      "Mars": 156.76,
+      "Jupiter": 319.70,
+      "Saturn": 637.83,
+      "Mercury": 434.92,
+      "Venus": 288.12
+    },
+    "Constant_at_Epoch": {
+      "Mars": 270.22,
+      "Jupiter": 220.04,
+      "Saturn": 236.74,
+      "Mercury": 164.00,
+      "Venus": 328.51
+    },
+    "Correction": {
+      "Mars": null,
+      "Jupiter": -3.87,
+      "Saturn": +5.08,
+      "Mercury": +6.56,
+      "Venus": -5.01
+    },
+    "Total": {
+      "Mars": 426.98,
+      "Jupiter": 535.87,
+      "Saturn": 879.65,
+      "Mercury": 605.48,
+      "Venus": 611.62
+    },
+    "Deduct_Multiple_of_360": {
+      "Mars": -360.00,
+      "Jupiter": -360.00,
+      "Saturn": -720.00,
+      "Mercury": -360.00,
+      "Venus": -360.00
+    },
+    "Final_Longitudes": {
+      "Mars": 66.98,
+      "Jupiter": 175.87,
+      "Saturn": 159.65,
+      "Mercury": 245.48,
+      "Venus": 251.62
+    }
+  }
+}
+
+A. Less correction 3.33 + 0.0067 x 81 = 3.87
+B. Add 5°+ 0.001 X 81 = 5 + 0.08 = 5.08
+c. Add 6.67- 0.00133 X 81 = 6.67- 0.11 = 6.56
+D. Less 5°+ 0.0001 x 81 = 5 + 0.008 = 5.01 (Rounded)
+Now chesta Kendra =
+Sh h h h
+(Mean longitude + True longitude) divided by2
+
+
+lfthe chesta kendra is more than 180° deduct it from 360°
+or reverse the position i.e.
+
+Chesta kendra =
+0.5(Mean longitude+ True longitude)- Seeghrochcha
+Chesta Bala = Chesta kendra divide by 3
+
+CHESTA BALA
+
+[
+  {
+    "Planet": "Mars",
+    "Seeghrochcha": 147.88,
+    "True_Longitude": 103.18,
+    "Mean_Longitude": 66.98,
+    "Half_True_Mean_Longitude": 85.08,
+    "Reduced_Chesta_Kendra": 62.80,
+    "Chesta_Bala": 20.93
+  },
+  {
+    "Planet": "Mercury",
+    "Seeghrochcha": 245.48,
+    "True_Longitude": 170.53,
+    "Mean_Longitude": 147.88,
+    "Half_True_Mean_Longitude": 159.21,
+    "Reduced_Chesta_Kendra": 86.27,
+    "Chesta_Bala": 28.76
+  },
+  {
+    "Planet": "Jupiter",
+    "Seeghrochcha": 147.88,
+    "True_Longitude": 170.45,
+    "Mean_Longitude": 175.87,
+    "Half_True_Mean_Longitude": 173.16,
+    "Reduced_Chesta_Kendra": 25.28,
+    "Chesta_Bala": 8.43
+  },
+  {
+    "Planet": "Venus",
+    "Seeghrochcha": 251.62,
+    "True_Longitude": 186.27,
+    "Mean_Longitude": 147.88,
+    "Half_True_Mean_Longitude": 167.08,
+    "Reduced_Chesta_Kendra": 84.54,
+    "Chesta_Bala": 28.18
+  },
+  {
+    "Planet": "Saturn",
+    "Seeghrochcha": 147.88,
+    "True_Longitude": 166.43,
+    "Mean_Longitude": 159.65,
+    "Half_True_Mean_Longitude": 163.04,
+    "Reduced_Chesta_Kendra": 15.16,
+    "Chesta_Bala": 5.05
+  }
+]
+
+Note 1. Column 5 is arrived at by finding out the
+difference between figures of Column one
+and four and it should not be more than
+180deg i.e. column 1 -'- column 4 if more than
+180deg take column 4 - column 1 which will
+be less than 180deg,
+2. Column 5 divide by 3 =column 6 as per formula
+given earlier.
